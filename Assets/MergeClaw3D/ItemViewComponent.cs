@@ -1,15 +1,28 @@
 using System;
+using System.Collections.Generic;
+using MergeClaw3D.MergeClaw3D.Enums;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MergeClaw3D.MergeClaw3D
 {
     public class ItemViewComponent : MonoBehaviour
     {
-        private ItemView _itemView;
+        //test
+        [SerializeField] private List<ItemView> _allViews;
+        private int index;
+        private ItemView _currentItemView;
         
-        public void Initialize(ItemView itemView)
+        [Button]
+        public void SetNextView(ItemSize size) 
         {
-            _itemView = itemView;
+            if (_currentItemView!=null)
+            {
+                Destroy(_currentItemView.gameObject);   
+            }
+            _currentItemView = Instantiate(_allViews[index % _allViews.Count], transform).SetCorrespondingSize(size);
+            index++;
         }
+        //test
     }
 }
