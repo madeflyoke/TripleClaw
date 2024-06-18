@@ -1,10 +1,20 @@
+using HighlightPlus;
 using MergeClaw3D.MergeClaw3D.Enums;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MergeClaw3D.MergeClaw3D
 {
     public class ItemView : MonoBehaviour
     {
+        [SerializeField] private MeshFilter _meshFilter;
+
+        public void SetMesh(Mesh mesh)
+        {
+            _meshFilter.sharedMesh = mesh;
+        }
+        
+        [Button]
         public ItemView SetCorrespondingSize(ItemSize itemSize)
         {
             var finalScale = Vector3.one; //default one

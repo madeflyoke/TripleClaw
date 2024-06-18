@@ -8,19 +8,16 @@ namespace MergeClaw3D.MergeClaw3D
 {
     public class ItemViewComponent : MonoBehaviour
     {
+        [SerializeField] private ItemView _itemView;
+        
         //test
-        [SerializeField] private List<ItemView> _allViews;
+        [SerializeField] private List<Mesh> _allViews;
         private int index;
-        private ItemView _currentItemView;
         
         [Button]
-        public void SetNextView(ItemSize size) 
+        public void SetNextView() 
         {
-            if (_currentItemView!=null)
-            {
-                Destroy(_currentItemView.gameObject);   
-            }
-            _currentItemView = Instantiate(_allViews[index % _allViews.Count], transform).SetCorrespondingSize(size);
+            _itemView.SetMesh(_allViews[index%_allViews.Count]);
             index++;
         }
         //test
