@@ -8,10 +8,18 @@ namespace MergeClaw3D.MergeClaw3D
     public class ItemView : MonoBehaviour
     {
         [SerializeField] private MeshFilter _meshFilter;
-
+        private MeshCollider _currentCollider;
+        
         public void SetMesh(Mesh mesh)
         {
             _meshFilter.sharedMesh = mesh;
+            if (_currentCollider!=null) //TODO Mesh collider manipulation there
+            {
+                DestroyImmediate(_currentCollider);
+            }
+
+            _currentCollider = gameObject.AddComponent<MeshCollider>(); 
+            _currentCollider.convex = true;
         }
         
         [Button]

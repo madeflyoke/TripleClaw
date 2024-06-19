@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using MergeClaw3D.MergeClaw3D.Enums;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
