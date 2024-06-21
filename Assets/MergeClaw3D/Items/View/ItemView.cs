@@ -1,9 +1,8 @@
-using HighlightPlus;
-using MergeClaw3D.MergeClaw3D.Enums;
+using MergeClaw3D.MergeClaw3D.Items.Enums;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MergeClaw3D.MergeClaw3D
+namespace MergeClaw3D.MergeClaw3D.Items.View
 {
     public class ItemView : MonoBehaviour
     {

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace MergeClaw3D.MergeClaw3D
+﻿namespace MergeClaw3D.MergeClaw3D.Items
 {
     public static class ItemConstants
     {
