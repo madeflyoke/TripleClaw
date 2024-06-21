@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-namespace HighlightPlus {
+namespace MergeClaw3D.Tools.Outline.HighlightPlus.Pipelines.URP {
 
     public class HighlightPlusRenderPassFeature : ScriptableRendererFeature {
         class HighlightPass : ScriptableRenderPass {

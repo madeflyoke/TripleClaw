@@ -1,20 +1,22 @@
-using System;
-using HighlightPlus;
-using UniRx;
+using MergeClaw3D.Scripts.Services;
 using UnityEngine;
+using Zenject;
 
-namespace MergeClaw3D.MergeClaw3D
+namespace MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts
 {
     public class HighlightOnClickActivator : MonoBehaviour
     {
+        [Inject] private ServicesHolder _servicesHolder;
+        
         [SerializeField] private HighlightEffect _highlightEffect;
        
         private bool _isActive;
 
         private void Start()
         {
-            InputService.S.PointerInputDown += Activate;
-            InputService.S.PointerInputUp += Deactivate;
+            var inputService = _servicesHolder.GetService<InputService>();
+            inputService.PointerInputDown += Activate;
+            inputService.PointerInputUp += Deactivate;
         }
 
         private void Activate()

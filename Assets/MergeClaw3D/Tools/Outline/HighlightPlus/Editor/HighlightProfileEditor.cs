@@ -1,5 +1,7 @@
-﻿using UnityEditor;
+﻿using MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts;
+using UnityEditor;
 using UnityEngine;
+using QualityLevel = MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts.QualityLevel;
 
 namespace HighlightPlus {
 

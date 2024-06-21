@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HighlightPlus {
+namespace MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts {
 
     public struct MeshData {
         public Renderer renderer;

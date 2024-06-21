@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace HighlightPlus {
+namespace MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts {
 
     public delegate bool OnObjectSelectionEvent(GameObject obj);
 

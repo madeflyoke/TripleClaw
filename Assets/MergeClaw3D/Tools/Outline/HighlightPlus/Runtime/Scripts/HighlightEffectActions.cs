@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace HighlightPlus {
+namespace MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts {
 
     public enum HitFxMode {
         Overlay = 0,
