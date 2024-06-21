@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MergeClaw3D.MergeClaw3D
+namespace MergeClaw3D.MergeClaw3D.Items.View
 {
     public class ItemViewComponent : MonoBehaviour
     {

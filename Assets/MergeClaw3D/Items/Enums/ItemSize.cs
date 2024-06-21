@@ -1,4 +1,4 @@
-namespace MergeClaw3D.MergeClaw3D.Enums
+namespace MergeClaw3D.MergeClaw3D.Items.Enums
 {
     public enum ItemSize
     {
