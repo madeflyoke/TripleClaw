@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 920691045}
   - component: {fileID: 920691047}
   - component: {fileID: 920691046}
+  - component: {fileID: 920691048}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -311,6 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
+  - {fileID: 920691048}
   - {fileID: 920691046}
   _installerPrefabs: []
   _autoRun: 1
@@ -329,6 +331,18 @@ MonoBehaviour:
   _parentNewObjectsUnderSceneContext: 0
   _contractNames: []
   _parentContractNames: []
+--- !u!114 &920691048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920691044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e2db986e0cf5b4d9fdb16a6074f97a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1127042910
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +475,7 @@ GameObject:
   - component: {fileID: 1539257998}
   - component: {fileID: 1539258000}
   m_Layer: 5
-  m_Name: CoinsCurrency
+  m_Name: CoinsCurrencyView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
