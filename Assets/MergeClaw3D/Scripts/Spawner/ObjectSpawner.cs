@@ -1,12 +1,12 @@
+using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Sirenix.OdinInspector;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace MergeClaw3D
+namespace MergeClaw3D.Scripts.Spawner
 {
     public class ObjectSpawner : MonoBehaviour
     {
