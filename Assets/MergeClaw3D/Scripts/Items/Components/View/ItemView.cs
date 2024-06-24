@@ -2,23 +2,21 @@ using MergeClaw3D.Scripts.Items.Enums;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MergeClaw3D.Scripts.Items.View
+namespace MergeClaw3D.Scripts.Items.Components.View
 {
     public class ItemView : MonoBehaviour
     {
         [SerializeField] private MeshFilter _meshFilter;
         private MeshCollider _currentCollider;
         
-        public void SetMesh(Mesh mesh)
+        public void SetupMesh(Mesh mesh)
         {
             _meshFilter.sharedMesh = mesh;
-            if (_currentCollider!=null) //TODO Mesh collider manipulation there
+            if (_currentCollider==null)
             {
-                DestroyImmediate(_currentCollider);
+                _currentCollider = gameObject.AddComponent<MeshCollider>(); 
+                _currentCollider.convex = true;
             }
-
-            _currentCollider = gameObject.AddComponent<MeshCollider>(); 
-            _currentCollider.convex = true;
         }
         
         [Button]
