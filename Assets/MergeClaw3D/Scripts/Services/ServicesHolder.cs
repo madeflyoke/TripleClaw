@@ -38,6 +38,7 @@ namespace MergeClaw3D.Scripts.Services
             
             //add all services below
           //  AddService<YandexService>();
+            AddService<UtilityHelperService>();
             AddService<InputService>();
             AddService<ProgressService>();
             AddService<PauseService>();
