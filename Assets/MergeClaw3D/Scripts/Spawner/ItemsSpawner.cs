@@ -2,17 +2,24 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using MergeClaw3D.Scripts.Configs.Items;
+using MergeClaw3D.Scripts.Factories;
+using MergeClaw3D.Scripts.Items.Data;
+using MergeClaw3D.Scripts.Items.Enums;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace MergeClaw3D.Scripts.Spawner
 {
-    public class ObjectSpawner : MonoBehaviour
+    public class ItemsSpawner : SerializedMonoBehaviour
     {
+        [SerializeField] private ItemsFactory _factory;
+        [SerializeField] private ItemsConfig _itemsConfig;
+        
         [SerializeField] private Transform spawnContainer;
         [SerializeField] private Transform spawnPoint;
-
+        
         [Title("Spawn Settings")]
         [PropertySpace]
         [SerializeField] private float squareSide;
@@ -24,8 +31,7 @@ namespace MergeClaw3D.Scripts.Spawner
         [Title("Test")]
         [SerializeField] private bool enableTestSpawnOnStart;
         [SerializeField] private int spawnCount = 0;
-        [SerializeField] private Transform objectPrefab;
-
+        
         private const int NUMBER_QUARTER_SQUARES = 1;
         private const int NUMBER_SQUARES_IN_SQUARE = 4;
         private const int SMALL_SQUARE_COUNT = NUMBER_SQUARES_IN_SQUARE * NUMBER_QUARTER_SQUARES;
@@ -44,6 +50,10 @@ namespace MergeClaw3D.Scripts.Spawner
         {
             var squareCenters = GetSquaresLeftBottomPoints();
 
+            GameObjectSpawnData reusedSpawnData = new GameObjectSpawnData();
+            reusedSpawnData.Parent = spawnContainer;
+            reusedSpawnData.Scale = Vector3.zero;
+
             for (int i = 0, centerIndex = 0; i < spawnCount; i++, centerIndex++)
             {
                 if (centerIndex == SMALL_SQUARE_COUNT)
@@ -54,10 +64,11 @@ namespace MergeClaw3D.Scripts.Spawner
                 var x = Random.Range(0f, SmallSquareSide);
                 var z = Random.Range(0f, SmallSquareSide);
 
-                var instance = Instantiate(objectPrefab, spawnContainer);
-                instance.localScale = Vector3.zero;
-                instance.position = squareCenters[centerIndex] + new Vector3(x, 0f, z);
-                instance.DOScale(Vector3.one, objectScaleDuration);
+                reusedSpawnData.Position = squareCenters[centerIndex] + new Vector3(x, 0f, z);
+                
+                var instanceTr = _factory.Create(reusedSpawnData, _itemsConfig.GetRandomItemData(), new ItemSpecificationData(ItemSize.LARGE)).transform;
+                
+                instanceTr.DOScale(Vector3.one, objectScaleDuration);
 
                 if ((i + 1) % packCount == 0)
                 {
