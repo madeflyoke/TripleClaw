@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Lean.Common;
+using Zenject;
 
 namespace Lean.Pool
 {
@@ -14,44 +15,51 @@ namespace Lean.Pool
 		/// <summary>When you spawn a prefab from this class, the association between the spawned clone and the pool that spawned it will be stored here so it can quickly be despawned.</summary>
 		public static Dictionary<GameObject, LeanGameObjectPool> Links = new Dictionary<GameObject, LeanGameObjectPool>();
 
-		/// <summary>This allows you to spawn a prefab via Component.</summary>
-		public static T Spawn<T>(T prefab, Transform parent, bool worldPositionStays = false)
-			where T : Component
+		private static DiContainer _diContainer;
+		
+		public static void SetupDiContainer(DiContainer diContainer)
 		{
-			if (prefab == null) { Debug.LogError("Attempting to spawn a null prefab."); return null; }
-			var clone = Spawn(prefab.gameObject, parent, worldPositionStays); return clone != null ? clone.GetComponent<T>() : null;
+			_diContainer ??= diContainer;
 		}
 
 		/// <summary>This allows you to spawn a prefab via Component.</summary>
-		public static T Spawn<T>(T prefab, Vector3 position, Quaternion rotation, Transform parent = null)
+		public static T Spawn<T>(T prefab, Transform parent, bool worldPositionStays = false, bool injected = false)
 			where T : Component
 		{
 			if (prefab == null) { Debug.LogError("Attempting to spawn a null prefab."); return null; }
-			var clone = Spawn(prefab.gameObject, position, rotation, parent); return clone != null ? clone.GetComponent<T>() : null;
+			var clone = Spawn(prefab.gameObject, parent, worldPositionStays,injected); return clone != null ? clone.GetComponent<T>() : null;
 		}
 
 		/// <summary>This allows you to spawn a prefab via Component.</summary>
-		public static T Spawn<T>(T prefab)
+		public static T Spawn<T>(T prefab, Vector3 position, Quaternion rotation, Transform parent = null, bool injected = false)
 			where T : Component
 		{
 			if (prefab == null) { Debug.LogError("Attempting to spawn a null prefab."); return null; }
-			var clone = Spawn(prefab.gameObject); return clone != null ? clone.GetComponent<T>() : null;
+			var clone = Spawn(prefab.gameObject, position, rotation, parent, injected); return clone != null ? clone.GetComponent<T>() : null;
+		}
+
+		/// <summary>This allows you to spawn a prefab via Component.</summary>
+		public static T Spawn<T>(T prefab, bool injected = false)
+			where T : Component
+		{
+			if (prefab == null) { Debug.LogError("Attempting to spawn a null prefab."); return null; }
+			var clone = Spawn(prefab.gameObject, injected); return clone != null ? clone.GetComponent<T>() : null;
 		}
 
 		/// <summary>This allows you to spawn a prefab via GameObject.</summary>
-		public static GameObject Spawn(GameObject prefab, Transform parent, bool worldPositionStays = false)
+		public static GameObject Spawn(GameObject prefab, Transform parent, bool worldPositionStays = false, bool injected = false)
 		{
 			if (prefab == null) { Debug.LogError("Attempting to spawn a null prefab."); return null; }
 			var transform = prefab.transform;
 			if (parent != null && worldPositionStays == true)
 			{
-				return Spawn(prefab, prefab.transform.position, Quaternion.identity, Vector3.one, parent, worldPositionStays);
+				return Spawn(prefab, prefab.transform.position, Quaternion.identity, Vector3.one, parent, worldPositionStays, injected);
 			}
-			return Spawn(prefab, transform.localPosition, transform.localRotation, transform.localScale, parent, false);
+			return Spawn(prefab, transform.localPosition, transform.localRotation, transform.localScale, parent, false, injected);
 		}
 
 		/// <summary>This allows you to spawn a prefab via GameObject.</summary>
-		public static GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent = null)
+		public static GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent = null, bool injected = false)
 		{
 			if (prefab == null) { Debug.LogError("Attempting to spawn a null prefab."); return null; }
 			if (parent != null)
@@ -59,19 +67,20 @@ namespace Lean.Pool
 				position = parent.InverseTransformPoint(position);
 				rotation = Quaternion.Inverse(parent.rotation) * rotation;
 			}
-			return Spawn(prefab, position, rotation, prefab.transform.localScale, parent, false);
+			return Spawn(prefab, position, rotation, prefab.transform.localScale, parent, false, injected);
 		}
 
 		/// <summary>This allows you to spawn a prefab via GameObject.</summary>
-		public static GameObject Spawn(GameObject prefab)
+		public static GameObject Spawn(GameObject prefab, bool injected = false)
 		{
 			if (prefab == null) { Debug.LogError("Attempting to spawn a null prefab."); return null; }
 			var transform = prefab.transform;
-			return Spawn(prefab, transform.localPosition, transform.localRotation, transform.localScale, null, false);
+			return Spawn(prefab, transform.localPosition, transform.localRotation, transform.localScale, null, false, injected);
 		}
 
 		/// <summary>This allows you to spawn a prefab via GameObject.</summary>
-		private static GameObject Spawn(GameObject prefab, Vector3 localPosition, Quaternion localRotation, Vector3 localScale, Transform parent, bool worldPositionStays)
+		private static GameObject Spawn(GameObject prefab, Vector3 localPosition, Quaternion localRotation, Vector3 localScale,
+			Transform parent, bool worldPositionStays, bool injected)
 		{
 			if (prefab != null)
 			{
@@ -82,7 +91,10 @@ namespace Lean.Pool
 				if (LeanGameObjectPool.TryFindPoolByPrefab(prefab, ref pool) == false)
 				{
 					pool = new GameObject("LeanPool (" + prefab.name + ")").AddComponent<LeanGameObjectPool>();
-
+					if (injected && _diContainer!=null)
+					{
+						pool.MarkAsInjectedPool(_diContainer);
+					}
 					pool.Prefab = prefab;
 				}
 
