@@ -1,12 +1,13 @@
-using System;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using MergeClaw3D.Scripts.Configs.Items;
 using MergeClaw3D.Scripts.Factories;
+using MergeClaw3D.Scripts.Items;
 using MergeClaw3D.Scripts.Items.Data;
 using MergeClaw3D.Scripts.Items.Enums;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -24,6 +25,7 @@ namespace MergeClaw3D.Scripts.Spawner
         [PropertySpace]
         [SerializeField] private float squareSide;
         [PropertySpace]
+        [SerializeField] private float heightStep = 0.1f;
         [SerializeField] private int packCount;
         [SerializeField] private float delayBeforeEachPackSpawn;
         [SerializeField] private float objectScaleDuration;
@@ -32,11 +34,11 @@ namespace MergeClaw3D.Scripts.Spawner
         [SerializeField] private bool enableTestSpawnOnStart;
         [SerializeField] private int spawnCount = 0;
         
-        private const int NUMBER_QUARTER_SQUARES = 1;
-        private const int NUMBER_SQUARES_IN_SQUARE = 4;
-        private const int SMALL_SQUARE_COUNT = NUMBER_SQUARES_IN_SQUARE * NUMBER_QUARTER_SQUARES;
+        private const int _NUMBER_QUARTER_SQUARES = 1;
+        private const int _NUMBER_SQUARES_IN_SQUARE = 4;
+        private const int _SMALL_SQUARE_COUNT = _NUMBER_SQUARES_IN_SQUARE * _NUMBER_QUARTER_SQUARES;
 
-        private float SmallSquareSide => squareSide / (NUMBER_SQUARES_IN_SQUARE / 2f);
+        private float SmallSquareSide => squareSide / (_NUMBER_SQUARES_IN_SQUARE / 2f);
 
         private void Start()
         {
@@ -49,31 +51,43 @@ namespace MergeClaw3D.Scripts.Spawner
         private async void Spawn()
         {
             var squareCenters = GetSquaresLeftBottomPoints();
+            var reusedSpawnData = new GameObjectSpawnData
+            {
+                Parent = spawnContainer,
+                Scale = Vector3.zero
+            };
 
-            GameObjectSpawnData reusedSpawnData = new GameObjectSpawnData();
-            reusedSpawnData.Parent = spawnContainer;
-            reusedSpawnData.Scale = Vector3.zero;
+            var spawnHeight = 0f;
+            var entities = new List<ItemEntity>();
 
             for (int i = 0, centerIndex = 0; i < spawnCount; i++, centerIndex++)
             {
-                if (centerIndex == SMALL_SQUARE_COUNT)
+                if (centerIndex == _SMALL_SQUARE_COUNT)
                 {
                     centerIndex = 0;
+
+                    spawnHeight += heightStep;
                 }
 
                 var x = Random.Range(0f, SmallSquareSide);
                 var z = Random.Range(0f, SmallSquareSide);
 
-                reusedSpawnData.Position = squareCenters[centerIndex] + new Vector3(x, 0f, z);
+                reusedSpawnData.Position = squareCenters[centerIndex] + new Vector3(x, spawnHeight, z);
                 
-                var instanceTr = _factory.Create(reusedSpawnData, _itemsConfig.GetRandomItemData(), new ItemSpecificationData(ItemSize.LARGE)).transform;
-                
-                instanceTr.DOScale(Vector3.one, objectScaleDuration);
+                var entity = _factory.Create(reusedSpawnData, _itemsConfig.GetRandomItemData(), new ItemSpecificationData(ItemSize.LARGE));
+                entity.ScaleObject(1f, objectScaleDuration);
+
+                entities.Add(entity);
 
                 if ((i + 1) % packCount == 0)
                 {
                     await UniTask.Delay(TimeSpan.FromSeconds(delayBeforeEachPackSpawn));
                 }
+            }
+
+            foreach (var entity in entities)
+            {
+                entity.LockVelocityOnZero(false);
             }
         }
 
@@ -81,7 +95,7 @@ namespace MergeClaw3D.Scripts.Spawner
         {
             var squarsPoints = new List<Vector3>();
 
-            var smallSquareCountHalf = SMALL_SQUARE_COUNT / 2;
+            var smallSquareCountHalf = _SMALL_SQUARE_COUNT / 2;
 
             var squareSideHalf = squareSide / 2f;
             var startPoint = new Vector3(spawnPoint.position.x - squareSideHalf, spawnPoint.position.y, spawnPoint.position.z - squareSideHalf);
