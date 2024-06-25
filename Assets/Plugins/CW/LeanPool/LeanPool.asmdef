@@ -1,11 +1,8 @@
 {
     "name": "LeanPool",
-    "rootNamespace": "",
     "references": [
         "LeanCommon",
-        "CW.Common",
-        "Zenject",
-        "CommonInterfaces"
+        "CW.Common"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
