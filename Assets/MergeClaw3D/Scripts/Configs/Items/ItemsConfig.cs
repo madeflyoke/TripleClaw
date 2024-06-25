@@ -30,6 +30,7 @@ namespace MergeClaw3D.Scripts.Configs.Items
         [Button]
         public void LoadAllMeshesFromPath()
         {
+            _itemDatas = new List<ItemConfigData>();
             int index = 0;
             string[] guids = AssetDatabase.FindAssets("t:GameObject", new[] { EDITOR_itemsModelsPath });
 
