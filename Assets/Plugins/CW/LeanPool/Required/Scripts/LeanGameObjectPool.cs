@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using CW.Common;
-using Zenject;
 
 namespace Lean.Pool
 {
@@ -94,15 +93,6 @@ namespace Lean.Pool
 
 		private static List<IPoolable> tempPoolables = new List<IPoolable>();
 
-		private bool _isInjectedPool = false;
-		private DiContainer _diContainer;
-		
-		public void MarkAsInjectedPool(DiContainer diContainer)
-		{
-			_isInjectedPool = true;
-			_diContainer = diContainer;
-		}
-		
 		/// <summary>If you're using the <b>Strategy = DeactivateViaHierarchy</b> mode, then all despawned clones will be placed under this.</summary>
 		public Transform DeactivatedChild
 		{
@@ -770,25 +760,12 @@ namespace Lean.Pool
 
 			if (worldPositionStays == true)
 			{
-				if (_isInjectedPool)
-				{
-					return _diContainer.InstantiatePrefab(prefab, parent);
-				}
-				
 				return Instantiate(prefab, parent, true);
 			}
 			else
 			{
-				GameObject clone;
-				if (_isInjectedPool)
-				{
-					clone = _diContainer.InstantiatePrefab(prefab, localPosition, localRotation, parent);
-				}
-				else
-				{
-					clone = Instantiate(prefab, localPosition, localRotation, parent);
-				}
-				
+				var clone = Instantiate(prefab, localPosition, localRotation, parent);
+
 				clone.transform.localPosition = localPosition;
 				clone.transform.localRotation = localRotation;
 				clone.transform.localScale    = localScale;
