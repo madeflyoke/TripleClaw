@@ -56,7 +56,7 @@ namespace MergeClaw3D.Scripts.Factories
 
             var rowCount = Mathf.CeilToInt(Mathf.Sqrt(items.Count));
             EDITOR_previewContainer = new GameObject().transform;
-            EDITOR_previewContainer.name = "PreviewItemsContainer";
+            EDITOR_previewContainer.name = "Autodestruct_PreviewItemsContainer";
             
             var index = 0;
             for (int i = 0; i < rowCount; i++)

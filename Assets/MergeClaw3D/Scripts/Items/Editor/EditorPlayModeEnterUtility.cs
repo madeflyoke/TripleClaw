@@ -23,7 +23,7 @@ namespace MergeClaw3D.Scripts.Items.Editor
 
         private static void TryClearItemsPreview()
         {
-            GameObject objectToDestroy = GameObject.Find("PreviewItemsContainer");
+            GameObject objectToDestroy = GameObject.Find("Autodestruct_PreviewItemsContainer");
 
             if (objectToDestroy != null)
             {
