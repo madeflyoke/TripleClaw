@@ -48,18 +48,34 @@ namespace MergeClaw3D.Scripts.Factories
                 DestroyImmediate(transform.GetChild(i).gameObject);
             }
 
-            foreach (var itemConfigData in EDITOR_itemsConfig.GetAllItemsData())
+            var items = EDITOR_itemsConfig.GetAllItemsData();
+
+            var rowCount = Mathf.CeilToInt(Mathf.Sqrt(items.Count));
+            
+            var index = 0;
+            for (int i = 0; i < rowCount; i++)
             {
-                var newItemEntity = Instantiate(EDITOR_itemBasePrefab, transform);
-                if (itemConfigData.Mesh==null)
+                for (int j = 0; j < rowCount; j++)
                 {
-                    Debug.LogError("Item config data mesh is null, Id: "+ itemConfigData.Id);
-                    continue;
-                }
-                newItemEntity.gameObject.name = "ItemEntity_" + itemConfigData.Mesh.name;
-                newItemEntity.Initialize(itemConfigData, new ItemSpecificationData(ItemSize.LARGE));
+                    if (index==items.Count)
+                    {
+                        return;
+                    }
+                    var itemConfigData = items[index];
+                    var pos = transform.position +  new Vector3(i+ (i*3f), 0, j+(j*3f));
+                    
+                    var newItemEntity = Instantiate(EDITOR_itemBasePrefab, pos, Quaternion.identity, transform);
+                    if (itemConfigData.Mesh==null)
+                    {
+                        Debug.LogError("Item config data mesh is null, Id: "+ itemConfigData.Id);
+                        continue;
+                    }
+                    newItemEntity.gameObject.name = "ItemEntity_" + itemConfigData.Mesh.name;
+                    newItemEntity.Initialize(itemConfigData, new ItemSpecificationData(ItemSize.LARGE));
                 
-                _itemsCachedPrefabsMap.Add(itemConfigData.Id, newItemEntity);
+                    _itemsCachedPrefabsMap.Add(itemConfigData.Id, newItemEntity);
+                    index++;
+                }
             }
             
         }
