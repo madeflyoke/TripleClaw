@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Lean.Pool;
 using MergeClaw3D.Scripts.Configs.Items;
 using MergeClaw3D.Scripts.Items;
@@ -12,45 +13,64 @@ namespace MergeClaw3D.Scripts.Factories
 {
     public class ItemsFactory : SerializedMonoBehaviour
     {
-        [SerializeField, ReadOnly] private Dictionary<int, ItemEntity> _itemsCachedPrefabsMap;
-        
-        private void Awake()
-        {
-           _itemsCachedPrefabsMap.Values.ForEach(x => x.gameObject.SetActive(false));
-        }
-        
+        [SerializeField] private ItemEntity _itemBasePrefab;
+
         public ItemEntity Create(GameObjectSpawnData spawnData, ItemConfigData itemConfigData, ItemSpecificationData specificationData)
         {
-            var targetPrefab = _itemsCachedPrefabsMap[itemConfigData.Id];
-            
-            ItemEntity itemEntity = LeanPool.Spawn(targetPrefab, spawnData.Parent, injected: true);
+            ItemEntity newItem = LeanPool.Spawn(_itemBasePrefab, spawnData.Parent);
+            newItem.Initialize(itemConfigData, specificationData);
 
-            var tr = itemEntity.transform;
+            #if UNITY_EDITOR
+            newItem.gameObject.name = "ItemEntity_" + itemConfigData.Mesh.name;
+            #endif
+            
+            var tr = newItem.transform;
             
             tr.localScale = spawnData.Scale;
             tr.position = spawnData.Position;
             tr.gameObject.SetActive(true);
-            return itemEntity;
+            return newItem;
         }
         
         
 #if UNITY_EDITOR
-
-        [SerializeField] private ItemEntity EDITOR_itemBasePrefab;
+        
         [SerializeField] private ItemsConfig EDITOR_itemsConfig;
 
-        [Button]
-        private void SpawnCachedPrefabs()
+        private void OnValidate()
         {
-            _itemsCachedPrefabsMap = new Dictionary<int, ItemEntity>();
-            for (int i = transform.childCount-1; i >=0 ; i--)
+            if (Application.isPlaying)
             {
-                DestroyImmediate(transform.GetChild(i).gameObject);
+                TryClearPreviewPrefabs();
             }
+        }
 
+        private void TryClearPreviewPrefabs()
+        {
+            if (transform.childCount>0)
+            {
+                for (int i = transform.childCount-1; i >=0 ; i--)
+                {
+                    if (Application.isPlaying)
+                    {
+                        DestroyImmediate(transform.GetChild(i).gameObject);
+                    }
+                    else
+                    {
+                        DestroyImmediate(transform.GetChild(i).gameObject);
+                    }
+                }
+            }
+        }
+
+        [Button]
+        private void SpawnPrefabsPreview()
+        { 
+            TryClearPreviewPrefabs();
+            
             foreach (var itemConfigData in EDITOR_itemsConfig.GetAllItemsData())
             {
-                var newItemEntity = Instantiate(EDITOR_itemBasePrefab, transform);
+                var newItemEntity = Instantiate(_itemBasePrefab, transform);
                 if (itemConfigData.Mesh==null)
                 {
                     Debug.LogError("Item config data mesh is null, Id: "+ itemConfigData.Id);
@@ -58,10 +78,7 @@ namespace MergeClaw3D.Scripts.Factories
                 }
                 newItemEntity.gameObject.name = "ItemEntity_" + itemConfigData.Mesh.name;
                 newItemEntity.Initialize(itemConfigData, new ItemSpecificationData(ItemSize.LARGE));
-                
-                _itemsCachedPrefabsMap.Add(itemConfigData.Id, newItemEntity);
             }
-            
         }
         
 #endif
