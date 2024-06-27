@@ -8,6 +8,7 @@ using MergeClaw3D.Scripts.Items.Enums;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -39,6 +40,7 @@ namespace MergeClaw3D.Scripts.Spawner
         private const int _SMALL_SQUARE_COUNT = _NUMBER_SQUARES_IN_SQUARE * _NUMBER_QUARTER_SQUARES;
 
         private float SmallSquareSide => squareSide / (_NUMBER_SQUARES_IN_SQUARE / 2f);
+        private CancellationTokenSource _cts;
 
         private void Start()
         {
@@ -50,6 +52,7 @@ namespace MergeClaw3D.Scripts.Spawner
 
         private async void Spawn()
         {
+            _cts = new();
             var squareCenters = GetSquaresLeftBottomPoints();
             var reusedSpawnData = new GameObjectSpawnData
             {
@@ -81,7 +84,11 @@ namespace MergeClaw3D.Scripts.Spawner
 
                 if ((i + 1) % packCount == 0)
                 {
-                    await UniTask.Delay(TimeSpan.FromSeconds(delayBeforeEachPackSpawn));
+                    var canceled =await UniTask.Delay(TimeSpan.FromSeconds(delayBeforeEachPackSpawn), cancellationToken: _cts.Token).SuppressCancellationThrow();
+                    if (canceled)
+                    {
+                        return;
+                    }
                 }
             }
 
@@ -113,6 +120,13 @@ namespace MergeClaw3D.Scripts.Spawner
             return squarsPoints;
         }
 
+        private void OnDisable()
+        {
+            _cts?.Cancel();
+        }
+
+#if UNITY_EDITOR
+        
         private void OnDrawGizmos()
         {
             var squareLeftBottomPoints = GetSquaresLeftBottomPoints();
@@ -139,5 +153,7 @@ namespace MergeClaw3D.Scripts.Spawner
                 colorIndex = colorIndex == colors.Length - 1 ? 0 : colorIndex + 1;
             }
         }
+        
+        #endif
     }
 }
