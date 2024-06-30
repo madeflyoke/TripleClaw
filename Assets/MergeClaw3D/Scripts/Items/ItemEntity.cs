@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using MergeClaw3D.Scripts.Configs.Items;
 using MergeClaw3D.Scripts.Items.Components.View;
 using MergeClaw3D.Scripts.Items.Data;
@@ -9,19 +8,11 @@ namespace MergeClaw3D.Scripts.Items
 {
     public class ItemEntity : MonoBehaviour
     {
-        public int Id { get; private set; }
-        
         [SerializeField] private ItemViewComponent _itemViewComponent;
 
-        private Tween _scaleTween;
-        private bool _lockVelocity = false;
+        private const float _SHOW_SCALE = 1f;
 
-        private void Update()
-        {
-            
-
-            VelocityUpdate();
-        }
+        public int Id { get; private set; }
 
         public void Initialize(ItemConfigData configData, ItemSpecificationData specificationData)
         {
@@ -29,33 +20,24 @@ namespace MergeClaw3D.Scripts.Items
             _itemViewComponent.Initialize(configData.Mesh, specificationData.ItemSize);
         }
 
-        public async void ScaleObject(float scale, float duration)
+        public void Show(float duration)
         {
-            await ScaleObjectAsync(scale, duration);
+            _itemViewComponent.ScaleObject(_SHOW_SCALE, duration);
         }
 
-        public async UniTask ScaleObjectAsync(float scale, float duration)
+        public async UniTask ShowAsync(float duration)
         {
-            _scaleTween?.Kill();
-            _scaleTween = transform.DOScale(scale, duration).
-                SetUpdate(UpdateType.Fixed);
-
-            await _scaleTween.AsyncWaitForCompletion();
+            await _itemViewComponent.ScaleObjectAsync(_SHOW_SCALE, duration);
         }
 
-        public void LockVelocityOnZero(bool lockVelocity)
+        public void Hide(float duration)
         {
-            _lockVelocity = lockVelocity;
+            _itemViewComponent.ScaleObject(0f, duration);
         }
 
-        private void VelocityUpdate()
+        public async UniTask HideAsync(float duration)
         {
-            if (_lockVelocity == false)
-            {
-                return;
-            }
-
-            _itemViewComponent.Rigidbody.velocity = Vector3.zero;
+            await _itemViewComponent.ScaleObjectAsync(0f, duration);
         }
     }
 }

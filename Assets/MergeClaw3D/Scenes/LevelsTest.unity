@@ -547,7 +547,7 @@ Transform:
   m_GameObject: {fileID: 122412041}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.63, z: 0}
+  m_LocalPosition: {x: 0, y: 0.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6841,7 +6841,7 @@ Transform:
   m_GameObject: {fileID: 1843525413}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6875,13 +6875,13 @@ MonoBehaviour:
   _itemsConfig: {fileID: 11400000, guid: 267bb21ed8081f047b7aabdf647b9c05, type: 2}
   spawnContainer: {fileID: 1670615633}
   spawnPoint: {fileID: 122412042}
-  squareSide: 3.34
-  heightStep: 0.5
-  packCount: 6
-  delayBeforeEachPackSpawn: 0.3
-  objectScaleDuration: 1
-  enableTestSpawnOnStart: 0
-  spawnCount: 49
+  squareSide: 13
+  heightStep: 0
+  packCount: 4
+  delayBeforeEachPackSpawn: 0.35
+  objectScaleDuration: 1.2
+  enableTestSpawnOnStart: 1
+  spawnCount: 100
 --- !u!1001 &1855958647
 PrefabInstance:
   m_ObjectHideFlags: 0
