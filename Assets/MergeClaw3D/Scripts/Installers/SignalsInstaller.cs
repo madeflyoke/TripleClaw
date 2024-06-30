@@ -9,9 +9,10 @@ namespace MergeClaw3D.Scripts.Installers
         {
             SignalBusInstaller.Install(Container);
 
-            Container.DeclareSignal<GameStartedSignal>();
-            Container.DeclareSignal<LevelCompletedSignal>();
-            Container.DeclareSignal<StartGameCallSignal>();
+            Container.DeclareSignal<StageStartedSignal>();
+            Container.DeclareSignal<StageCompletedSignal>();
+            Container.DeclareSignal<StageFailedSignal>();
+            
             Container.DeclareSignal<ResetSignal>();
         }
     }

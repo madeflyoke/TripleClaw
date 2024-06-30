@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using MergeClaw3D.Scripts.Configs.Items;
@@ -9,6 +10,8 @@ namespace MergeClaw3D.Scripts.Items
 {
     public class ItemEntity : MonoBehaviour
     {
+        public event Action<ItemEntity> ItemSelected; 
+        
         public int Id { get; private set; }
         
         [SerializeField] private ItemViewComponent _itemViewComponent;

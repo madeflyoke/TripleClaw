@@ -1,3 +1,5 @@
+using MergeClaw3D.Scripts.Configs.Stages;
+
 namespace MergeClaw3D.Scripts.Signals
 {
     public struct ResetSignal
@@ -5,18 +7,33 @@ namespace MergeClaw3D.Scripts.Signals
         
     }
     
-    public struct StartGameCallSignal
+    // public struct StartGameCallSignal //push play button in hub or smth
+    // {
+    //     
+    // }
+    //
+    // public struct GameStartedSignal //actual start gameplay by some manager
+    // {
+    //   
+    // }
+
+    public struct StageStartedSignal
+    {
+        public readonly StageData StageData;
+        
+        public StageStartedSignal(StageData stageData)
+        {
+            StageData = stageData;
+        }
+    }
+    
+    public struct StageFailedSignal
     {
         
     }
-
-    public struct GameStartedSignal
+    
+    public struct StageCompletedSignal
     {
-      
-    }
-
-    public struct LevelCompletedSignal
-    {
-       // level data
+       
     }
 }

@@ -11,7 +11,7 @@ namespace MergeClaw3D.Scripts.UI
         
         [SerializeField] private PopupAnimator _popupAnimator;
 
-        public void Show(LevelCompletedSignal signal)
+        public void Show(StageCompletedSignal signal)
         {
             _servicesHolder.GetService<PauseService>().SetPause(true);
             _popupAnimator.PlayShowAnimation();

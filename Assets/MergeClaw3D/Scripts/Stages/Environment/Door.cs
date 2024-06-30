@@ -1,10 +1,9 @@
-using System;
 using DG.Tweening;
 using MergeClaw3D.Scripts.NPC.Interfaces;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MergeClaw3D.Scripts.Level
+namespace MergeClaw3D.Scripts.Stages.Environment
 {
     public class Door : MonoBehaviour
     {

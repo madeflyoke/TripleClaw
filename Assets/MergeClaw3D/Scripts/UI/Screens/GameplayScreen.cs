@@ -16,7 +16,7 @@ namespace MergeClaw3D.Scripts.UI.Screens
 
         private void Awake()
         {
-            _signalBus.Subscribe<LevelCompletedSignal>(OnLevelCompleted);
+            _signalBus.Subscribe<StageCompletedSignal>(OnLevelCompleted);
         }
 
         private void Start()
@@ -25,7 +25,7 @@ namespace MergeClaw3D.Scripts.UI.Screens
             _levelCompletePopup.Hide();
         }
 
-        private void OnLevelCompleted(LevelCompletedSignal signal)
+        private void OnLevelCompleted(StageCompletedSignal signal)
         {
             ShowLevelCompletePopup(signal);
         }
@@ -46,7 +46,7 @@ namespace MergeClaw3D.Scripts.UI.Screens
             _settingsPopup.Show();
         }
 
-        private void ShowLevelCompletePopup(LevelCompletedSignal signal)
+        private void ShowLevelCompletePopup(StageCompletedSignal signal)
         {
             _levelCompletePopup.Show(signal);
         }
