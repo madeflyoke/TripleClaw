@@ -127,7 +127,7 @@ namespace MergeClaw3D.Scripts.Spawner
 
 #if UNITY_EDITOR
         
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             var squareLeftBottomPoints = GetSquaresLeftBottomPoints();
             var smallSquareSideHalf = SmallSquareSide / 2f;

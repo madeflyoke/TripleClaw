@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace MergeClaw3D.Scripts.NPC.MainCharacter
 {
-    public class MainCharacterEntity : MonoBehaviour, IAnimatedEntity
+    public class MainCharacterEntity : MonoBehaviour, INpcEntity, IAnimatedEntity
     {
         [SerializeField] private AnimationComponent _animationComponent;
         [SerializeField] private PointsMovementComponent _movementComponent;
@@ -14,14 +14,19 @@ namespace MergeClaw3D.Scripts.NPC.MainCharacter
         public void Awake()
         {
              InitializeComponents();
-             _movementComponent.MoveToNextAvailablePoint(()=>
-             {
-                 Debug.LogWarning("gameplay started");
-                 _animationComponent.TryPlayAnimation(AnimationConstants.IDLE_STATE);
-             });
-             _animationComponent.TryPlayAnimation(AnimationConstants.RUN_STATE);
         }
 
+        [Button]
+        private void StartMoving()
+        {
+            _movementComponent.MoveToNextAvailablePoint(()=>
+            {
+                Debug.LogWarning("gameplay started");
+                _animationComponent.TryPlayAnimation(AnimationConstants.IDLE_STATE);
+            });
+            _animationComponent.TryPlayAnimation(AnimationConstants.RUN_STATE);
+        }
+        
         private void InitializeComponents()
         {
             _animationComponent.Initialize(this);
