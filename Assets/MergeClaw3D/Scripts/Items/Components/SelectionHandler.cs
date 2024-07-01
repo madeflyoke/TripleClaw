@@ -1,38 +1,45 @@
+using System;
 using MergeClaw3D.Scripts.Services;
 using UnityEngine;
 using Zenject;
 
 namespace MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts
 {
-    public class HighlightOnClickActivator : MonoBehaviour
+    public class SelectionHandler : MonoBehaviour
     {
+        public event Action Selected; 
+        
         [Inject] private ServicesHolder _servicesHolder;
         
         [SerializeField] private HighlightEffect _highlightEffect;
        
-        private bool _isActive;
+        private bool _selectionActive;
 
-        private void Start()
+        public void Initialize()
         {
             var inputService = _servicesHolder.GetService<InputService>();
-            inputService.PointerInputDown += Activate;
-            inputService.PointerInputUp += Deactivate;
+            inputService.PointerInputDown += AllowSelection;
+            inputService.PointerInputUp += DenySelection;
+        }
+        
+        private void AllowSelection()
+        {
+            _selectionActive = true;
         }
 
-        private void Activate()
+        private void DenySelection()
         {
-            _isActive = true;
-        }
-
-        private void Deactivate()
-        {
-            _isActive = false;
+            _selectionActive = false;
+            if (_highlightEffect.highlighted)
+            {
+                Selected?.Invoke();
+            }
             _highlightEffect.SetHighlighted(false);
         }
         
         private void OnMouseEnter()
         {
-            if (_isActive)
+            if (_selectionActive)
             {
                 _highlightEffect.SetHighlighted(true);
             }
@@ -42,10 +49,10 @@ namespace MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts
         {
             _highlightEffect.SetHighlighted(true);
         }
-        
+
         private void OnMouseExit()
         {
-            if (_isActive)
+            if (_selectionActive)
             {
                 _highlightEffect.SetHighlighted(false);
             }
