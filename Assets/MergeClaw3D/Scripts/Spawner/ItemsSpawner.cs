@@ -6,6 +6,8 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using MergeClaw3D.Scripts.Configs.Stages;
+using MergeClaw3D.Scripts.Items.Data;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -29,7 +31,6 @@ namespace MergeClaw3D.Scripts.Spawner
 
         [Title("Test")]
         [SerializeField] private bool enableTestSpawnOnStart;
-        [SerializeField] private int spawnCount = 0;
 
         private const float _SPHERE_CAST_RADIUS = 0.3f;
         private const int _NUMBER_QUARTER_SQUARES = 1;
@@ -39,21 +40,13 @@ namespace MergeClaw3D.Scripts.Spawner
         private CancellationTokenSource _cts;
 
         private float SmallSquareSide => squareSide / (_NUMBER_SQUARES_IN_SQUARE / 2f);
-
-        private void Start()
-        {
-            if (enableTestSpawnOnStart)
-            {
-                Spawn();
-            }
-        }
-
+        
         private void OnDisable()
         {
             _cts?.Cancel();
         }
 
-        private async void Spawn()
+        public async void Spawn(StageData stageData) //TODO Make all items to spawn immediately and return list to store somewhere (i.e. if list count==0 its win)
         {
             _cts = new();
 
@@ -64,7 +57,12 @@ namespace MergeClaw3D.Scripts.Spawner
                 Scale = Vector3.zero,
             };
 
-            for (int i = 0, centerIndex = 0; i < spawnCount; i++, centerIndex++)
+            var totalItemsCount = stageData.TotalItemsCount;
+            
+            var itemSizesRatiosIndexes = SpreadItemsSizeRatios(stageData, totalItemsCount);
+            var targetItemConfigs = _itemsConfig.GetRandomItemsData(stageData.ItemsVariantsCount);
+
+            for (int i = 0, centerIndex = 0; i < totalItemsCount; i++, centerIndex++)
             {
                 if (centerIndex == _SMALL_SQUARE_COUNT)
                 {
@@ -80,8 +78,21 @@ namespace MergeClaw3D.Scripts.Spawner
                 reusedSpawnData.Position = randomPosition;
                 reusedSpawnData.Rotation = Random.rotation;
 
-                _factory.Create(reusedSpawnData, _itemsConfig.GetRandomItemData(), new(ItemSize.LARGE))
-                    .Show(objectScaleDuration);
+                var itemSize = ItemSize.MEDIUM;
+                for (int j = 0;  j < itemSizesRatiosIndexes.Count; j++)
+                {
+                    if (i<itemSizesRatiosIndexes[j].Key)
+                    {
+                        itemSize = itemSizesRatiosIndexes[j].Value;
+                        break;
+                    }
+                }
+                var itemSpecifications = new ItemSpecificationData(itemSize);
+
+                var itemConfig = targetItemConfigs[Random.Range(0, targetItemConfigs.Count)];
+                
+                var item = _factory.Create(reusedSpawnData, itemConfig, itemSpecifications);
+                item.Show(objectScaleDuration);
 
                 if ((i + 1) % packCount == 0)
                 {
@@ -94,6 +105,22 @@ namespace MergeClaw3D.Scripts.Spawner
                     }
                 }
             }
+        }
+
+        private List<KeyValuePair<int, ItemSize>> SpreadItemsSizeRatios(StageData stageData, int totalItemsCount)
+        {
+            List<KeyValuePair<int, ItemSize>> itemSizesRatiosIndexes = new List<KeyValuePair<int, ItemSize>>();
+            
+            var previousSizeIndex = 0;
+            for (int i = 0; i < stageData.ItemSizeRatios.Count; i++)
+            {
+                var ratio = stageData.ItemSizeRatios[i];
+                var sizeIndex = Mathf.RoundToInt(ratio.RatioPartPercent / 100f * totalItemsCount);
+                itemSizesRatiosIndexes.Add(new KeyValuePair<int, ItemSize>(sizeIndex+previousSizeIndex, ratio.ItemSize));
+                previousSizeIndex = sizeIndex;
+            }
+
+            return itemSizesRatiosIndexes;
         }
 
         private Vector3 CorrectSpawnByCloseItems(Vector3 generatedPosition)

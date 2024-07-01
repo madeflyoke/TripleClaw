@@ -6817,7 +6817,6 @@ MonoBehaviour:
   delayBeforeEachPackSpawn: 0.35
   objectScaleDuration: 1.2
   enableTestSpawnOnStart: 1
-  spawnCount: 100
 --- !u!1001 &1855958647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7882,6 +7881,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1673893548744729042, guid: c96608155fc1a694fa0cc1a30f30755c, type: 3}
+      propertyPath: _itemsSpawner
+      value: 
+      objectReference: {fileID: 1843525415}
     - target: {fileID: 6516592283048248455, guid: c96608155fc1a694fa0cc1a30f30755c, type: 3}
       propertyPath: m_Name
       value: SceneContext

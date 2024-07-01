@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
+using MergeClaw3D.Scripts.Extensions;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
@@ -21,6 +21,12 @@ namespace MergeClaw3D.Scripts.Configs.Items
         public ItemConfigData GetRandomItemData()
         {
             return _itemDatas[Random.Range(0, _itemDatas.Count)];
+        }
+
+        public List<ItemConfigData> GetRandomItemsData(int count)
+        {
+            var copy = _itemDatas.ToList().Shuffle();
+            return copy.GetRange(0, count);
         }
         
         #if UNITY_EDITOR

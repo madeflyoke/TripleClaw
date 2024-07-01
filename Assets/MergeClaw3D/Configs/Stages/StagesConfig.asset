@@ -39,22 +39,56 @@ MonoBehaviour:
       Data: 4
     - Name: ItemsGroupsCount
       Entry: 3
-      Data: 6
+      Data: 15
+    - Name: ItemSizeRatios
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio, Assembly-CSharp
+    - Name: ItemSize
+      Entry: 3
+      Data: 0
+    - Name: RatioPartPercent
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 2|MergeClaw3D.Scripts.Configs.Stages.StageData, Assembly-CSharp
-    - Name: Id
+      Data: MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio, Assembly-CSharp
+    - Name: ItemSize
       Entry: 3
       Data: 1
-    - Name: ItemsVariantsCount
+    - Name: RatioPartPercent
       Entry: 3
-      Data: 6
-    - Name: ItemsGroupsCount
+      Data: 40
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio, Assembly-CSharp
+    - Name: ItemSize
       Entry: 3
-      Data: 8
+      Data: 2
+    - Name: RatioPartPercent
+      Entry: 3
+      Data: 60
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -63,28 +97,62 @@ MonoBehaviour:
       Data: 3|MergeClaw3D.Scripts.Configs.Stages.StageData, Assembly-CSharp
     - Name: Id
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: ItemsVariantsCount
       Entry: 3
-      Data: 9
+      Data: 6
     - Name: ItemsGroupsCount
       Entry: 3
-      Data: 11
+      Data: 21
+    - Name: ItemSizeRatios
+      Entry: 7
+      Data: 4|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio, Assembly-CSharp
+    - Name: ItemSize
+      Entry: 3
+      Data: 0
+    - Name: RatioPartPercent
+      Entry: 3
+      Data: 100
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 4|MergeClaw3D.Scripts.Configs.Stages.StageData, Assembly-CSharp
-    - Name: Id
-      Entry: 3
-      Data: 3
-    - Name: ItemsVariantsCount
+      Data: MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio, Assembly-CSharp
+    - Name: ItemSize
       Entry: 3
       Data: 1
-    - Name: ItemsGroupsCount
+    - Name: RatioPartPercent
       Entry: 3
-      Data: 13
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio, Assembly-CSharp
+    - Name: ItemSize
+      Entry: 3
+      Data: 2
+    - Name: RatioPartPercent
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -93,13 +161,190 @@ MonoBehaviour:
       Data: 5|MergeClaw3D.Scripts.Configs.Stages.StageData, Assembly-CSharp
     - Name: Id
       Entry: 3
+      Data: 2
+    - Name: ItemsVariantsCount
+      Entry: 3
+      Data: 9
+    - Name: ItemsGroupsCount
+      Entry: 3
+      Data: 25
+    - Name: ItemSizeRatios
+      Entry: 7
+      Data: 6|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio, Assembly-CSharp
+    - Name: ItemSize
+      Entry: 3
+      Data: 0
+    - Name: RatioPartPercent
+      Entry: 3
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio, Assembly-CSharp
+    - Name: ItemSize
+      Entry: 3
+      Data: 1
+    - Name: RatioPartPercent
+      Entry: 3
+      Data: 40
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio, Assembly-CSharp
+    - Name: ItemSize
+      Entry: 3
+      Data: 2
+    - Name: RatioPartPercent
+      Entry: 3
+      Data: 50
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 7|MergeClaw3D.Scripts.Configs.Stages.StageData, Assembly-CSharp
+    - Name: Id
+      Entry: 3
+      Data: 3
+    - Name: ItemsVariantsCount
+      Entry: 3
+      Data: 11
+    - Name: ItemsGroupsCount
+      Entry: 3
+      Data: 31
+    - Name: ItemSizeRatios
+      Entry: 7
+      Data: 8|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio, Assembly-CSharp
+    - Name: ItemSize
+      Entry: 3
+      Data: 0
+    - Name: RatioPartPercent
+      Entry: 3
+      Data: 40
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio, Assembly-CSharp
+    - Name: ItemSize
+      Entry: 3
+      Data: 1
+    - Name: RatioPartPercent
+      Entry: 3
+      Data: 40
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio, Assembly-CSharp
+    - Name: ItemSize
+      Entry: 3
+      Data: 2
+    - Name: RatioPartPercent
+      Entry: 3
+      Data: 20
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|MergeClaw3D.Scripts.Configs.Stages.StageData, Assembly-CSharp
+    - Name: Id
+      Entry: 3
       Data: 4
     - Name: ItemsVariantsCount
       Entry: 3
       Data: 16
     - Name: ItemsGroupsCount
       Entry: 3
-      Data: 16
+      Data: 34
+    - Name: ItemSizeRatios
+      Entry: 7
+      Data: 10|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio, Assembly-CSharp
+    - Name: ItemSize
+      Entry: 3
+      Data: 0
+    - Name: RatioPartPercent
+      Entry: 3
+      Data: 70
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio, Assembly-CSharp
+    - Name: ItemSize
+      Entry: 3
+      Data: 1
+    - Name: RatioPartPercent
+      Entry: 3
+      Data: 20
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: MergeClaw3D.Scripts.Configs.Stages.StageData+ItemSizeRatio, Assembly-CSharp
+    - Name: ItemSize
+      Entry: 3
+      Data: 2
+    - Name: RatioPartPercent
+      Entry: 3
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 

@@ -24,13 +24,13 @@ namespace MergeClaw3D.Scripts.Configs.Stages
         {
             for (var index = 0; index < _stageDatas.Count; index++)
             {
-                var item = _stageDatas[index];
+                var item = _stageDatas[index]; //validate index
                 if (item.Id!=index)
                 {
                     item.Id = index;
                 }
 
-                if (item.ItemsVariantsCount>item.ItemsGroupsCount)
+                if (item.ItemsVariantsCount>item.ItemsGroupsCount) //groups count must be less than items variants
                 {
                     item.ItemsVariantsCount = item.ItemsGroupsCount;
                 }

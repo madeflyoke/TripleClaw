@@ -9,7 +9,6 @@ namespace MergeClaw3D.Scripts.Stages
     public class Stage
     {
         private readonly StageData _stageData;
-        private readonly ItemsSpawner _itemsSpawner;
         
         private List<ItemEntity> _activeItems;//TODO Here?
         
