@@ -1,9 +1,6 @@
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using MergeClaw3D.Scripts.Configs.Items;
 using MergeClaw3D.Scripts.Factories;
-using MergeClaw3D.Scripts.Items;
-using MergeClaw3D.Scripts.Items.Data;
 using MergeClaw3D.Scripts.Items.Enums;
 using Sirenix.OdinInspector;
 using System;
@@ -18,15 +15,14 @@ namespace MergeClaw3D.Scripts.Spawner
     {
         [SerializeField] private ItemsFactory _factory;
         [SerializeField] private ItemsConfig _itemsConfig;
-        
+
         [SerializeField] private Transform spawnContainer;
         [SerializeField] private Transform spawnPoint;
-        
+
         [Title("Spawn Settings")]
         [PropertySpace]
         [SerializeField] private float squareSide;
         [PropertySpace]
-        [SerializeField] private float heightStep = 0.1f;
         [SerializeField] private int packCount;
         [SerializeField] private float delayBeforeEachPackSpawn;
         [SerializeField] private float objectScaleDuration;
@@ -34,13 +30,15 @@ namespace MergeClaw3D.Scripts.Spawner
         [Title("Test")]
         [SerializeField] private bool enableTestSpawnOnStart;
         [SerializeField] private int spawnCount = 0;
-        
+
+        private const float _SPHERE_CAST_RADIUS = 0.3f;
         private const int _NUMBER_QUARTER_SQUARES = 1;
         private const int _NUMBER_SQUARES_IN_SQUARE = 4;
         private const int _SMALL_SQUARE_COUNT = _NUMBER_SQUARES_IN_SQUARE * _NUMBER_QUARTER_SQUARES;
 
-        private float SmallSquareSide => squareSide / (_NUMBER_SQUARES_IN_SQUARE / 2f);
         private CancellationTokenSource _cts;
+
+        private float SmallSquareSide => squareSide / (_NUMBER_SQUARES_IN_SQUARE / 2f);
 
         private void Start()
         {
@@ -50,52 +48,76 @@ namespace MergeClaw3D.Scripts.Spawner
             }
         }
 
+        private void OnDisable()
+        {
+            _cts?.Cancel();
+        }
+
         private async void Spawn()
         {
             _cts = new();
-            var squareCenters = GetSquaresLeftBottomPoints();
+
+            var squareLeftPoints = GetSquaresLeftBottomPoints();
             var reusedSpawnData = new GameObjectSpawnData
             {
                 Parent = spawnContainer,
-                Scale = Vector3.zero
+                Scale = Vector3.zero,
             };
-
-            var spawnHeight = 0f;
-            var entities = new List<ItemEntity>();
 
             for (int i = 0, centerIndex = 0; i < spawnCount; i++, centerIndex++)
             {
                 if (centerIndex == _SMALL_SQUARE_COUNT)
                 {
                     centerIndex = 0;
-
-                    spawnHeight += heightStep;
                 }
 
                 var x = Random.Range(0f, SmallSquareSide);
                 var z = Random.Range(0f, SmallSquareSide);
 
-                reusedSpawnData.Position = squareCenters[centerIndex] + new Vector3(x, spawnHeight, z);
-                
-                var entity = _factory.Create(reusedSpawnData, _itemsConfig.GetRandomItemData(), new ItemSpecificationData(ItemSize.LARGE));
-                entity.ScaleObject(1f, objectScaleDuration);
+                var randomPosition = squareLeftPoints[centerIndex] + new Vector3(x, spawnPoint.position.y, z);
+                randomPosition = CorrectSpawnByCloseItems(randomPosition);
 
-                entities.Add(entity);
+                reusedSpawnData.Position = randomPosition;
+                reusedSpawnData.Rotation = Random.rotation;
+
+                _factory.Create(reusedSpawnData, _itemsConfig.GetRandomItemData(), new(ItemSize.LARGE))
+                    .Show(objectScaleDuration);
 
                 if ((i + 1) % packCount == 0)
                 {
-                    var canceled =await UniTask.Delay(TimeSpan.FromSeconds(delayBeforeEachPackSpawn), cancellationToken: _cts.Token).SuppressCancellationThrow();
+                    var canceled = await UniTask.Delay(TimeSpan.FromSeconds(delayBeforeEachPackSpawn), cancellationToken: _cts.Token)
+                        .SuppressCancellationThrow();
+
                     if (canceled)
                     {
                         return;
                     }
                 }
             }
+        }
 
-            foreach (var entity in entities)
+        private Vector3 CorrectSpawnByCloseItems(Vector3 generatedPosition)
+        {
+            var colliders =  Physics.OverlapSphere(generatedPosition, _SPHERE_CAST_RADIUS);
+
+            if (colliders == null || colliders.Length == 0)
             {
-                entity.LockVelocityOnZero(false);
+                return generatedPosition;
             }
+
+            generatedPosition = Vector3.zero;
+            var maxHeight = spawnPoint.position.y;
+
+            foreach (var collide in colliders)
+            {
+                generatedPosition += collide.transform.position;
+                maxHeight = maxHeight > collide.transform.position.y ? maxHeight : collide.transform.position.y;
+            }
+
+            generatedPosition /= colliders.Length;
+            generatedPosition.y = maxHeight;
+
+            return generatedPosition;
         }
 
         private List<Vector3> GetSquaresLeftBottomPoints()
@@ -120,13 +142,8 @@ namespace MergeClaw3D.Scripts.Spawner
             return squarsPoints;
         }
 
-        private void OnDisable()
-        {
-            _cts?.Cancel();
-        }
-
 #if UNITY_EDITOR
-        
+
         private void OnDrawGizmosSelected()
         {
             var squareLeftBottomPoints = GetSquaresLeftBottomPoints();
@@ -145,7 +162,7 @@ namespace MergeClaw3D.Scripts.Spawner
 
             foreach (var leftBottomPoint in squareLeftBottomPoints)
             {
-                var center = new Vector3(leftBottomPoint.x + smallSquareSideHalf, leftBottomPoint.y, leftBottomPoint.z + smallSquareSideHalf);
+                var center = new Vector3(leftBottomPoint.x + smallSquareSideHalf, spawnPoint.position.y, leftBottomPoint.z + smallSquareSideHalf);
 
                 Gizmos.DrawCube(center, new(SmallSquareSide, 0f, SmallSquareSide));
                 Gizmos.color = colors[colorIndex];
@@ -153,7 +170,7 @@ namespace MergeClaw3D.Scripts.Spawner
                 colorIndex = colorIndex == colors.Length - 1 ? 0 : colorIndex + 1;
             }
         }
-        
-        #endif
+
+#endif
     }
 }

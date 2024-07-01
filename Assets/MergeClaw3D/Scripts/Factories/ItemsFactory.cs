@@ -27,7 +27,9 @@ namespace MergeClaw3D.Scripts.Factories
             
             tr.localScale = spawnData.Scale;
             tr.position = spawnData.Position;
+            tr.rotation = spawnData.Rotation;
             tr.gameObject.SetActive(true);
+
             return newItem;
         }
 

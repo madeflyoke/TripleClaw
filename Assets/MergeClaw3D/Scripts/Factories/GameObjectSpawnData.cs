@@ -8,5 +8,6 @@ namespace MergeClaw3D.Scripts.Factories
         public Transform Parent;
         public Vector3 Scale;
         public Vector3 Position;
+        public Quaternion Rotation;
     }
 }
