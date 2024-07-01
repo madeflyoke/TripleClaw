@@ -16,9 +16,7 @@ namespace MergeClaw3D.Scripts.Items
         [SerializeField] private ItemViewComponent _itemViewComponent;
 
         private const float _SHOW_SCALE = 1f;
-
-        public int Id { get; private set; }
-
+        
         public void Initialize(ItemConfigData configData, ItemSpecificationData specificationData)
         {
             Id = configData.Id;
