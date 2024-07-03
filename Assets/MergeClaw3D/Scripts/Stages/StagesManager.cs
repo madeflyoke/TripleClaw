@@ -9,13 +9,24 @@ namespace MergeClaw3D.Scripts.Stages
 {
     public class StagesManager : MonoBehaviour
     {
-        [Inject] private SignalBus _signalBus;
-
-        [SerializeField] private StagesConfig _stagesConfig;
-        [SerializeField] private ItemsSpawner _itemsSpawner;
-        
         private Stage _currentStage;
-        
+        private SignalBus _signalBus;
+        private StagesConfig _stagesConfig;
+        private ItemsSpawner _itemsSpawner;
+
+        [Inject]
+        public void Construct(SignalBus signalBus, ItemsSpawner itemsSpawner, StagesConfig stagesConfig)
+        {
+            _signalBus = signalBus;
+            _itemsSpawner = itemsSpawner;
+            _stagesConfig = stagesConfig;
+        }
+
+        private void Start()
+        {
+            StartStage(0);
+        }
+
         // public void Initialize()
         // {
         //     var stageData =  _stagesConfig.GetStageData(0);
@@ -23,7 +34,7 @@ namespace MergeClaw3D.Scripts.Stages
         //     _signalBus.Fire(new StageStartedSignal(stageData));
         //     _itemsSpawner.Spawn(stageData);
         // }
-        
+
         [Button]
         public void StartStage(int index)
         {

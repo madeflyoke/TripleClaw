@@ -1,9 +1,9 @@
-using System;
 using Cysharp.Threading.Tasks;
 using MergeClaw3D.Scripts.Configs.Items;
 using MergeClaw3D.Scripts.Items.Components;
 using MergeClaw3D.Scripts.Items.Data;
 using MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts;
+using System;
 using UnityEngine;
 
 namespace MergeClaw3D.Scripts.Items
@@ -11,13 +11,13 @@ namespace MergeClaw3D.Scripts.Items
     public class ItemEntity : MonoBehaviour
     {
         public event Action<ItemEntity> ItemSelected;
+
         public int Id { get; private set; }
         
         [SerializeField] private ItemView _itemView;
         [SerializeField] private SelectionHandler _selectionHandler;
         
         [SerializeField] private Rigidbody _rigidbody;
-        private ItemVelocityLimiter velocityLimiter;
         
         public void Initialize(ItemConfigData configData, ItemSpecificationData specificationData)
         {
@@ -27,7 +27,7 @@ namespace MergeClaw3D.Scripts.Items
             _selectionHandler.Initialize();
             _selectionHandler.Selected += ()=>ItemSelected?.Invoke(this);
             
-            velocityLimiter = new(_rigidbody);
+            ActivateVelocityLimiter();
         }
         
         public void Show(float duration)
@@ -52,6 +52,15 @@ namespace MergeClaw3D.Scripts.Items
         {
             await _itemView.ScaleObjectAsync(0f, duration);
             _itemView.SetActive(false);
+        }
+
+        private async void ActivateVelocityLimiter()
+        {
+            var velocityLimiter = new ItemVelocityLimiter(_rigidbody);
+
+            await UniTask.WaitUntil(() => velocityLimiter.LimiterCompleted);
+
+            velocityLimiter = null;
         }
     }
 }

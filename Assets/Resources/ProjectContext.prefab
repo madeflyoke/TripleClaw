@@ -31,7 +31,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7525635159252770424}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6684807528903422654
@@ -50,6 +51,7 @@ MonoBehaviour:
   _monoInstallers:
   - {fileID: -4803831731449638993}
   - {fileID: -4314433912318292069}
+  - {fileID: 7606389851162669057}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0
@@ -89,3 +91,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72e2db986e0cf5b4d9fdb16a6074f97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7040795914835653860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7525635159252770424}
+  - component: {fileID: 7606389851162669057}
+  m_Layer: 0
+  m_Name: ConfigsInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7525635159252770424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7040795914835653860}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7098883233878472112}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7606389851162669057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7040795914835653860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff9d0d3a36816f4ba7f904f077b25b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemsConfig: {fileID: 11400000, guid: 267bb21ed8081f047b7aabdf647b9c05, type: 2}
+  _itemsSpawnerConfig: {fileID: 11400000, guid: a871f9fc1d8cb564285c65a791a9863d, type: 2}
+  _stagesConfig: {fileID: 11400000, guid: a1458005d882c254b8b9a655b1ed2bb6, type: 2}

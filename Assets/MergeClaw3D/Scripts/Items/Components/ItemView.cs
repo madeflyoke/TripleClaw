@@ -10,6 +10,8 @@ namespace MergeClaw3D.Scripts.Items.Components
         public float DefaultScale { get; private set; }
 
         [SerializeField] private MeshFilter _meshFilter;
+        [SerializeField] private PhysicMaterial _physicMaterial;
+
         private MeshCollider _currentCollider; //need?
         private Tween _scaleTween;
 
@@ -23,7 +25,7 @@ namespace MergeClaw3D.Scripts.Items.Components
         {
             gameObject.SetActive(isActive);
         }
-        
+
         public async void ScaleObject(float scale, float duration)
         {
             await ScaleObjectAsync(scale, duration);
@@ -37,17 +39,18 @@ namespace MergeClaw3D.Scripts.Items.Components
 
             await _scaleTween.AsyncWaitForCompletion();
         }
-        
+
         private void SetupMesh(Mesh mesh)
         {
             _meshFilter.sharedMesh = mesh;
-            if (_currentCollider==null)
+            if (_currentCollider == null)
             {
-                _currentCollider = gameObject.AddComponent<MeshCollider>(); 
+                _currentCollider = gameObject.AddComponent<MeshCollider>();
+                _currentCollider.material = _physicMaterial;
                 _currentCollider.convex = true;
             }
         }
-        
+
         private void SetCorrespondingSize(ItemSize itemSize)
         {
             var finalScale = 1f; //default one
@@ -64,17 +67,17 @@ namespace MergeClaw3D.Scripts.Items.Components
                     break;
             }
 
-            transform.localScale = Vector3.one* finalScale;
+            transform.localScale = Vector3.one * finalScale;
             DefaultScale = finalScale;
         }
 
 #if UNITY_EDITOR
 
         [SerializeField] private ItemSize EDITOR_itemSize;
-        
+
         private void OnValidate()
         {
-           SetCorrespondingSize(EDITOR_itemSize);
+            SetCorrespondingSize(EDITOR_itemSize);
         }
 
 #endif
