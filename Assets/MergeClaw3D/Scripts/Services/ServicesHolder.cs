@@ -20,7 +20,7 @@ namespace MergeClaw3D.Scripts.Services
             _container = container;
         }
         
-        public async void InitializeServices(Action onInitialized)
+        public async void InitializeServices(Action onInitialized = null)
         {
             if (_isInitialized)
             {

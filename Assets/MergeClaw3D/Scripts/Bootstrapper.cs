@@ -16,7 +16,7 @@ namespace MergeClaw3D.Scripts
         {
             Application.targetFrameRate = 60;
             Input.multiTouchEnabled = false;
-            _servicesHolder.InitializeServices(LoadMainScene);
+            _servicesHolder.InitializeServices();
         }
         
         private void LoadMainScene()
