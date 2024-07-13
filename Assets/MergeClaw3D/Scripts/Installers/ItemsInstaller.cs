@@ -11,15 +11,21 @@ namespace MergeClaw3D.Scripts.Installers
     {
         [SerializeField] private ItemEntity _itemBasePrefab;
         [SerializeField] private ItemsSpawnPoint _itemsSpawnPoint;
+        [SerializeField] private ItemPlacesHolder _itemsPlacesHolder;
 
         public override void InstallBindings()
         {
             Container.Bind<ItemsSpawnPoint>().FromInstance(_itemsSpawnPoint);
+            Container.BindInterfacesAndSelfTo<ItemPlacesHolder>().FromInstance(_itemsPlacesHolder);
             
             Container.Bind<ItemsSpawner>().FromNew()
                 .AsSingle()
                 .NonLazy();
             Container.Bind<ItemsContainer>().FromNew()
+                .AsSingle()
+                .NonLazy();
+
+            Container.BindInterfacesAndSelfTo<ItemPlacer>().FromNew()
                 .AsSingle()
                 .NonLazy();
 

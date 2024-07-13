@@ -1,6 +1,8 @@
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using MergeClaw3D.Scripts.Configs.Items;
 using MergeClaw3D.Scripts.Configs.Stages;
+using MergeClaw3D.Scripts.Events;
 using MergeClaw3D.Scripts.Factories;
 using MergeClaw3D.Scripts.Items;
 using MergeClaw3D.Scripts.Items.Data;
@@ -9,6 +11,7 @@ using MergeClaw3D.Scripts.Items.Spawner;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -76,6 +79,7 @@ namespace MergeClaw3D.Scripts.Spawner
                 reusedSpawnData.Rotation = Random.rotation;
 
                 var itemSize = ItemSize.MEDIUM;
+
                 for (int j = 0; j < itemSizesRatiosIndexes.Count; j++)
                 {
                     if (i < itemSizesRatiosIndexes[j].Key)
@@ -84,10 +88,9 @@ namespace MergeClaw3D.Scripts.Spawner
                         break;
                     }
                 }
+
                 var itemSpecifications = new ItemSpecificationData(itemSize);
-
                 var itemConfig = targetItemConfigs[Random.Range(0, targetItemConfigs.Count)];
-
                 var item = _factory.Create(reusedSpawnData, itemConfig, itemSpecifications);
                 item.Show(_spawnerConfig.ItemScaleDuration);
 
@@ -95,6 +98,18 @@ namespace MergeClaw3D.Scripts.Spawner
 
                 await AwaitDelayBeforeSpawn();
             }
+
+            foreach (var item in _itemsContainer.Items)
+            {
+                if (item.ShowTween.IsActive() == false)
+                {
+                    continue;
+                }
+
+                await item.ShowTween.AsyncWaitForCompletion();
+            }
+
+            MessageBroker.Default.Publish(ItemsSpawned.Create());
         }
 
         private List<KeyValuePair<int, ItemSize>> SpreadItemsSizeRatios(StageData stageData, int totalItemsCount)

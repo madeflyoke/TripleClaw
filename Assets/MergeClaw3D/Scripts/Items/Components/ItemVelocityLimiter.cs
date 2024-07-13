@@ -26,13 +26,14 @@ namespace MergeClaw3D.Scripts.Items.Components
             _velocity = Vector3.zero;
 
             disposable = Observable.EveryFixedUpdate()
+                .Where(_ => _rigidbody != null)
                 .Subscribe(_ => FixedUpdate())
                 .AddTo(_rigidbody);
         }
 
         private void FixedUpdate()
         {
-            if (_rigidbody.velocity.magnitude < 0.01f)
+            if (_rigidbody == null || _rigidbody.velocity.magnitude < 0.01f)
             {
                 LimiterCompleted = true;
 

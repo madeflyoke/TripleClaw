@@ -18,6 +18,7 @@ namespace MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts
         public void Initialize()
         {
             var inputService = _servicesHolder.GetService<InputService>();
+
             inputService.PointerInputDown += AllowSelection;
             inputService.PointerInputUp += DenySelection;
         }

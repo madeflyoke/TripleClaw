@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using MergeClaw3D.Scripts.Configs.Stages;
 using MergeClaw3D.Scripts.Items;
 using MergeClaw3D.Scripts.Spawner;
@@ -23,7 +24,7 @@ namespace MergeClaw3D.Scripts.Stages
 
            foreach (var item in _activeItems)
            {
-               item.ItemSelected += OnItemSelected;
+                
            }
         }
 

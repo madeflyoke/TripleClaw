@@ -8,6 +8,7 @@ namespace MergeClaw3D.Scripts.Items
         private Dictionary<int, HashSet<ItemEntity>> _items = new();
 
         public int ItemCount => _items.Sum(l => l.Value.Count);
+        public IReadOnlyCollection<ItemEntity> Items => _items.Values.SelectMany(i => i).ToList();
 
         public void AddItem(ItemEntity itemEntity)
         {

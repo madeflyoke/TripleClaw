@@ -13,7 +13,8 @@ namespace MergeClaw3D.Scripts.Items.Components
         [SerializeField] private PhysicMaterial _physicMaterial;
 
         private MeshCollider _currentCollider; //need?
-        private Tween _scaleTween;
+
+        public Tween ScaleTween { get; private set; }
 
         public void Initialize(Mesh mesh, ItemSize itemSize)
         {
@@ -33,11 +34,11 @@ namespace MergeClaw3D.Scripts.Items.Components
 
         public async UniTask ScaleObjectAsync(float scale, float duration)
         {
-            _scaleTween?.Kill();
-            _scaleTween = transform.DOScale(scale, duration).
+            ScaleTween?.Kill();
+            ScaleTween = transform.DOScale(scale, duration).
                 SetUpdate(UpdateType.Fixed);
 
-            await _scaleTween.AsyncWaitForCompletion();
+            await ScaleTween.AsyncWaitForCompletion();
         }
 
         private void SetupMesh(Mesh mesh)
