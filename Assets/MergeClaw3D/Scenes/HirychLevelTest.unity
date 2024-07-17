@@ -782,6 +782,8 @@ Transform:
   - {fileID: 3705781032611910980}
   - {fileID: 1272255208}
   - {fileID: 497267317}
+  - {fileID: 1903228736}
+  - {fileID: 335911184}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &183455207
@@ -1592,6 +1594,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8634302930228284490, guid: 57d7fdfebebc8084188cdc14f5385aef, type: 3}
   m_PrefabInstance: {fileID: 331794733}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &335911184 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4826199746045332551, guid: f76f399288bbefe439666ddda11ee6b0, type: 3}
+  m_PrefabInstance: {fileID: 697024701}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &355248218
 PrefabInstance:
@@ -3449,11 +3456,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 174428113}
     m_Modifications:
     - target: {fileID: 4826199746045332551, guid: f76f399288bbefe439666ddda11ee6b0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 7.365303
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826199746045332551, guid: f76f399288bbefe439666ddda11ee6b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.6399
+      value: -17.5984
       objectReference: {fileID: 0}
     - target: {fileID: 4826199746045332551, guid: f76f399288bbefe439666ddda11ee6b0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18228,7 +18239,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 174428113}
     m_Modifications:
     - target: {fileID: 4826199746045332551, guid: f76f399288bbefe439666ddda11ee6b0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18248,7 +18259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4826199746045332551, guid: f76f399288bbefe439666ddda11ee6b0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4826199746045332551, guid: f76f399288bbefe439666ddda11ee6b0, type: 3}
       propertyPath: m_LocalRotation.y
@@ -18344,6 +18355,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8634302930228284490, guid: 57d7fdfebebc8084188cdc14f5385aef, type: 3}
   m_PrefabInstance: {fileID: 1902096580}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1903228736 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4826199746045332551, guid: f76f399288bbefe439666ddda11ee6b0, type: 3}
+  m_PrefabInstance: {fileID: 1890696394}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1909491378
 PrefabInstance:
@@ -19542,5 +19558,3 @@ SceneRoots:
   - {fileID: 771454979}
   - {fileID: 1774777186}
   - {fileID: 1401913304}
-  - {fileID: 1890696394}
-  - {fileID: 697024701}
