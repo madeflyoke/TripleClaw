@@ -19,11 +19,11 @@ namespace MergeClaw3D.Scripts.NPC.MainCharacter
         [Button]
         private void StartMoving()
         {
-            _movementComponent.MoveToNextAvailablePoint(()=>
+            _movementComponent.TryToMoveToNextAvailablePoint(()=>
             {
                 Debug.LogWarning("gameplay started");
                 _animationComponent.TryPlayAnimation(AnimationConstants.IDLE_STATE);
-            });
+            }, true);
             _animationComponent.TryPlayAnimation(AnimationConstants.RUN_STATE);
         }
         
@@ -36,11 +36,11 @@ namespace MergeClaw3D.Scripts.NPC.MainCharacter
         [Button]
         public void OnLevelCleaned()
         {
-            _movementComponent.MoveToNextAvailablePoint(()=>
+            _movementComponent.MoveSequenceToLeftPoints(()=>
             {
                 Debug.LogWarning("next level");
                 _animationComponent.TryPlayAnimation(AnimationConstants.IDLE_STATE);
-            });
+            }, true);
             _animationComponent.TryPlayAnimation(AnimationConstants.RUN_STATE);
         }
     }
