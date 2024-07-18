@@ -1,10 +1,9 @@
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using MergeClaw3D.Scripts.Configs.Items;
+using MergeClaw3D.Scripts.Items.Animation;
 using MergeClaw3D.Scripts.Items.Components;
 using MergeClaw3D.Scripts.Items.Data;
 using MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts;
-using System;
 using UniRx;
 using UnityEngine;
 
@@ -13,14 +12,18 @@ namespace MergeClaw3D.Scripts.Items
     public class ItemEntity : MonoBehaviour
     {
         public int Id { get; private set; }
-        
+
         [SerializeField] private ItemView _itemView;
         [SerializeField] private SelectionHandler _selectionHandler;
-        
+
         [SerializeField] private Rigidbody _rigidbody;
 
+        private ItemAnimator _animator;
+        private bool _alreadySelected;
+
+        public ItemView View => _itemView;
+        public ItemAnimator Animator => _animator;
         public Rigidbody Rigidbody => _rigidbody;
-        public Tween ShowTween => _itemView.ScaleTween;
         public Subject<ItemEntity> Selected { get; private set; } = new();
 
         private void OnDestroy()
@@ -31,38 +34,32 @@ namespace MergeClaw3D.Scripts.Items
         public void Initialize(ItemConfigData configData, ItemSpecificationData specificationData)
         {
             Id = configData.Id;
-            
+
+            _animator = new(this);
+
             _itemView.Initialize(configData.Mesh, specificationData.ItemSize);
             _selectionHandler.Initialize();
             _selectionHandler.Selected += OnItemSelected;
 
+            SetPhisicsMode(true);
+            SetSelectableMode(false);
+
             ActivateVelocityLimiter();
         }
 
-        public void Show(float duration)
+        public ItemEntity SetSelectableMode(bool selectable)
         {
-            _itemView.SetActive(true);
-            _itemView.ScaleObject(_itemView.DefaultScale, duration);
+            _selectionHandler.ChangeMode(selectable);
+
+            return this;
         }
 
-        public async UniTask ShowAsync(float duration)
+        public ItemEntity SetPhisicsMode(bool enable)
         {
-            _itemView.SetActive(true);
+            _rigidbody.isKinematic = enable == false;
+            _rigidbody.gameObject.layer = enable ? 1 : 8;
 
-            await _itemView.ScaleObjectAsync(_itemView.DefaultScale, duration);
-        }
-        
-        public void Hide(float duration)
-        {
-            _itemView.ScaleObject(0f, duration);
-            _itemView.SetActive(false);
-        }
-        
-        public async UniTask HideAsync(float duration)
-        {
-            await _itemView.ScaleObjectAsync(0f, duration);
-
-            _itemView.SetActive(false);
+            return this;
         }
 
         private async void ActivateVelocityLimiter()
@@ -76,6 +73,13 @@ namespace MergeClaw3D.Scripts.Items
 
         private void OnItemSelected()
         {
+            if (_alreadySelected)
+            {
+                return;
+            }
+
+            _alreadySelected = true;
+
             Selected?.OnNext(this);
         }
     }

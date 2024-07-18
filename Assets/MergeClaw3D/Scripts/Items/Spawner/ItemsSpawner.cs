@@ -46,7 +46,7 @@ namespace MergeClaw3D.Scripts.Spawner
             _itemsContainer = itemsContainer;
         }
 
-        public async void Spawn(StageData stageData) //TODO Make all items to spawn immediately and return list to store somewhere (i.e. if list count==0 its win)
+        public async void Spawn(StageData stageData)
         {
             _cts = new();
 
@@ -92,7 +92,7 @@ namespace MergeClaw3D.Scripts.Spawner
                 var itemSpecifications = new ItemSpecificationData(itemSize);
                 var itemConfig = targetItemConfigs[Random.Range(0, targetItemConfigs.Count)];
                 var item = _factory.Create(reusedSpawnData, itemConfig, itemSpecifications);
-                item.Show(_spawnerConfig.ItemScaleDuration);
+                item.Animator.Show(_spawnerConfig.ItemScaleDuration);
 
                 _itemsContainer.AddItem(item);
 
@@ -101,12 +101,17 @@ namespace MergeClaw3D.Scripts.Spawner
 
             foreach (var item in _itemsContainer.Items)
             {
-                if (item.ShowTween.IsActive() == false)
+                if (item.Animator.ShowTween.IsActive() == false)
                 {
                     continue;
                 }
 
-                await item.ShowTween.AsyncWaitForCompletion();
+                await item.Animator.ShowTween.AsyncWaitForCompletion();
+            }
+
+            foreach (var item in _itemsContainer.Items)
+            {
+                item.SetSelectableMode(true);
             }
 
             MessageBroker.Default.Publish(ItemsSpawned.Create());

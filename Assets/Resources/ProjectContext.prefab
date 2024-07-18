@@ -138,3 +138,4 @@ MonoBehaviour:
   _itemsConfig: {fileID: 11400000, guid: 267bb21ed8081f047b7aabdf647b9c05, type: 2}
   _itemsSpawnerConfig: {fileID: 11400000, guid: a871f9fc1d8cb564285c65a791a9863d, type: 2}
   _stagesConfig: {fileID: 11400000, guid: a1458005d882c254b8b9a655b1ed2bb6, type: 2}
+  _mergeConfig: {fileID: 11400000, guid: a58e79a816e50d24fa250b975fd0ac35, type: 2}

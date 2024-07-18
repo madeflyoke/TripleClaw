@@ -1,5 +1,5 @@
-using System;
 using MergeClaw3D.Scripts.Services;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -14,6 +14,7 @@ namespace MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts
         [SerializeField] private HighlightEffect _highlightEffect;
        
         private bool _selectionActive;
+        private bool _externalSelectionMode = true;
 
         public void Initialize()
         {
@@ -22,14 +23,29 @@ namespace MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts
             inputService.PointerInputDown += AllowSelection;
             inputService.PointerInputUp += DenySelection;
         }
+
+        public void ChangeMode(bool selectable)
+        {
+            _externalSelectionMode = selectable;
+        }
         
         private void AllowSelection()
         {
+            if (_externalSelectionMode == false)
+            {
+                return;
+            }
+
             _selectionActive = true;
         }
 
         private void DenySelection()
         {
+            if (_externalSelectionMode == false)
+            {
+                return;
+            }
+
             _selectionActive = false;
             if (_highlightEffect.highlighted)
             {

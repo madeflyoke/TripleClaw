@@ -1,6 +1,7 @@
 using MergeClaw3D.Scripts.Factories;
 using MergeClaw3D.Scripts.Items;
 using MergeClaw3D.Scripts.Items.Spawner;
+using MergeClaw3D.Scripts.Place;
 using MergeClaw3D.Scripts.Spawner;
 using UnityEngine;
 using Zenject;
@@ -17,7 +18,7 @@ namespace MergeClaw3D.Scripts.Installers
         {
             Container.Bind<ItemsSpawnPoint>().FromInstance(_itemsSpawnPoint);
             Container.BindInterfacesAndSelfTo<ItemPlacesHolder>().FromInstance(_itemsPlacesHolder);
-            
+
             Container.Bind<ItemsSpawner>().FromNew()
                 .AsSingle()
                 .NonLazy();
@@ -26,6 +27,10 @@ namespace MergeClaw3D.Scripts.Installers
                 .NonLazy();
 
             Container.BindInterfacesAndSelfTo<ItemPlacer>().FromNew()
+                .AsSingle()
+                .NonLazy();
+
+            Container.BindInterfacesAndSelfTo<Merger>().FromNew()
                 .AsSingle()
                 .NonLazy();
 

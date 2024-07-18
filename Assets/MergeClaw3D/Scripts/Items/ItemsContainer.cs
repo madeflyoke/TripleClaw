@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace MergeClaw3D.Scripts.Items
 {
@@ -23,6 +24,13 @@ namespace MergeClaw3D.Scripts.Items
         public void RemoveItem(ItemEntity itemEntity)
         {
             _items[itemEntity.Id].Remove(itemEntity);
+        }
+
+        public void DestroyItem(ItemEntity itemEntity)
+        {
+            RemoveItem(itemEntity);
+
+            GameObject.Destroy(itemEntity.gameObject);
         }
     }
 }
