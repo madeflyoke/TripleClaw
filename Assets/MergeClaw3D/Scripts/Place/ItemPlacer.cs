@@ -65,6 +65,11 @@ namespace MergeClaw3D.Scripts.Place
                 return;
             }
 
+            if (_placesHolder.IsAnyEmptySpaceBeforeOccupiedItem())
+            {
+                RemoveSpaceBetweenPlaces();
+            }
+
             item.SetInteractable(false);
 
             WakeUpAll();
@@ -81,7 +86,8 @@ namespace MergeClaw3D.Scripts.Place
 
         private void RemoveSpaceBetweenPlaces()
         {
-            if (_placesHolder.OccupiedPlaceCount == 0)
+            if (_placesHolder.OccupiedPlaceCount == 0
+                || _placesHolder.IsAnyEmptySpaceBeforeOccupiedItem() == false)
             {
                 return;
             }

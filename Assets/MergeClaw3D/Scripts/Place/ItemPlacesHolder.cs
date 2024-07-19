@@ -64,6 +64,26 @@ namespace MergeClaw3D.Scripts.Place
             return _itemPlaces.IndexOf(place);
         }
 
+        public bool IsAnyEmptySpaceBeforeOccupiedItem()
+        {
+            if (OccupiedPlaceCount == 0)
+            {
+                return false;
+            }
+
+            var emptyPlaceIndex = GetLeftFreePlaceIndex();
+
+            for (int i = emptyPlaceIndex + 1; i < PlacesCount; i++)
+            {
+                if (_itemPlaces[i].State == PlaceState.Occupied)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public ItemPlace GetPlace(int index)
         {
             if (_itemPlaces.Count <= index)
