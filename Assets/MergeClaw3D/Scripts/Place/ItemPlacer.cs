@@ -49,6 +49,14 @@ namespace MergeClaw3D.Scripts.Place
             }
         }
 
+        private void WakeUpAll()
+        {
+            foreach (var item in _itemsContainer.Items)
+            {
+                item.Rigidbody.WakeUp();
+            }
+        }
+
         private void OnItemSelected(ItemEntity item)
         {
             if (_placesHolder.FreePlaceCount == 0)
@@ -57,9 +65,9 @@ namespace MergeClaw3D.Scripts.Place
                 return;
             }
 
-            item.SetPhisicsMode(false)
-                .SetSelectableMode(false);
+            item.SetInteractable(false);
 
+            WakeUpAll();
             var place = _placesHolder.GetRightFreePlace();
 
             PutItemOnPlace(item, place, _mergeConfig.OccupationDuration);
@@ -116,6 +124,8 @@ namespace MergeClaw3D.Scripts.Place
         {
             place.SetItem(item);
 
+            //TODO ERROR above on fast clicks
+            
             await item.Animator.MoveToPointAsync(place.Position, _mergeConfig.OccupationDuration);
 
             if (place.State != PlaceState.Occpuied || place.Item != item)

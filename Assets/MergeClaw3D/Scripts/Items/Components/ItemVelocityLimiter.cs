@@ -14,30 +14,25 @@ namespace MergeClaw3D.Scripts.Items.Components
         private IDisposable disposable;
 
         private Vector3 _velocity;
-        private float _timeStart;
 
         public bool LimiterCompleted { get; private set; }
 
         public ItemVelocityLimiter(Rigidbody rigidbody)
         {
-            _timeStart = Time.realtimeSinceStartup;
-
             _rigidbody = rigidbody;
             _velocity = Vector3.zero;
 
             disposable = Observable.EveryFixedUpdate()
                 .Where(_ => _rigidbody != null)
-                .Subscribe(_ => FixedUpdate())
+                .Subscribe(_ => ManualFixedUpdate())
                 .AddTo(_rigidbody);
         }
 
-        private void FixedUpdate()
+        private void ManualFixedUpdate()
         {
-            if (_rigidbody == null || _rigidbody.velocity.magnitude < 0.01f)
+            if (_rigidbody.velocity.magnitude < 0.01f)
             {
                 LimiterCompleted = true;
-
-                disposable.Dispose();
                 return;
             }
 
@@ -46,6 +41,11 @@ namespace MergeClaw3D.Scripts.Items.Components
             _velocity.y = _velocity.y > VELOCITY_UP_LIMIT ? VELOCITY_UP_LIMIT : _velocity.y;
             _velocity.z = Mathf.Clamp(_velocity.z, VELOCITY_DOWN_LIMIT, VELOCITY_UP_LIMIT);
             _rigidbody.velocity = _velocity;
+        }
+
+        public void Dispose()
+        {
+            disposable?.Dispose();
         }
     }
 }

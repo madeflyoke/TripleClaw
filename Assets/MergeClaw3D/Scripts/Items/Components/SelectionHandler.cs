@@ -1,9 +1,10 @@
-using MergeClaw3D.Scripts.Services;
 using System;
+using MergeClaw3D.Scripts.Services;
+using MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts;
 using UnityEngine;
 using Zenject;
 
-namespace MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts
+namespace MergeClaw3D.Scripts.Items.Components
 {
     public class SelectionHandler : MonoBehaviour
     {
@@ -64,7 +65,10 @@ namespace MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts
 
         private void OnMouseDown()
         {
-            _highlightEffect.SetHighlighted(true);
+            if (_externalSelectionMode)
+            {
+                _highlightEffect.SetHighlighted(true);
+            }
         }
 
         private void OnMouseExit()

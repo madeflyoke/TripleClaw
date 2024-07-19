@@ -20,6 +20,7 @@ namespace MergeClaw3D.Scripts.Items
 
         private ItemAnimator _animator;
         private bool _alreadySelected;
+        private ItemVelocityLimiter _itemVelocityLimiter;
 
         public ItemView View => _itemView;
         public ItemAnimator Animator => _animator;
@@ -41,7 +42,7 @@ namespace MergeClaw3D.Scripts.Items
             _selectionHandler.Initialize();
             _selectionHandler.Selected += OnItemSelected;
 
-            SetPhisicsMode(true);
+            SetPhysicsMode(true);
             SetSelectableMode(false);
 
             ActivateVelocityLimiter();
@@ -54,21 +55,33 @@ namespace MergeClaw3D.Scripts.Items
             return this;
         }
 
-        public ItemEntity SetPhisicsMode(bool enable)
+        private ItemEntity SetPhysicsMode(bool enable)
         {
-            _rigidbody.isKinematic = enable == false;
-            _rigidbody.gameObject.layer = enable ? 1 : 8;
+            _rigidbody.isKinematic = !enable;
+            _rigidbody.gameObject.layer = enable ? ItemConstants.DEFAULT_ITEM_LAYER : ItemConstants.IGNORED_ITEM_LAYER;
 
             return this;
         }
 
+        public void SetInteractable(bool isInteractable)
+        {
+            SetSelectableMode(isInteractable);
+            SetPhysicsMode(isInteractable);
+            if (isInteractable==false)
+            {
+                if (_itemVelocityLimiter!=null)
+                {
+                    _itemVelocityLimiter.Dispose();
+                    _itemVelocityLimiter = null;
+                }
+            }
+        }
+        
         private async void ActivateVelocityLimiter()
         {
-            var velocityLimiter = new ItemVelocityLimiter(_rigidbody);
+            _itemVelocityLimiter = new ItemVelocityLimiter(_rigidbody);
 
-            await UniTask.WaitUntil(() => velocityLimiter.LimiterCompleted);
-
-            velocityLimiter = null;
+            await UniTask.WaitUntil(() => _itemVelocityLimiter.LimiterCompleted);
         }
 
         private void OnItemSelected()

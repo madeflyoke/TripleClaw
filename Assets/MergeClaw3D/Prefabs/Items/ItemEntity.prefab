@@ -98,7 +98,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 20
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -243,7 +243,7 @@ MonoBehaviour:
   glowMaskMode: 0
   innerGlow: 1
   innerGlowWidth: 1
-  innerGlowColor: {r: 2.3245068, g: 1.4228166, b: 0, a: 1}
+  innerGlowColor: {r: 1.4980392, g: 0.9169408, b: 0, a: 1}
   innerGlowBlendMode: 0
   innerGlowVisibility: 0
   targetFX: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   seeThroughMaxDepth: 0
   seeThroughIntensity: 0.8
   seeThroughTintAlpha: 0.6
-  seeThroughTintColor: {r: 2.1185474, g: 0.96760136, b: 0, a: 1}
+  seeThroughTintColor: {r: 1.4980392, g: 0.6841975, b: 0, a: 1}
   seeThroughNoise: 0
   seeThroughBorder: 0
   seeThroughBorderColor: {r: 0, g: 0, b: 0, a: 1}
