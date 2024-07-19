@@ -91,11 +91,11 @@ namespace MergeClaw3D.Scripts.Place
 
             foreach (var place in _placesHolder.Places)
             {
-                if (place.State == PlaceState.Occpuied && freePlacesSpaceAchieved == false)
+                if (place.State == PlaceState.Occupied && freePlacesSpaceAchieved == false)
                 {
                     continue;
                 }
-                else if (place.State == PlaceState.Occpuied)
+                else if (place.State == PlaceState.Occupied)
                 {
                     occupiedPlaceIndexToCorrect = _placesHolder.GetPlaceIndex(place);
                     break;
@@ -128,7 +128,7 @@ namespace MergeClaw3D.Scripts.Place
             
             await item.Animator.MoveToPointAsync(place.Position, _mergeConfig.OccupationDuration);
 
-            if (place.State != PlaceState.Occpuied || place.Item != item)
+            if (place.State != PlaceState.Occupied || place.Item != item)
             {
                 return;
             }

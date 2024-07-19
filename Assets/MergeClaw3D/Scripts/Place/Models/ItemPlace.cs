@@ -1,5 +1,4 @@
 using MergeClaw3D.Scripts.Items;
-using System;
 using UnityEngine;
 
 namespace MergeClaw3D.Scripts.Place
@@ -21,7 +20,7 @@ namespace MergeClaw3D.Scripts.Place
         {
             Item = itemEntity;
 
-            State = PlaceState.Occpuied;
+            State = PlaceState.Occupied;
         }
 
         public ItemEntity ExtractItem()

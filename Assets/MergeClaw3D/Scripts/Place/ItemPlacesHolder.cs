@@ -15,7 +15,7 @@ namespace MergeClaw3D.Scripts.Place
         public IReadOnlyCollection<ItemPlace> Places => _itemPlaces;
         public int PlacesCount => _itemPlaces.Count;
         public int FreePlaceCount => _itemPlaces.Count(i => i.State == PlaceState.Free);
-        public int OccupiedPlaceCount => _itemPlaces.Count(i => i.State == PlaceState.Occpuied);
+        public int OccupiedPlaceCount => _itemPlaces.Count(i => i.State == PlaceState.Occupied);
 
         public void Initialize()
         {
@@ -27,7 +27,7 @@ namespace MergeClaw3D.Scripts.Place
 
         public ItemPlace GetRightFreePlace()
         {
-            var placeIndex = _itemPlaces.FindLastIndex(i => i.State == PlaceState.Occpuied);
+            var placeIndex = _itemPlaces.FindLastIndex(i => i.State == PlaceState.Occupied);
 
             placeIndex += 1;
 
@@ -51,12 +51,12 @@ namespace MergeClaw3D.Scripts.Place
 
         public int GetRightOccupiedPlaceIndex()
         {
-            return _itemPlaces.FindLastIndex(i => i.State == PlaceState.Occpuied);
+            return _itemPlaces.FindLastIndex(i => i.State == PlaceState.Occupied);
         }
 
         public int GetLeftOccupiedPlaceIndex()
         {
-            return _itemPlaces.FindIndex(i => i.State == PlaceState.Occpuied);
+            return _itemPlaces.FindIndex(i => i.State == PlaceState.Occupied);
         }
 
         public int GetPlaceIndex(ItemPlace place)
