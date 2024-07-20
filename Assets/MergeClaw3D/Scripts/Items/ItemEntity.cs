@@ -1,9 +1,9 @@
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using MergeClaw3D.Scripts.Configs.Items;
 using MergeClaw3D.Scripts.Items.Animation;
 using MergeClaw3D.Scripts.Items.Components;
 using MergeClaw3D.Scripts.Items.Data;
-using MergeClaw3D.Tools.Outline.HighlightPlus.Runtime.Scripts;
 using UniRx;
 using UnityEngine;
 
@@ -21,6 +21,7 @@ namespace MergeClaw3D.Scripts.Items
         private ItemAnimator _animator;
         private bool _alreadySelected;
         private ItemVelocityLimiter _itemVelocityLimiter;
+        private CancellationTokenSource _itemVelocityLimiterCts;
 
         public ItemView View => _itemView;
         public ItemAnimator Animator => _animator;
@@ -69,19 +70,18 @@ namespace MergeClaw3D.Scripts.Items
             SetPhysicsMode(isInteractable);
             if (isInteractable==false)
             {
-                if (_itemVelocityLimiter!=null)
-                {
-                    _itemVelocityLimiter.Dispose();
-                    _itemVelocityLimiter = null;
-                }
+                _itemVelocityLimiterCts?.Cancel();
+                _itemVelocityLimiter?.Dispose();
+                _itemVelocityLimiter = null;
             }
         }
         
         private async void ActivateVelocityLimiter()
         {
+            _itemVelocityLimiterCts = new CancellationTokenSource();
             _itemVelocityLimiter = new ItemVelocityLimiter(_rigidbody);
 
-            await UniTask.WaitUntil(() => _itemVelocityLimiter.LimiterCompleted);
+            await UniTask.WaitUntil(() => _itemVelocityLimiter.LimiterCompleted, cancellationToken:_itemVelocityLimiterCts.Token);
         }
 
         private void OnItemSelected()
@@ -94,6 +94,13 @@ namespace MergeClaw3D.Scripts.Items
             _alreadySelected = true;
 
             Selected?.OnNext(this);
+        }
+
+        private void OnDisable()
+        {
+            _itemVelocityLimiter?.Dispose();
+            _animator?.Dispose();
+            _itemVelocityLimiterCts?.Cancel();
         }
     }
 }

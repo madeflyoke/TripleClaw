@@ -1,6 +1,5 @@
-using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using MergeClaw3D.Scripts.Items.Enums;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MergeClaw3D.Scripts.Items.Components
@@ -13,9 +12,8 @@ namespace MergeClaw3D.Scripts.Items.Components
         [SerializeField] private PhysicMaterial _physicMaterial;
 
         private MeshCollider _currentCollider; //need?
-
-        public Tween ScaleTween { get; private set; }
-
+        
+        
         public void Initialize(Mesh mesh, ItemSize itemSize)
         {
             SetupMesh(mesh);
@@ -26,21 +24,7 @@ namespace MergeClaw3D.Scripts.Items.Components
         {
             gameObject.SetActive(isActive);
         }
-
-        public async void ScaleObject(float scale, float duration)
-        {
-            await ScaleObjectAsync(scale, duration);
-        }
-
-        public async UniTask ScaleObjectAsync(float scale, float duration)
-        {
-            ScaleTween?.Kill();
-            ScaleTween = transform.DOScale(scale, duration).
-                SetUpdate(UpdateType.Fixed);
-
-            await ScaleTween.AsyncWaitForCompletion();
-        }
-
+        
         private void SetupMesh(Mesh mesh)
         {
             _meshFilter.sharedMesh = mesh;

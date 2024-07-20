@@ -16,3 +16,8 @@ MonoBehaviour:
   _occupationDuration: 0.7
   _spaceCorrectionDuration: 0.3
   _mergeDuration: 0.3
+  _occupatedScale: 1.75
+  _occupatedRotation: {x: 0, y: -30, z: -90}
+  _previewRotation: {x: 0, y: -90, z: -90}
+  _previewScale: 2.3
+  _previewDuration: 1

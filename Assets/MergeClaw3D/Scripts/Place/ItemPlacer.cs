@@ -2,6 +2,8 @@ using MergeClaw3D.Scripts.Configs.Items;
 using MergeClaw3D.Scripts.Events;
 using MergeClaw3D.Scripts.Items;
 using System;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UniRx;
 
 namespace MergeClaw3D.Scripts.Place
@@ -75,7 +77,7 @@ namespace MergeClaw3D.Scripts.Place
             WakeUpAll();
             var place = _placesHolder.GetRightFreePlace();
 
-            PutItemOnPlace(item, place, _mergeConfig.OccupationDuration);
+            PutItemOnPlace(item, place, true);
         }
 
 
@@ -122,24 +124,46 @@ namespace MergeClaw3D.Scripts.Place
                 PutItemOnPlace(
                     place.ExtractItem(),
                     _placesHolder.GetLeftFreePlace(), 
-                    _mergeConfig.SpaceCorrectionDuration);
+                    false);
             }
         }
-
-        private async void PutItemOnPlace(ItemEntity item, ItemPlace place, float duration)
+        
+        private async void PutItemOnPlace(ItemEntity item, ItemPlace place, bool fromHeap)
         {
             place.SetItem(item);
-
-            //TODO ERROR above on fast clicks
             
-            await item.Animator.MoveToPointAsync(place.Position, _mergeConfig.OccupationDuration);
-
+            if (fromHeap)
+            {
+                await PlayPlacingFromHeapAnimation(item, place);
+            }
+            else
+            {
+                await PlayPlacingFromAnotherPlace(item, place);
+            }
+            
             if (place.State != PlaceState.Occupied || place.Item != item)
             {
                 return;
             }
 
             PlaceOccupied?.OnNext(place);
+        }
+        
+        private async UniTask PlayPlacingFromAnotherPlace(ItemEntity item, ItemPlace place)
+        {
+            await item.Animator.MoveToPoint(place.Position, _mergeConfig.SpaceCorrectionDuration).AsyncWaitForCompletion();
+        }
+        
+        private async UniTask PlayPlacingFromHeapAnimation(ItemEntity item, ItemPlace place)
+        {
+            var seq = item.Animator.GetSequence();
+            await seq.Append(item.Animator.MoveToPoint(place.Position, _mergeConfig.OccupationDuration))
+                .Join(item.Animator.RotateObject(_mergeConfig.OccupatedRotation,  _mergeConfig.OccupationDuration))
+
+                .Join(item.Animator.ScaleObject(_mergeConfig.PreviewScale,  _mergeConfig.OccupationDuration/2))
+                .Join(item.Animator.ScaleObject(_mergeConfig.OccupatedScale,  _mergeConfig.OccupationDuration/2).SetDelay(_mergeConfig.OccupationDuration/2+0.1f))
+                .SetEase(Ease.Linear)
+                .AsyncWaitForCompletion();
         }
     }
 }

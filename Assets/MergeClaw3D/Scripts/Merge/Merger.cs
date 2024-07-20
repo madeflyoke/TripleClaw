@@ -5,6 +5,7 @@ using MergeClaw3D.Scripts.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -103,7 +104,7 @@ namespace MergeClaw3D.Scripts.Place
 
         private async void MoveItemToMergePosition(ItemEntity item, Vector3 mergePosition)
         {
-            await item.Animator.MoveToPointAsync(mergePosition, _mergeConfig.MergeDuration);
+            await item.Animator.MoveToPoint(mergePosition, _mergeConfig.MergeDuration).AsyncWaitForCompletion();
 
             _itemsContainer.DestroyItem(item);
         }
