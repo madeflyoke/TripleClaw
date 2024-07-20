@@ -5,6 +5,8 @@ using System;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UniRx;
+using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace MergeClaw3D.Scripts.Place
 {
@@ -14,7 +16,9 @@ namespace MergeClaw3D.Scripts.Place
         private ItemsContainer _itemsContainer;
         private ItemPlacesHolder _placesHolder;
         private CompositeDisposable _disposables = new();
-
+        private Camera _mainCam;
+        private Camera _overlayCam;
+        
         public Subject<ItemPlace> PlaceOccupied { get; private set; } = new();
 
         public ItemPlacer(ItemPlacesHolder placesHolder, ItemsContainer itemsContainer, MergeConfig mergeConfig)
@@ -24,6 +28,12 @@ namespace MergeClaw3D.Scripts.Place
             _mergeConfig = mergeConfig;
 
             Subscribe();
+        }
+
+        public void Initialize()
+        {
+            _mainCam = Camera.main;
+            _overlayCam = _mainCam.GetUniversalAdditionalCameraData().cameraStack[0];
         }
 
         public void Dispose()
@@ -72,6 +82,8 @@ namespace MergeClaw3D.Scripts.Place
                 RemoveSpaceBetweenPlaces();
             }
 
+            CorrectPositionsByCamera(item);
+            
             item.SetInteractable(false);
 
             WakeUpAll();
@@ -80,6 +92,13 @@ namespace MergeClaw3D.Scripts.Place
             PutItemOnPlace(item, place, true);
         }
 
+        private void CorrectPositionsByCamera(ItemEntity item)
+        {
+            Vector3 perspectiveScreenPosition = _mainCam.WorldToScreenPoint(item.transform.position);
+            Vector3 orthographicWorldPosition = _overlayCam.ScreenToWorldPoint(perspectiveScreenPosition);
+            Vector3 positionDifference = orthographicWorldPosition - item.transform.position;
+            item.transform.position += positionDifference;
+        }
 
         private void OnItemsMerged(ItemsMerged message)
         {
@@ -153,6 +172,7 @@ namespace MergeClaw3D.Scripts.Place
         {
             await item.Animator.MoveToPoint(place.Position, _mergeConfig.SpaceCorrectionDuration).AsyncWaitForCompletion();
         }
+
         
         private async UniTask PlayPlacingFromHeapAnimation(ItemEntity item, ItemPlace place)
         {

@@ -31,6 +31,7 @@ namespace MergeClaw3D.Scripts.Place
 
         public void Initialize()
         {
+            _itemPlacer.Initialize();
             _itemPlacer.PlaceOccupied.Subscribe(OnPlaceOccupied)
                 .AddTo(_disposables);
         }

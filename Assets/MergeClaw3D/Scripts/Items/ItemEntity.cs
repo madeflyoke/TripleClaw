@@ -81,7 +81,8 @@ namespace MergeClaw3D.Scripts.Items
             _itemVelocityLimiterCts = new CancellationTokenSource();
             _itemVelocityLimiter = new ItemVelocityLimiter(_rigidbody);
 
-            await UniTask.WaitUntil(() => _itemVelocityLimiter.LimiterCompleted, cancellationToken:_itemVelocityLimiterCts.Token);
+            await UniTask.WaitUntil(() => _itemVelocityLimiter.LimiterCompleted, cancellationToken:_itemVelocityLimiterCts.Token)
+                .SuppressCancellationThrow();
         }
 
         private void OnItemSelected()
