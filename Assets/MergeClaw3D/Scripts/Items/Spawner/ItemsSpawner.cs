@@ -191,7 +191,7 @@ namespace MergeClaw3D.Scripts.Spawner
 
         private async UniTask AwaitDelayBeforeSpawn()
         {
-            if (_itemsContainer.ItemCount % _spawnerConfig.PackCount != 0)
+            if (_itemsContainer.ItemCount % ItemConstants.ITEMS_GROUP_COUNT != 0)
             {
                 return;
             }
