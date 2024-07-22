@@ -1,47 +1,49 @@
+using System;
+using Cysharp.Threading.Tasks;
 using MergeClaw3D.Scripts.Configs.Stages;
-using MergeClaw3D.Scripts.Signals;
-using MergeClaw3D.Scripts.Spawner;
+using MergeClaw3D.Scripts.Events;
+using MergeClaw3D.Scripts.Stages.Variants;
 using Sirenix.OdinInspector;
+using UniRx;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace MergeClaw3D.Scripts.Stages
 {
     public class StagesManager : MonoBehaviour
     {
-        private Stage _currentStage;
+        private IStage _currentStage;
+        
         private SignalBus _signalBus;
         private StagesConfig _stagesConfig;
-        private ItemsSpawner _itemsSpawner;
 
         [Inject]
-        public void Construct(SignalBus signalBus, ItemsSpawner itemsSpawner, StagesConfig stagesConfig)
+        public void Construct(SignalBus signalBus, StagesConfig stagesConfig)
         {
             _signalBus = signalBus;
-            _itemsSpawner = itemsSpawner;
             _stagesConfig = stagesConfig;
+            MessageBroker.Default.Publish(AllItemsMerged.Create());
+
         }
-
-        private void Start()
-        {
-            StartStage(4);
-        }
-
-        // public void Initialize()
-        // {
-        //     var stageData =  _stagesConfig.GetStageData(0);
-        //     _currentStage = new Stage(stageData);
-        //     _signalBus.Fire(new StageStartedSignal(stageData));
-        //     _itemsSpawner.Spawn(stageData);
-        // }
-
+        
         [Button]
-        public void StartStage(int index)
+        public void Initialize()
         {
-            var stageData =  _stagesConfig.GetStageData(index);
-            _currentStage = new Stage(stageData);
-            _signalBus.Fire(new StageStartedSignal(stageData));
-            _itemsSpawner.Spawn(stageData);
+            MessageBroker.Default.Receive<AllItemsMerged>()
+                .Subscribe(x=>SetNextStage())
+                .AddTo(this);
+            
+            SetNextStage();
+        }
+
+        public async void SetNextStage()
+        {
+            var stageData = _stagesConfig.GetStageData(_currentStage==null?0:_currentStage.StageData.Id+1); //TODO maybe save? like last unfinished level restart
+            _currentStage = null;
+            await SceneManager.LoadSceneAsync(stageData.SceneName).ToUniTask();
+            _currentStage = GameObject.FindGameObjectWithTag("Stage").GetComponent<IStage>();
+            _currentStage.Initialize(stageData);
         }
     }
 }

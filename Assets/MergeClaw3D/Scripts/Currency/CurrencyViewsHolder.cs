@@ -1,5 +1,6 @@
 using System;
 using MergeClaw3D.Scripts.Currency.Enums;
+using MergeClaw3D.Scripts.Services;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Zenject;
@@ -8,19 +9,19 @@ namespace MergeClaw3D.Scripts.Currency
 {
     public class CurrencyViewsHolder : MonoBehaviour
     {
-        [Inject] private CurrencyManager _currencyManager;
+        [Inject] private CurrencyService _currencyService;
         
         [SerializeField] private SerializedDictionary<CurrencyType, CurrencyView> _currencyViewMap;
 
         private void OnEnable()
         {
             ExtractValues();
-            _currencyManager.CurrencyChanged += RefreshView;
+            _currencyService.CurrencyChanged += RefreshView;
         }
 
         private void OnDisable()
         {
-            _currencyManager.CurrencyChanged -= RefreshView;
+            _currencyService.CurrencyChanged -= RefreshView;
         }
 
         private void RefreshView(CurrencyType currencyType, long value)
@@ -35,7 +36,7 @@ namespace MergeClaw3D.Scripts.Currency
         {
             foreach (var kvp in _currencyViewMap)
             {
-                kvp.Value.SetValueText(_currencyManager.GetCurrency(kvp.Key));
+                kvp.Value.SetValueText(_currencyService.GetCurrency(kvp.Key));
             }
         }
     }

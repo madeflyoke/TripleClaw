@@ -33,6 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7525635159252770424}
+  - {fileID: 8436179389000047040}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6684807528903422654
@@ -52,6 +53,7 @@ MonoBehaviour:
   - {fileID: -4803831731449638993}
   - {fileID: -4314433912318292069}
   - {fileID: 7606389851162669057}
+  - {fileID: 507706704129050012}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0
@@ -89,6 +91,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72e2db986e0cf5b4d9fdb16a6074f97a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1018240565614303235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3696002670901085121}
+  - component: {fileID: 7714354356436181010}
+  m_Layer: 0
+  m_Name: StagesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3696002670901085121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018240565614303235}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8436179389000047040}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7714354356436181010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018240565614303235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b25a52bbcc8e843a55d63da8b975bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7040795914835653860
@@ -139,3 +185,49 @@ MonoBehaviour:
   _itemsSpawnerConfig: {fileID: 11400000, guid: a871f9fc1d8cb564285c65a791a9863d, type: 2}
   _stagesConfig: {fileID: 11400000, guid: a1458005d882c254b8b9a655b1ed2bb6, type: 2}
   _mergeConfig: {fileID: 11400000, guid: a58e79a816e50d24fa250b975fd0ac35, type: 2}
+--- !u!1 &7795358984199727761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8436179389000047040}
+  - component: {fileID: 507706704129050012}
+  m_Layer: 0
+  m_Name: GameplayManagersInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8436179389000047040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795358984199727761}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3696002670901085121}
+  m_Father: {fileID: 7098883233878472112}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &507706704129050012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795358984199727761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dce45e30c2f2b24a8f4c3034b9ce160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stagesManager: {fileID: 7714354356436181010}

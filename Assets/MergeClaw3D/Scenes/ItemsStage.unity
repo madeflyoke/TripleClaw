@@ -2082,8 +2082,8 @@ GameObject:
   - component: {fileID: 451391271}
   - component: {fileID: 451391272}
   m_Layer: 0
-  m_Name: '[MANAGERS]'
-  m_TagString: Untagged
+  m_Name: '[STAGE]'
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

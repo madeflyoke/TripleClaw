@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemBasePrefab: {fileID: 1662452016394900913, guid: aeeef046e207be54a97715e7699ebce7, type: 3}
   _itemsSpawnPoint: {fileID: 0}
+  _itemsPlacesHolder: {fileID: 0}
 --- !u!1 &6516592283048248455
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +57,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7636396116642346167}
   - component: {fileID: 3376509130818612426}
-  - component: {fileID: 2161562864478609661}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -96,7 +96,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 2161562864478609661}
   - {fileID: 1258964694799384373}
   _installerPrefabs: []
   _autoRun: 1
@@ -115,20 +114,6 @@ MonoBehaviour:
   _parentNewObjectsUnderSceneContext: 0
   _contractNames: []
   _parentContractNames: []
---- !u!114 &2161562864478609661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6516592283048248455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dce45e30c2f2b24a8f4c3034b9ce160, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currencyManager: {fileID: 3858677070417563249}
-  _stagesManager: {fileID: 1673893548744729042}
 --- !u!1 &7149180509452159109
 GameObject:
   m_ObjectHideFlags: 0

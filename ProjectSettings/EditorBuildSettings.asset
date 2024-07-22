@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/MergeClaw3D/Scenes/BootstrapperScene.unity
     guid: e44a80d770188c64c94dd752c6eaf3b0
   - enabled: 1
-    path: Assets/MergeClaw3D/Scenes/SpawnTester.unity
-    guid: 46b2c440773bc924789cb49344957688
-  - enabled: 1
-    path: Assets/MergeClaw3D/Scenes/GameplayScene.unity
-    guid: 7349ddaf3f95786488fcc426b303ff12
+    path: Assets/MergeClaw3D/Scenes/ItemsStage.unity
+    guid: 126aff74d4391f447a4b3a199cb85c75
   m_configObjects: {}

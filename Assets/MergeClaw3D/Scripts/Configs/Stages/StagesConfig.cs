@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using MergeClaw3D.Scripts.Configs.Stages.Data;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -30,10 +30,7 @@ namespace MergeClaw3D.Scripts.Configs.Stages
                     item.Id = index;
                 }
 
-                if (item.ItemsVariantsCount>item.ItemsGroupsCount) //groups count must be less than items variants
-                {
-                    item.ItemsVariantsCount = item.ItemsGroupsCount;
-                }
+                item.ManualValidate();
             }
         }
 

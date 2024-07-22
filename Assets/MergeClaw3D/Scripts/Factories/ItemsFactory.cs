@@ -7,8 +7,8 @@ namespace MergeClaw3D.Scripts.Factories
 {
     public class ItemsFactory
     {
-        private DiContainer _diContainer;   
-        private ItemEntity _itemBasePrefab;
+        private readonly DiContainer _diContainer;   
+        private readonly ItemEntity _itemBasePrefab;
 
         [Inject]
         public ItemsFactory(DiContainer diContainer, ItemEntity itemBasePrefab)

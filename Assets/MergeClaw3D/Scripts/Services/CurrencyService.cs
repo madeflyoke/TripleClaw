@@ -1,32 +1,50 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using MergeClaw3D.Scripts.Currency.Enums;
-using MergeClaw3D.Scripts.Services;
+using MergeClaw3D.Scripts.Services.Interfaces;
 using MergeClaw3D.Scripts.Services.Progress;
 using Sirenix.OdinInspector;
-using UnityEngine;
 using Zenject;
 
-namespace MergeClaw3D.Scripts.Currency
+namespace MergeClaw3D.Scripts.Services
 {
-    public class CurrencyManager : MonoBehaviour
+    public class CurrencyService : IService
     {
-        [Inject] private ServicesHolder _servicesHolder;
-        
         public event Action<CurrencyType, long> CurrencyChanged;
 
-        [SerializeField] private List<CurrencyType> _supportedCurrencies;
+        private readonly List<CurrencyType> _supportedCurrencies = new()
+        {
+            CurrencyType.COIN
+        };
 
         private Dictionary<CurrencyType, long> _currencyValueMap;
         private ProgressService _progressService;
 
-        private void Awake()
+        [Inject]
+        public void Construct(ServicesHolder servicesHolder)
         {
-            _progressService = _servicesHolder.GetService<ProgressService>();
+            _progressService = servicesHolder.GetService<ProgressService>();
+        }
+        
+        public UniTask Initialize(CancellationTokenSource cts)
+        {
             InitializeCurrency();
+            return UniTask.CompletedTask;
         }
 
+        private void InitializeCurrency()
+        {
+            _currencyValueMap = new Dictionary<CurrencyType, long>();
+            
+            foreach (var item in _supportedCurrencies)
+            {
+                var extractedValue =_progressService.CurrencyProgressHandler.ExtractCurrency(item);
+                _currencyValueMap.Add(item, extractedValue);
+            }  
+        }
+        
         /// <summary>
         /// Negative value including
         /// </summary>
@@ -51,32 +69,9 @@ namespace MergeClaw3D.Scripts.Currency
             return _currencyValueMap[type];
         }
         
-        private void InitializeCurrency()
-        {
-            _currencyValueMap = new Dictionary<CurrencyType, long>();
-            
-            foreach (var item in _supportedCurrencies)
-            {
-                var extractedValue =_progressService.CurrencyProgressHandler.ExtractCurrency(item);
-                _currencyValueMap.Add(item, extractedValue);
-            }  
-        }
-
-        private void OnDestroy()
+        public void Dispose()
         {
             _progressService?.CurrencyProgressHandler.SaveCurrency(_currencyValueMap);
         }
-        
-#if UNITY_EDITOR
-
-        private void OnValidate()
-        {
-            if (_supportedCurrencies.Distinct().Count() != _supportedCurrencies.Count)
-            {
-                Debug.LogError("Currency Manager: duplicate currency was found!");
-            }
-        }
-
-#endif
     }
 }

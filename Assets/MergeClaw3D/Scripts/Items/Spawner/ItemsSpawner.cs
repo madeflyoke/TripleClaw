@@ -1,7 +1,6 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using MergeClaw3D.Scripts.Configs.Items;
-using MergeClaw3D.Scripts.Configs.Stages;
 using MergeClaw3D.Scripts.Events;
 using MergeClaw3D.Scripts.Factories;
 using MergeClaw3D.Scripts.Items;
@@ -11,6 +10,7 @@ using MergeClaw3D.Scripts.Items.Spawner;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using MergeClaw3D.Scripts.Configs.Stages.Data;
 using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -46,7 +46,7 @@ namespace MergeClaw3D.Scripts.Spawner
             _itemsContainer = itemsContainer;
         }
 
-        public async void Spawn(StageData stageData)
+        public async void Spawn(ItemsStageData itemsStageData)
         {
             _cts = new();
 
@@ -57,10 +57,10 @@ namespace MergeClaw3D.Scripts.Spawner
                 Scale = Vector3.zero,
             };
 
-            var totalItemsCount = stageData.TotalItemsCount;
+            var totalItemsCount = itemsStageData.TotalItemsCount;
 
-            var itemSizesRatiosIndexes = SpreadItemsSizeRatios(stageData, totalItemsCount);
-            var targetItemConfigs = _itemsConfig.GetRandomItemsData(stageData.ItemsVariantsCount);
+            var itemSizesRatiosIndexes = SpreadItemsSizeRatios(itemsStageData, totalItemsCount);
+            var targetItemConfigs = _itemsConfig.GetRandomItemsData(itemsStageData.ItemsVariantsCount);
             int itemVariantIndex = 0;
             
             for (int i = 0, centerIndex = 0; i < totalItemsCount; i++, centerIndex++)
@@ -128,14 +128,14 @@ namespace MergeClaw3D.Scripts.Spawner
             MessageBroker.Default.Publish(ItemsSpawned.Create());
         }
 
-        private List<KeyValuePair<int, ItemSize>> SpreadItemsSizeRatios(StageData stageData, int totalItemsCount)
+        private List<KeyValuePair<int, ItemSize>> SpreadItemsSizeRatios(ItemsStageData itemsStageData, int totalItemsCount)
         {
             var itemSizesRatiosIndexes = new List<KeyValuePair<int, ItemSize>>();
             var previousSizeIndex = 0;
 
-            for (int i = 0; i < stageData.ItemSizeRatios.Count; i++)
+            for (int i = 0; i < itemsStageData.ItemSizeRatios.Count; i++)
             {
-                var ratio = stageData.ItemSizeRatios[i];
+                var ratio = itemsStageData.ItemSizeRatios[i];
                 var sizeIndex = Mathf.RoundToInt(ratio.RatioPartPercent / 100f * totalItemsCount);
                 itemSizesRatiosIndexes.Add(new KeyValuePair<int, ItemSize>(sizeIndex + previousSizeIndex, ratio.ItemSize));
                 previousSizeIndex = sizeIndex;

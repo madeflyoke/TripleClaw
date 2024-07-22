@@ -1,4 +1,4 @@
-using MergeClaw3D.Scripts.Configs.Stages;
+using MergeClaw3D.Scripts.Configs.Stages.Data;
 
 namespace MergeClaw3D.Scripts.Signals
 {

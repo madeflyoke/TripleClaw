@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using MergeClaw3D.Scripts.Currency;
 using MergeClaw3D.Scripts.Services.Interfaces;
 using MergeClaw3D.Scripts.Services.Progress;
 using UnityEngine;
@@ -41,6 +42,7 @@ namespace MergeClaw3D.Scripts.Services
             AddService<InputService>();
             AddService<ProgressService>();
             AddService<PauseService>();
+            AddService<CurrencyService>();
 
             _cts = new CancellationTokenSource();
 

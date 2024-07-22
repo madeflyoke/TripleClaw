@@ -87,25 +87,27 @@ namespace MergeClaw3D.Scripts.Place
             
             foreach (var place in mergeList)
             {
-                MoveItemToMergePlace(place.ExtractItem(), targetItemPlace);
                 place.OnMatched();
+                if (place==mergeList[^1])
+                    await MoveItemToMergePlace(place.ExtractItem(), targetItemPlace);
+                else
+                    MoveItemToMergePlace(place.ExtractItem(), targetItemPlace);
             }
 
-            await UniTask.Delay(TimeSpan.FromSeconds(_mergeConfig.MergeDuration));
-
+            targetItemPlace.OnMerged();
+            
             MessageBroker.Default.Publish(ItemsMerged.Create());
-
+            
             if (_itemsContainer.ItemCount == 0)
             {
                 MessageBroker.Default.Publish(AllItemsMerged.Create());
             }
         }
 
-        private async void MoveItemToMergePlace(ItemEntity item, ItemPlace mergePlace)
+        private async UniTask MoveItemToMergePlace(ItemEntity item, ItemPlace mergePlace)
         {
             await item.Animator.MoveToPoint(mergePlace.Position, _mergeConfig.MergeDuration).AsyncWaitForCompletion();
             _itemsContainer.DestroyItem(item);
-            mergePlace.OnMerged();
         }
 
         public void Dispose()
