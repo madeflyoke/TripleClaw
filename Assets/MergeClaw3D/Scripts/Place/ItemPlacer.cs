@@ -76,6 +76,8 @@ namespace MergeClaw3D.Scripts.Place
                 MessageBroker.Default.Publish(AllPlacesOccupied.Create());
                 return;
             }
+            
+            item.Selected.Dispose();
 
             if (_placesHolder.IsAnyEmptySpaceBeforeOccupiedItem())
             {

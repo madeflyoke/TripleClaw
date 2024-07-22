@@ -55,15 +55,7 @@ namespace MergeClaw3D.Scripts.Items
 
             return this;
         }
-
-        private ItemEntity SetPhysicsMode(bool enable)
-        {
-            _rigidbody.isKinematic = !enable;
-            _rigidbody.gameObject.layer = enable ? ItemConstants.DEFAULT_ITEM_LAYER : ItemConstants.IGNORED_ITEM_LAYER;
-
-            return this;
-        }
-
+        
         public void SetInteractable(bool isInteractable)
         {
             SetSelectableMode(isInteractable);
@@ -87,14 +79,15 @@ namespace MergeClaw3D.Scripts.Items
 
         private void OnItemSelected()
         {
-            if (_alreadySelected)
-            {
-                return;
-            }
-
-            _alreadySelected = true;
-
             Selected?.OnNext(this);
+        }
+        
+        private ItemEntity SetPhysicsMode(bool enable)
+        {
+            _rigidbody.isKinematic = !enable;
+            _rigidbody.gameObject.layer = enable ? ItemConstants.DEFAULT_ITEM_LAYER : ItemConstants.IGNORED_ITEM_LAYER;
+
+            return this;
         }
 
         private void OnDisable()
