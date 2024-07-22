@@ -2,36 +2,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Zenject;
 
 namespace MergeClaw3D.Scripts.Place
 {
-    public class ItemPlacesHolder : MonoBehaviour, IInitializable
+    public class ItemPlacesHolder : MonoBehaviour
     {
-        [SerializeField] private List<Transform> _places;
-
-        private List<ItemPlace> _itemPlaces = new();
+        [SerializeField] private List<ItemPlace> _itemPlaces;
 
         public IReadOnlyCollection<ItemPlace> Places => _itemPlaces;
         public int PlacesCount => _itemPlaces.Count;
         public int FreePlaceCount => _itemPlaces.Count(i => i.State == PlaceState.Free);
         public int OccupiedPlaceCount => _itemPlaces.Count(i => i.State == PlaceState.Occupied);
-
-        public void Initialize()
-        {
-            for (int i = 0; i < _places.Count; i++)
-            {
-                _itemPlaces.Add(new(_places[i]));
-            }
-        }
-
+        
         public ItemPlace GetRightFreePlace()
         {
             var placeIndex = _itemPlaces.FindLastIndex(i => i.State == PlaceState.Occupied);
 
             placeIndex += 1;
 
-            if (placeIndex >= _places.Count)
+            if (placeIndex >= _itemPlaces.Count)
             {
                 return null;
             }

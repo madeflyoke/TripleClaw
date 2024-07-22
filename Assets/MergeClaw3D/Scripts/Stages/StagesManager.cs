@@ -24,7 +24,7 @@ namespace MergeClaw3D.Scripts.Stages
 
         private void Start()
         {
-            StartStage(0);
+            StartStage(4);
         }
 
         // public void Initialize()

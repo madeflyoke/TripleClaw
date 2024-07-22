@@ -311,7 +311,7 @@ MonoBehaviour:
       Data: 0
     - Name: RatioPartPercent
       Entry: 3
-      Data: 70
+      Data: 40
     - Name: 
       Entry: 8
       Data: 
@@ -323,7 +323,7 @@ MonoBehaviour:
       Data: 1
     - Name: RatioPartPercent
       Entry: 3
-      Data: 20
+      Data: 30
     - Name: 
       Entry: 8
       Data: 
@@ -335,7 +335,7 @@ MonoBehaviour:
       Data: 2
     - Name: RatioPartPercent
       Entry: 3
-      Data: 10
+      Data: 30
     - Name: 
       Entry: 8
       Data: 

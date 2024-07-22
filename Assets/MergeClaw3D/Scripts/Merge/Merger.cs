@@ -4,10 +4,8 @@ using MergeClaw3D.Scripts.Events;
 using MergeClaw3D.Scripts.Items;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using DG.Tweening;
 using UniRx;
-using UnityEngine;
 using Zenject;
 
 namespace MergeClaw3D.Scripts.Place
@@ -85,12 +83,12 @@ namespace MergeClaw3D.Scripts.Place
 
         private async void MergeItems(List<ItemPlace> mergeList)
         {
-            var mergePositionX = mergeList.Sum(p => p.Position.x) / mergeList.Count;
-            var mergePosition = new Vector3(mergePositionX, mergeList[0].Position.y, mergeList[0].Position.z);
-
+            var targetItemPlace = mergeList[mergeList.Count/2];
+            
             foreach (var place in mergeList)
             {
-                MoveItemToMergePosition(place.ExtractItem(), mergePosition);
+                MoveItemToMergePlace(place.ExtractItem(), targetItemPlace);
+                place.OnMatched();
             }
 
             await UniTask.Delay(TimeSpan.FromSeconds(_mergeConfig.MergeDuration));
@@ -103,11 +101,11 @@ namespace MergeClaw3D.Scripts.Place
             }
         }
 
-        private async void MoveItemToMergePosition(ItemEntity item, Vector3 mergePosition)
+        private async void MoveItemToMergePlace(ItemEntity item, ItemPlace mergePlace)
         {
-            await item.Animator.MoveToPoint(mergePosition, _mergeConfig.MergeDuration).AsyncWaitForCompletion();
-
+            await item.Animator.MoveToPoint(mergePlace.Position, _mergeConfig.MergeDuration).AsyncWaitForCompletion();
             _itemsContainer.DestroyItem(item);
+            mergePlace.OnMerged();
         }
 
         public void Dispose()

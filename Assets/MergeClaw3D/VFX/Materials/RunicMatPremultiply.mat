@@ -77,7 +77,7 @@ Material:
     - _EdgeFadePow: 1
     - _FadeAlongU: 0
     - _HdrBoost: 1
-    - _HdrMultiply: 1.31
+    - _HdrMultiply: 1.39
     - _IndirectLightingMix: 0.5
     - _InvertDissolveTex: 0
     - _LightingWorldPosStrength: 0.2
