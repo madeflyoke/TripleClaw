@@ -61,7 +61,8 @@ namespace MergeClaw3D.Scripts.Spawner
 
             var itemSizesRatiosIndexes = SpreadItemsSizeRatios(stageData, totalItemsCount);
             var targetItemConfigs = _itemsConfig.GetRandomItemsData(stageData.ItemsVariantsCount);
-
+            int itemVariantIndex = 0;
+            
             for (int i = 0, centerIndex = 0; i < totalItemsCount; i++, centerIndex++)
             {
                 if (centerIndex == _SMALL_SQUARE_COUNT)
@@ -90,7 +91,17 @@ namespace MergeClaw3D.Scripts.Spawner
                 }
 
                 var itemSpecifications = new ItemSpecificationData(itemSize);
-                var itemConfig = targetItemConfigs[Random.Range(0, targetItemConfigs.Count)];
+
+                if (i>2&&i%ItemConstants.ITEMS_GROUP_COUNT==0)
+                {
+                    itemVariantIndex++;
+                    if (itemVariantIndex>=targetItemConfigs.Count)
+                    {
+                        itemVariantIndex = 0;
+                    }
+                }
+                
+                var itemConfig = targetItemConfigs[itemVariantIndex];
                 var item = _factory.Create(reusedSpawnData, itemConfig, itemSpecifications);
                 item.Animator.Show(_spawnerConfig.ItemScaleDuration);
 
@@ -185,7 +196,7 @@ namespace MergeClaw3D.Scripts.Spawner
                 return;
             }
 
-            var canceled = await UniTask.Delay(TimeSpan.FromSeconds(_spawnerConfig.DelayBeforeEachPackSpawn), cancellationToken: _cts.Token)
+            await UniTask.Delay(TimeSpan.FromSeconds(_spawnerConfig.DelayBeforeEachPackSpawn), cancellationToken: _cts.Token)
                 .SuppressCancellationThrow();
         }
     }

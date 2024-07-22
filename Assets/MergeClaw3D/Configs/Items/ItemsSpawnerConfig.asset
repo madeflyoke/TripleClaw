@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c05f7b1c6f7a0439857187f12d4d14, type: 3}
   m_Name: ItemsSpawnerConfig
   m_EditorClassIdentifier: 
-  _packCount: 4
+  _packCount: 3
   _itemScaleDuration: 1.35
   _delayBeforeEachPackSpawn: 0.35

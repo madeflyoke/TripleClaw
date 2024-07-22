@@ -23,10 +23,10 @@ namespace MergeClaw3D.Scripts.Configs.Items
             return _itemDatas[Random.Range(0, _itemDatas.Count)];
         }
 
-        public List<ItemConfigData> GetRandomItemsData(int count)
+        public List<ItemConfigData> GetRandomItemsData(int variantsCount)
         {
             var copy = _itemDatas.ToList().Shuffle();
-            return copy.GetRange(0, count);
+            return copy.GetRange(0, variantsCount);
         }
         
         #if UNITY_EDITOR
