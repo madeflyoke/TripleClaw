@@ -1,7 +1,5 @@
 using System;
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
-using UnityEngine;
+using MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Interfaces;
 
 namespace MergeClaw3D.Scripts.Configs.Stages.Data
 {
@@ -10,7 +8,8 @@ namespace MergeClaw3D.Scripts.Configs.Stages.Data
     {
         public int Id;
         public abstract string SceneName { get; }
-        
+        public abstract T GetModule<T>() where T : IStageDataModule;
+
 #if UNITY_EDITOR
 
         public virtual void ManualValidate()

@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using MergeClaw3D.Scripts.Configs.Stages.Data;
+using MergeClaw3D.Scripts.Configs.Stages.Data.Modules;
 using MergeClaw3D.Scripts.Extensions;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace MergeClaw3D.Scripts.Configs.Items
 {
@@ -14,34 +13,39 @@ namespace MergeClaw3D.Scripts.Configs.Items
     {
         [SerializeField] private List<ItemConfigData> _itemDatas;
 
-        public List<ItemConfigData> GetCorrespondingItemsData(ItemsStageData data)
+        public List<ItemConfigData> GetCorrespondingItemsData(ItemsDataProviderModule dataProviderModule)
         {
-            switch (data)
-            {
-                case PredefinedItemsStageData stageData:
-                    return GetPredefinedItems(stageData);
-                default:
-                    return GetRandomItemsData(data.ItemsVariantsCount);
-            }
-        }
-
-        private List<ItemConfigData> GetRandomItemsData(int variantsCount)
-        {
-            var copy = _itemDatas.ToList().Shuffle();
-            return copy.GetRange(0, variantsCount);
-        }
-
-        private List<ItemConfigData> GetPredefinedItems(PredefinedItemsStageData data)
-        {
-            var finalResult = new List<ItemConfigData>();
             var copy = _itemDatas.ToList();
 
-            foreach (var itemDataSet in data.PredefinedItemsData)
+            var finalResults = new List<ItemConfigData>();
+            foreach (var itemDataSet in dataProviderModule.ItemsDataSets)
             {
-                for (int i = 0; i < itemDataSet.GroupsCount; i++)
+                if (itemDataSet.IsRandomVariants)
                 {
-                    finalResult.Add(copy.FirstOrDefault(x=>x.Id==itemDataSet.Index));
+                    finalResults.AddRange(GetRandomItemsData(copy, itemDataSet.GroupsCount));
                 }
+                else
+                {
+                    finalResults.AddRange(GetPredefinedItems(copy, itemDataSet));
+                }
+            }
+
+            return finalResults;
+        }
+
+        private List<ItemConfigData> GetRandomItemsData(List<ItemConfigData> source, int groupsCount)
+        {
+            source = source.Shuffle();
+            return source.GetRange(0, groupsCount);
+        }
+
+        private List<ItemConfigData> GetPredefinedItems(List<ItemConfigData> source, ItemsDataProviderModule.ItemDataSet itemDataSet)
+        {
+            var finalResult = new List<ItemConfigData>();
+            
+            for (int i = 0; i < itemDataSet.GroupsCount; i++)
+            {
+                finalResult.Add(source.FirstOrDefault(x=>x.Id==itemDataSet.VariantIndex));
             }
             
             return finalResult;

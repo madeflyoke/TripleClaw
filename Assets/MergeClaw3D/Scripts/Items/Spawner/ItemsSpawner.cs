@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using MergeClaw3D.Scripts.Configs.Stages.Data;
+using MergeClaw3D.Scripts.Configs.Stages.Data.Modules;
 using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -57,10 +58,12 @@ namespace MergeClaw3D.Scripts.Spawner
                 Scale = Vector3.zero,
             };
 
-            var totalItemsCount = itemsStageData.TotalItemsCount;
+            var itemDataProviderModule = itemsStageData.GetModule<ItemsDataProviderModule>();
+            
+            var totalItemsCount = itemDataProviderModule.TotalItemsCount;
 
-            var itemSizesRatiosIndexes = SpreadItemsSizeRatios(itemsStageData, totalItemsCount);
-            var targetItemConfigs = _itemsConfig.GetCorrespondingItemsData(itemsStageData);
+            var itemSizesRatiosIndexes = SpreadItemsSizeRatios(itemDataProviderModule, totalItemsCount);
+            var targetItemConfigs = _itemsConfig.GetCorrespondingItemsData(itemDataProviderModule);
             int itemVariantIndex = 0;
             
             for (int i = 0, centerIndex = 0; i < totalItemsCount; i++, centerIndex++)
@@ -128,14 +131,15 @@ namespace MergeClaw3D.Scripts.Spawner
             MessageBroker.Default.Publish(ItemsSpawned.Create());
         }
 
-        private List<KeyValuePair<int, ItemSize>> SpreadItemsSizeRatios(ItemsStageData itemsStageData, int totalItemsCount)
+        private List<KeyValuePair<int, ItemSize>> SpreadItemsSizeRatios(ItemsDataProviderModule itemDataProviderModule, int totalItemsCount)
         {
             var itemSizesRatiosIndexes = new List<KeyValuePair<int, ItemSize>>();
             var previousSizeIndex = 0;
 
-            for (int i = 0; i < itemsStageData.ItemSizeRatios.Count; i++)
+            var sizeRatios = itemDataProviderModule.ItemSizeRatios;
+            for (int i = 0; i < sizeRatios.Count; i++)
             {
-                var ratio = itemsStageData.ItemSizeRatios[i];
+                var ratio = sizeRatios[i];
                 var sizeIndex = Mathf.RoundToInt(ratio.RatioPartPercent / 100f * totalItemsCount);
                 itemSizesRatiosIndexes.Add(new KeyValuePair<int, ItemSize>(sizeIndex + previousSizeIndex, ratio.ItemSize));
                 previousSizeIndex = sizeIndex;
