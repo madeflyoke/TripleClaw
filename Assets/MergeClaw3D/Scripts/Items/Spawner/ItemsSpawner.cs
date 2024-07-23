@@ -60,7 +60,7 @@ namespace MergeClaw3D.Scripts.Spawner
             var totalItemsCount = itemsStageData.TotalItemsCount;
 
             var itemSizesRatiosIndexes = SpreadItemsSizeRatios(itemsStageData, totalItemsCount);
-            var targetItemConfigs = _itemsConfig.GetRandomItemsData(itemsStageData.ItemsVariantsCount);
+            var targetItemConfigs = _itemsConfig.GetCorrespondingItemsData(itemsStageData);
             int itemVariantIndex = 0;
             
             for (int i = 0, centerIndex = 0; i < totalItemsCount; i++, centerIndex++)

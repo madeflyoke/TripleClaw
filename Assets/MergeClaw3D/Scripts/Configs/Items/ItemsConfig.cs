@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using MergeClaw3D.Scripts.Configs.Stages.Data;
 using MergeClaw3D.Scripts.Extensions;
 using Sirenix.OdinInspector;
 using UnityEditor;
@@ -13,23 +14,41 @@ namespace MergeClaw3D.Scripts.Configs.Items
     {
         [SerializeField] private List<ItemConfigData> _itemDatas;
 
-        public List<ItemConfigData> GetAllItemsData()
+        public List<ItemConfigData> GetCorrespondingItemsData(ItemsStageData data)
         {
-            return _itemDatas;
-        }
-        
-        public ItemConfigData GetRandomItemData()
-        {
-            return _itemDatas[Random.Range(0, _itemDatas.Count)];
+            switch (data)
+            {
+                case PredefinedItemsStageData stageData:
+                    return GetPredefinedItems(stageData);
+                default:
+                    return GetRandomItemsData(data.ItemsVariantsCount);
+            }
         }
 
-        public List<ItemConfigData> GetRandomItemsData(int variantsCount)
+        private List<ItemConfigData> GetRandomItemsData(int variantsCount)
         {
             var copy = _itemDatas.ToList().Shuffle();
             return copy.GetRange(0, variantsCount);
         }
+
+        private List<ItemConfigData> GetPredefinedItems(PredefinedItemsStageData data)
+        {
+            var finalResult = new List<ItemConfigData>();
+            var copy = _itemDatas.ToList();
+
+            foreach (var itemDataSet in data.PredefinedItemsData)
+            {
+                for (int i = 0; i < itemDataSet.GroupsCount; i++)
+                {
+                    finalResult.Add(copy.FirstOrDefault(x=>x.Id==itemDataSet.Index));
+                }
+            }
+            
+            return finalResult;
+        }
         
-        #if UNITY_EDITOR
+        
+#if UNITY_EDITOR
 
         [SerializeField] private string EDITOR_itemsModelsPath;
         

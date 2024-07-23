@@ -4,6 +4,7 @@ using System.Linq;
 using MergeClaw3D.Scripts.Items;
 using MergeClaw3D.Scripts.Items.Enums;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace MergeClaw3D.Scripts.Configs.Stages.Data
