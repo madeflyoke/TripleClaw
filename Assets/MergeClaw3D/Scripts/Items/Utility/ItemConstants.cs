@@ -1,8 +1,9 @@
-﻿namespace MergeClaw3D.Scripts.Items
+﻿namespace MergeClaw3D.Scripts.Items.Utility
 {
     public static class ItemConstants
     {
         public const int ITEMS_GROUP_COUNT = 3;
+        public const int ITEMS_PLACES_COUNT = 7;
         
         public const float LARGE_ITEM_SCALE = 2.2f;
         public const float MEDIUM_ITEM_SCALE = 2f;

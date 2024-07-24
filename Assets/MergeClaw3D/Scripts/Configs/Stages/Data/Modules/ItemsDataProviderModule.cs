@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Interfaces;
-using MergeClaw3D.Scripts.Items;
 using MergeClaw3D.Scripts.Items.Enums;
+using MergeClaw3D.Scripts.Items.Utility;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -32,14 +32,7 @@ namespace MergeClaw3D.Scripts.Configs.Stages.Data.Modules
         
         public void ManualValidate()
         {
-            // if (PredefinedItemsData!=null)
-            // {
-            //     PredefinedItemsData = PredefinedItemsData
-            //         .GroupBy(item => item.VariantIndex)
-            //         .Where(group => group.Count() == 1)
-            //         .SelectMany(group => group)
-            //         .ToList();
-            // }
+           
         }
         
         [ReadOnly, ShowInInspector, GUIColor(nameof(EDITOR_ItemsRatioPropertyColor))]
