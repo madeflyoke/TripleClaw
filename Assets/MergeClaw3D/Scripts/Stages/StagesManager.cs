@@ -26,7 +26,12 @@ namespace MergeClaw3D.Scripts.Stages
             MessageBroker.Default.Publish(AllItemsMerged.Create());
 
         }
-        
+
+        private void Start()
+        {
+            Initialize();
+        }
+
         [Button]
         public void Initialize()
         {

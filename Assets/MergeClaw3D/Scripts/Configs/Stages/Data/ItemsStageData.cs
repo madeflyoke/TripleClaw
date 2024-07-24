@@ -18,6 +18,11 @@ namespace MergeClaw3D.Scripts.Configs.Stages.Data
         {
             return (T)Modules.FirstOrDefault(x => x.GetType() == typeof(T));
         }
+
+        public override IEnumerable<T> GetModules<T>()
+        {
+            return Modules.OfType<T>();
+        }
         
 #if UNITY_EDITOR
         

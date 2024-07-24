@@ -40,7 +40,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 3|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule,
@@ -142,6 +142,16 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Mutations.LimitedItemsPlacesMutationData,
+        Assembly-CSharp
+    - Name: DisabledPlacesCount
+      Entry: 3
+      Data: 1
     - Name: 
       Entry: 8
       Data: 

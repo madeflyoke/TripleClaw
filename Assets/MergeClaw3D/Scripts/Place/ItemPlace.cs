@@ -1,5 +1,3 @@
-using System;
-using DG.Tweening;
 using MergeClaw3D.Scripts.Items;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -8,15 +6,14 @@ namespace MergeClaw3D.Scripts.Place
 {
     public class ItemPlace : MonoBehaviour
     {
-        [Title("MergeEffect")]
-        [SerializeField] private ParticleSystem _matchedVfx;
-        [SerializeField] private ParticleSystem _mergedVfx;
+        public bool IsEnabled { get; private set; } = true;
         
+        [SerializeField] private ItemPlaceVisual _itemPlaceVisual;
+
         public ItemEntity Item { get; private set; }
         public PlaceState State { get; private set; }
         public Vector3 Position => transform.position;
         
-
         public void SetItem(ItemEntity itemEntity)
         {
             Item = itemEntity;
@@ -34,14 +31,22 @@ namespace MergeClaw3D.Scripts.Place
             return item;
         }
 
+        [Button]
+        public void SetState(bool isEnabled)
+        {
+            IsEnabled = isEnabled;
+            _itemPlaceVisual.SetVisualState(isEnabled);
+        }
+        
         public void OnMatched()
         {
-            _matchedVfx.Play();
+            _itemPlaceVisual.PlayMatchedVfx();
         }
         
         public void OnMerged()
         {
-            _mergedVfx.Play();
+            _itemPlaceVisual.PlayMergedVfx();
         }
+
     }
 }
