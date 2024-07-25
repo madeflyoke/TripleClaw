@@ -1,9 +1,9 @@
 using MergeClaw3D.Scripts.Configs.Items;
-using MergeClaw3D.Scripts.Events;
 using MergeClaw3D.Scripts.Items;
 using System;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using MergeClaw3D.Scripts.Events.Models;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -43,16 +43,16 @@ namespace MergeClaw3D.Scripts.Place
 
         private void Subscribe()
         {
-            MessageBroker.Default.Receive<ItemsSpawned>()
+            MessageBroker.Default.Receive<ItemsEventsModels.ItemsSpawned>()
                 .Subscribe(OnItemsSpawned)
                 .AddTo(_disposables);
 
-            MessageBroker.Default.Receive<ItemsMerged>()
+            MessageBroker.Default.Receive<ItemsEventsModels.ItemsMerged>()
                 .Subscribe(OnItemsMerged)
                 .AddTo(_disposables);
         }
 
-        private void OnItemsSpawned(ItemsSpawned message)
+        private void OnItemsSpawned(ItemsEventsModels.ItemsSpawned message)
         {
             foreach (var item in _itemsContainer.Items)
             {
@@ -73,7 +73,6 @@ namespace MergeClaw3D.Scripts.Place
         {
             if (_placesHolder.FreePlaceCount == 0)
             {
-                MessageBroker.Default.Publish(AllPlacesOccupied.Create());
                 return;
             }
             
@@ -102,7 +101,7 @@ namespace MergeClaw3D.Scripts.Place
             item.transform.position += positionDifference;
         }
 
-        private void OnItemsMerged(ItemsMerged message)
+        private void OnItemsMerged(ItemsEventsModels.ItemsMerged message)
         {
             RemoveSpaceBetweenPlaces();
         }

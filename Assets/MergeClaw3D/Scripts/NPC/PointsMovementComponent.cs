@@ -30,7 +30,6 @@ namespace MergeClaw3D.Scripts.NPC
             _tween?.Kill();
             if (_currentPointIndex>=_destinationPoints.Count)
             {
-                Debug.LogWarning("false");
                 _cts?.Cancel();
                 return false;
             }

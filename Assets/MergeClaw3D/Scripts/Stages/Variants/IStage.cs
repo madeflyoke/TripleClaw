@@ -1,3 +1,4 @@
+using System;
 using MergeClaw3D.Scripts.Configs.Stages.Data;
 
 namespace MergeClaw3D.Scripts.Stages.Variants

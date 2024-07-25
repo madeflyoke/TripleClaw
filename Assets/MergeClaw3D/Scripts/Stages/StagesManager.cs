@@ -1,10 +1,7 @@
-using System;
 using Cysharp.Threading.Tasks;
 using MergeClaw3D.Scripts.Configs.Stages;
-using MergeClaw3D.Scripts.Events;
+using MergeClaw3D.Scripts.Signals;
 using MergeClaw3D.Scripts.Stages.Variants;
-using Sirenix.OdinInspector;
-using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -23,32 +20,23 @@ namespace MergeClaw3D.Scripts.Stages
         {
             _signalBus = signalBus;
             _stagesConfig = stagesConfig;
-            MessageBroker.Default.Publish(AllItemsMerged.Create());
-
         }
-
-        private void Start()
-        {
-            Initialize();
-        }
-
-        [Button]
+        
         public void Initialize()
         {
-            MessageBroker.Default.Receive<AllItemsMerged>()
-                .Subscribe(x=>SetNextStage())
-                .AddTo(this);
-            
+            _signalBus.Subscribe<NextStageCallSignal>(SetNextStage);
             SetNextStage();
         }
-
-        public async void SetNextStage()
+        
+        private async void SetNextStage()
         {
             var stageData = _stagesConfig.GetStageData(_currentStage==null?0:_currentStage.StageData.Id+1); //TODO maybe save? like last unfinished level restart
             _currentStage = null;
             await SceneManager.LoadSceneAsync(stageData.SceneName).ToUniTask();
             _currentStage = GameObject.FindGameObjectWithTag("Stage").GetComponent<IStage>();
             _currentStage.Initialize(stageData);
+            
+            _signalBus.Fire(new StageStartedSignal(stageData));
         }
     }
 }

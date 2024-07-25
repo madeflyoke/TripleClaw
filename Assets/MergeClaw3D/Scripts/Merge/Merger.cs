@@ -1,10 +1,10 @@
 using Cysharp.Threading.Tasks;
 using MergeClaw3D.Scripts.Configs.Items;
-using MergeClaw3D.Scripts.Events;
 using MergeClaw3D.Scripts.Items;
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using MergeClaw3D.Scripts.Events.Models;
 using UniRx;
 using Zenject;
 
@@ -79,6 +79,11 @@ namespace MergeClaw3D.Scripts.Place
                     return;
                 }
             }
+            
+            if (_itemPlacesHolder.FreePlaceCount == 0) //TODO WHERE?
+            {
+                MessageBroker.Default.Publish(new ItemsEventsModels.AllPlacesOccupied());
+            }
         }
 
         private async void MergeItems(List<ItemPlace> mergeList)
@@ -96,11 +101,11 @@ namespace MergeClaw3D.Scripts.Place
 
             targetItemPlace.OnMerged();
             
-            MessageBroker.Default.Publish(ItemsMerged.Create());
+            MessageBroker.Default.Publish(ItemsEventsModels.ItemsMerged.Create());
             
             if (_itemsContainer.ItemCount == 0)
             {
-                MessageBroker.Default.Publish(AllItemsMerged.Create());
+                MessageBroker.Default.Publish(new ItemsEventsModels.AllItemsMerged());
             }
         }
 

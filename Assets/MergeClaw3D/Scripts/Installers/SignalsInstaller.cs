@@ -13,6 +13,8 @@ namespace MergeClaw3D.Scripts.Installers
             Container.DeclareSignal<StageCompletedSignal>();
             Container.DeclareSignal<StageFailedSignal>();
             
+            Container.DeclareSignal<NextStageCallSignal>();
+            
             Container.DeclareSignal<ResetSignal>();
         }
     }

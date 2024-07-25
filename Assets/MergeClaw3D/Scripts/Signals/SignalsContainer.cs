@@ -36,4 +36,9 @@ namespace MergeClaw3D.Scripts.Signals
     {
        
     }
+
+    public struct NextStageCallSignal
+    {
+        
+    }
 }

@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Threading;
 using MergeClaw3D.Scripts.Configs.Stages.Data;
 using MergeClaw3D.Scripts.Configs.Stages.Data.Modules;
+using MergeClaw3D.Scripts.Events.Models;
 using MergeClaw3D.Scripts.Items.Utility;
 using UniRx;
 using UnityEngine;
@@ -129,7 +130,7 @@ namespace MergeClaw3D.Scripts.Spawner
                 item.SetSelectableMode(true);
             }
 
-            MessageBroker.Default.Publish(ItemsSpawned.Create());
+            MessageBroker.Default.Publish(ItemsEventsModels.ItemsSpawned.Create());
         }
 
         private List<KeyValuePair<int, ItemSize>> SpreadItemsSizeRatios(ItemsDataProviderModule itemDataProviderModule, int totalItemsCount)

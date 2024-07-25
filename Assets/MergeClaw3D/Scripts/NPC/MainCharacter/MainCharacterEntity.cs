@@ -1,13 +1,14 @@
-using System;
-using System.Collections.Generic;
 using MergeClaw3D.Scripts.NPC.Interfaces;
-using Sirenix.OdinInspector;
+using MergeClaw3D.Scripts.Signals;
 using UnityEngine;
+using Zenject;
 
 namespace MergeClaw3D.Scripts.NPC.MainCharacter
 {
     public class MainCharacterEntity : MonoBehaviour, INpcEntity, IAnimatedEntity
     {
+        [Inject] private SignalBus _signalBus; 
+        
         [SerializeField] private AnimationComponent _animationComponent;
         [SerializeField] private PointsMovementComponent _movementComponent;
 
@@ -15,33 +16,37 @@ namespace MergeClaw3D.Scripts.NPC.MainCharacter
         {
              InitializeComponents();
         }
-
-        [Button]
-        private void StartMoving()
-        {
-            _movementComponent.TryToMoveToNextAvailablePoint(()=>
-            {
-                Debug.LogWarning("gameplay started");
-                _animationComponent.TryPlayAnimation(AnimationConstants.IDLE_STATE);
-            }, true);
-            _animationComponent.TryPlayAnimation(AnimationConstants.RUN_STATE);
-        }
         
         private void InitializeComponents()
         {
             _animationComponent.Initialize(this);
             _movementComponent.Initialize();
+            _signalBus.Subscribe<StageStartedSignal>(OnStageStarted);
+            _signalBus.Subscribe<StageCompletedSignal>(OnStageCompleted);
         }
         
-        [Button]
-        public void OnLevelCleaned()
+        private void OnStageStarted()
         {
-            _movementComponent.MoveSequenceToLeftPoints(()=>
+            _movementComponent.TryToMoveToNextAvailablePoint(()=>
             {
-                Debug.LogWarning("next level");
                 _animationComponent.TryPlayAnimation(AnimationConstants.IDLE_STATE);
             }, true);
             _animationComponent.TryPlayAnimation(AnimationConstants.RUN_STATE);
+        }
+        
+        private void OnStageCompleted()
+        {
+            _movementComponent.TryToMoveToNextAvailablePoint(()=>
+            {
+                _signalBus.Fire<NextStageCallSignal>();
+            }, true);
+            _animationComponent.TryPlayAnimation(AnimationConstants.RUN_STATE);
+            
+            // _movementComponent.MoveSequenceToLeftPoints(()=> //for difficult paths
+            // {
+            //     _animationComponent.TryPlayAnimation(AnimationConstants.IDLE_STATE);
+            // }, true);
+            // _animationComponent.TryPlayAnimation(AnimationConstants.RUN_STATE);
         }
     }
 }
