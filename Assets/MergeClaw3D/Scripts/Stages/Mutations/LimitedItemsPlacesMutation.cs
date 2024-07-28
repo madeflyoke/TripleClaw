@@ -11,7 +11,7 @@ namespace MergeClaw3D.Scripts.Stages.Mutations
         
         private LimitedItemsPlacesMutationData _mutationData;
         
-        public override void Initialize(BaseStageMutationDataModule dataModule)
+        public override void Initialize(IBaseStageMutationDataModule dataModule)
         {
             _mutationData = dataModule as LimitedItemsPlacesMutationData;
             _itemPlacesHolder.SetPlacesState(_mutationData.DisabledPlacesCount, false);

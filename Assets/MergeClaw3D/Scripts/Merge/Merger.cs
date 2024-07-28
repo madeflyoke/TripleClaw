@@ -7,6 +7,7 @@ using DG.Tweening;
 using MergeClaw3D.Scripts.Events.Models;
 using UniRx;
 using Zenject;
+#pragma warning disable CS4014
 
 namespace MergeClaw3D.Scripts.Place
 {

@@ -1,7 +1,7 @@
 using MergeClaw3D.Scripts.Configs.Stages.Data;
-using MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Mutations;
-using MergeClaw3D.Scripts.Events;
+using MergeClaw3D.Scripts.Currency;
 using MergeClaw3D.Scripts.Events.Models;
+using MergeClaw3D.Scripts.Services;
 using MergeClaw3D.Scripts.Signals;
 using MergeClaw3D.Scripts.Spawner;
 using MergeClaw3D.Scripts.Stages.Mutations;
@@ -16,6 +16,7 @@ namespace MergeClaw3D.Scripts.Stages.Variants
         public StageData StageData { get; private set; }
 
         [SerializeField] private MutationsHandler _mutationsHandler;
+        [SerializeField] private CurrencyHandler _currencyHandler;
         
         private ItemsSpawner _itemsSpawner;
         private SignalBus _signalBus;
@@ -30,8 +31,12 @@ namespace MergeClaw3D.Scripts.Stages.Variants
         public void Initialize(StageData stageData)
         {
             StageData = stageData;
+            var itemsStageData = stageData as ItemsStageData;
+            
             _mutationsHandler.Initialize(stageData);
-            _itemsSpawner.Spawn(stageData as ItemsStageData);
+            _currencyHandler.Initialize(itemsStageData);
+            _itemsSpawner.Spawn(itemsStageData);
+            
             InitCallbacks();
         }
 

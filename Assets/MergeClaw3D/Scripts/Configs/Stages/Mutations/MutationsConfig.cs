@@ -15,7 +15,7 @@ namespace MergeClaw3D.Scripts.Configs.Stages.Mutations
         [OdinSerialize, ReadOnly] private Dictionary<Type, BaseStageMutation> MutationsPrefabsMap;
 
         [Button]
-        public void AddNewElement(BaseStageMutationDataModule dataModule, BaseStageMutation prefab)
+        public void AddNewElement(IBaseStageMutationDataModule dataModule, BaseStageMutation prefab)
         {
             if (MutationsPrefabsMap==null)
             {
@@ -29,7 +29,7 @@ namespace MergeClaw3D.Scripts.Configs.Stages.Mutations
             MutationsPrefabsMap.Add(dataModule.GetType(), prefab);
         }
 
-        public BaseStageMutation GetMutationPrefab(BaseStageMutationDataModule dataModule)
+        public BaseStageMutation GetMutationPrefab(IBaseStageMutationDataModule dataModule)
         {
             var type = dataModule.GetType();
             if (MutationsPrefabsMap.ContainsKey(type))

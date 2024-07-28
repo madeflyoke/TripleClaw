@@ -13,7 +13,7 @@ namespace MergeClaw3D.Scripts
         [Inject] private ServicesHolder _servicesHolder;
         [Inject] private StagesManager _stagesManager;
         
-        private void Awake()
+        private void Start()
         {
             Application.targetFrameRate = 60;
             Input.multiTouchEnabled = false;

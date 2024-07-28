@@ -2,7 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Interfaces;
+using MergeClaw3D.Scripts.Currency;
+using MergeClaw3D.Scripts.Currency.Enums;
 using Sirenix.Serialization;
+using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace MergeClaw3D.Scripts.Configs.Stages.Data
 {
@@ -13,7 +17,8 @@ namespace MergeClaw3D.Scripts.Configs.Stages.Data
         public override string SceneName => SCENE_NAME;
         
         [OdinSerialize] public List<IStageDataModule> Modules;
-        
+        [SerializeField] public SerializedDictionary<CurrencyType, int> CurrencyPerMerge;
+
         public override T GetModule<T>()
         {
             return (T)Modules.FirstOrDefault(x => x.GetType() == typeof(T));

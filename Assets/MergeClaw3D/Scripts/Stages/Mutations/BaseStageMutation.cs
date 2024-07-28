@@ -5,6 +5,6 @@ namespace MergeClaw3D.Scripts.Stages.Mutations
 {
     public abstract class BaseStageMutation : MonoBehaviour
     {
-        public abstract void Initialize(BaseStageMutationDataModule dataModule);
+        public abstract void Initialize(IBaseStageMutationDataModule dataModule);
     }
 }

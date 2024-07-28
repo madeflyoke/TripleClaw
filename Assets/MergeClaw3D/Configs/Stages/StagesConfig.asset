@@ -40,7 +40,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
       Data: 3|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule,
@@ -152,6 +152,57 @@ MonoBehaviour:
     - Name: DisabledPlacesCount
       Entry: 3
       Data: 1
+    - Name: <ResolveArtifactId>k__BackingField
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.TimeLimitDataModule,
+        Assembly-CSharp
+    - Name: SecondsTimeLimit
+      Entry: 3
+      Data: 70
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: CurrencyPerMerge
+      Entry: 7
+      Data: 10|UnityEngine.Rendering.SerializedDictionary`2[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
+        Assembly-CSharp],[System.Int32, mscorlib]], Unity.RenderPipelines.Core.Runtime
+    - Name: comparer
+      Entry: 7
+      Data: 11|System.Collections.Generic.EnumEqualityComparer`1[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -166,31 +217,31 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 9|MergeClaw3D.Scripts.Configs.Stages.Data.ItemsStageData, Assembly-CSharp
+      Data: 12|MergeClaw3D.Scripts.Configs.Stages.Data.ItemsStageData, Assembly-CSharp
     - Name: Id
       Entry: 3
       Data: 1
     - Name: Modules
       Entry: 7
-      Data: 10|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Interfaces.IStageDataModule,
+      Data: 13|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Interfaces.IStageDataModule,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 11|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule,
+      Data: 14|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule,
         Assembly-CSharp
     - Name: ItemsDataSets
       Entry: 7
-      Data: 12|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
+      Data: 15|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 13|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
+      Data: 16|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
         Assembly-CSharp
     - Name: IsRandomVariants
       Entry: 5
@@ -212,7 +263,7 @@ MonoBehaviour:
       Data: 
     - Name: ItemSizeRatios
       Entry: 7
-      Data: 14|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemSizeRatio,
+      Data: 17|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemSizeRatio,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -271,36 +322,39 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: CurrencyPerMerge
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 15|MergeClaw3D.Scripts.Configs.Stages.Data.ItemsStageData, Assembly-CSharp
+      Data: 18|MergeClaw3D.Scripts.Configs.Stages.Data.ItemsStageData, Assembly-CSharp
     - Name: Id
       Entry: 3
       Data: 2
     - Name: Modules
       Entry: 7
-      Data: 16|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Interfaces.IStageDataModule,
+      Data: 19|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Interfaces.IStageDataModule,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 17|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule,
+      Data: 20|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule,
         Assembly-CSharp
     - Name: ItemsDataSets
       Entry: 7
-      Data: 18|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
+      Data: 21|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 19|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
+      Data: 22|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
         Assembly-CSharp
     - Name: IsRandomVariants
       Entry: 5
@@ -322,7 +376,7 @@ MonoBehaviour:
       Data: 
     - Name: ItemSizeRatios
       Entry: 7
-      Data: 20|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemSizeRatio,
+      Data: 23|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemSizeRatio,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -381,36 +435,39 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: CurrencyPerMerge
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 21|MergeClaw3D.Scripts.Configs.Stages.Data.ItemsStageData, Assembly-CSharp
+      Data: 24|MergeClaw3D.Scripts.Configs.Stages.Data.ItemsStageData, Assembly-CSharp
     - Name: Id
       Entry: 3
       Data: 3
     - Name: Modules
       Entry: 7
-      Data: 22|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Interfaces.IStageDataModule,
+      Data: 25|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Interfaces.IStageDataModule,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: 23|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule,
+      Data: 26|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule,
         Assembly-CSharp
     - Name: ItemsDataSets
       Entry: 7
-      Data: 24|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
+      Data: 27|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 25|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
+      Data: 28|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
         Assembly-CSharp
     - Name: IsRandomVariants
       Entry: 5
@@ -432,7 +489,7 @@ MonoBehaviour:
       Data: 
     - Name: ItemSizeRatios
       Entry: 7
-      Data: 26|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemSizeRatio,
+      Data: 29|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemSizeRatio,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -487,11 +544,14 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 27|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Mutations.LimitedItemsPlacesMutationData,
+      Data: 30|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Mutations.LimitedItemsPlacesMutationData,
         Assembly-CSharp
     - Name: DisabledPlacesCount
       Entry: 3
       Data: 3
+    - Name: <ResolveArtifactId>k__BackingField
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -500,6 +560,9 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 8
+      Data: 
+    - Name: CurrencyPerMerge
+      Entry: 6
       Data: 
     - Name: 
       Entry: 8
