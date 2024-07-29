@@ -1,6 +1,6 @@
-using System;
 using MergeClaw3D.Scripts.Currency.Enums;
 using MergeClaw3D.Scripts.Services;
+using MergeClaw3D.Scripts.Services.Progress.Currency;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Zenject;

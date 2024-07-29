@@ -3,6 +3,7 @@ using MergeClaw3D.Scripts.Configs.Stages.Data;
 using MergeClaw3D.Scripts.Currency.Enums;
 using MergeClaw3D.Scripts.Events.Models;
 using MergeClaw3D.Scripts.Services;
+using MergeClaw3D.Scripts.Services.Progress.Currency;
 using UniRx;
 using UnityEngine;
 using Zenject;

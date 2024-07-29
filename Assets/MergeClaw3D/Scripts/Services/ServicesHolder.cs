@@ -4,6 +4,8 @@ using System.Threading;
 using MergeClaw3D.Scripts.Currency;
 using MergeClaw3D.Scripts.Services.Interfaces;
 using MergeClaw3D.Scripts.Services.Progress;
+using MergeClaw3D.Scripts.Services.Progress.Currency;
+using MergeClaw3D.Scripts.Services.Progress.Inventory;
 using UnityEngine;
 using Zenject;
 
@@ -40,9 +42,9 @@ namespace MergeClaw3D.Scripts.Services
             //add all services below
           //  AddService<YandexService>();
             AddService<InputService>();
-            AddService<ProgressService>();
             AddService<PauseService>();
             AddService<CurrencyService>();
+            AddService<InventoryService>();
 
             _cts = new CancellationTokenSource();
 

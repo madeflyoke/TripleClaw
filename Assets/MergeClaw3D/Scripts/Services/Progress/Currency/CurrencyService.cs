@@ -4,11 +4,9 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using MergeClaw3D.Scripts.Currency.Enums;
 using MergeClaw3D.Scripts.Services.Interfaces;
-using MergeClaw3D.Scripts.Services.Progress;
 using Sirenix.OdinInspector;
-using Zenject;
 
-namespace MergeClaw3D.Scripts.Services
+namespace MergeClaw3D.Scripts.Services.Progress.Currency
 {
     public class CurrencyService : IService
     {
@@ -20,16 +18,11 @@ namespace MergeClaw3D.Scripts.Services
         };
 
         private Dictionary<CurrencyType, long> _currencyValueMap;
-        private ProgressService _progressService;
-
-        [Inject]
-        public void Construct(ServicesHolder servicesHolder)
-        {
-            _progressService = servicesHolder.GetService<ProgressService>();
-        }
+        private CurrencyProgressHandler _currencyProgressHandler;
         
         public UniTask Initialize(CancellationTokenSource cts)
         {
+            _currencyProgressHandler = new CurrencyProgressHandler();
             InitializeCurrency();
             return UniTask.CompletedTask;
         }
@@ -40,7 +33,7 @@ namespace MergeClaw3D.Scripts.Services
             
             foreach (var item in _supportedCurrencies)
             {
-                var extractedValue =_progressService.CurrencyProgressHandler.ExtractCurrency(item);
+                var extractedValue =_currencyProgressHandler.ExtractCurrency(item);
                 _currencyValueMap.Add(item, extractedValue);
             }  
         }
@@ -58,7 +51,7 @@ namespace MergeClaw3D.Scripts.Services
 
             if (withSave)
             {
-                _progressService.CurrencyProgressHandler.SaveCurrency(type, finalValue);
+                _currencyProgressHandler.SaveCurrency(type, finalValue);
             }
             
             CurrencyChanged?.Invoke(type, finalValue);
@@ -71,7 +64,7 @@ namespace MergeClaw3D.Scripts.Services
         
         public void Dispose()
         {
-            _progressService?.CurrencyProgressHandler.SaveCurrency(_currencyValueMap);
+            _currencyProgressHandler?.SaveCurrency(_currencyValueMap);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Text;
 using MergeClaw3D.Scripts.Currency.Enums;
 using UnityEngine;
 
-namespace MergeClaw3D.Scripts.Services.Progress.Handlers
+namespace MergeClaw3D.Scripts.Services.Progress.Currency
 {
     public class CurrencyProgressHandler
     {
