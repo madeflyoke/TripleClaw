@@ -5,15 +5,16 @@ namespace MergeClaw3D.Scripts.Configs.Stages.Data
 {
     public class ShopStageData : StageData
     {
-        public override string SceneName { get; }
+        public override string SceneName => "ShopStage";
+        
         public override T GetModule<T>()
         {
-            throw new System.NotImplementedException();
+            return default;
         }
 
         public override IEnumerable<T> GetModules<T>()
         {
-            throw new System.NotImplementedException();
+            return default;
         }
     }
 }

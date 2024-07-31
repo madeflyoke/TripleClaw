@@ -13,8 +13,7 @@ namespace MergeClaw3D.Scripts.Configs.Stages.Data
     [Serializable]
     public class ItemsStageData : StageData
     {
-        private const string SCENE_NAME = "ItemsStage";
-        public override string SceneName => SCENE_NAME;
+        public override string SceneName => "ItemsStage";
         
         [OdinSerialize] public List<IStageDataModule> Modules;
         [SerializeField] public SerializedDictionary<CurrencyType, int> CurrencyPerMerge;

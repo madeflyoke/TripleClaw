@@ -40,7 +40,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 2
     - Name: 
       Entry: 7
       Data: 3|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule,
@@ -51,26 +51,10 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
       Data: 5|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
-        Assembly-CSharp
-    - Name: IsRandomVariants
-      Entry: 5
-      Data: false
-    - Name: VariantIndex
-      Entry: 3
-      Data: 6
-    - Name: GroupsCount
-      Entry: 3
-      Data: 5
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 6|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
         Assembly-CSharp
     - Name: IsRandomVariants
       Entry: 5
@@ -80,7 +64,7 @@ MonoBehaviour:
       Data: 0
     - Name: GroupsCount
       Entry: 3
-      Data: 7
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -92,7 +76,7 @@ MonoBehaviour:
       Data: 
     - Name: ItemSizeRatios
       Entry: 7
-      Data: 7|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemSizeRatio,
+      Data: 6|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemSizeRatio,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -106,7 +90,7 @@ MonoBehaviour:
       Data: 0
     - Name: RatioPartPercent
       Entry: 3
-      Data: 20
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -119,7 +103,7 @@ MonoBehaviour:
       Data: 1
     - Name: RatioPartPercent
       Entry: 3
-      Data: 40
+      Data: 100
     - Name: 
       Entry: 8
       Data: 
@@ -129,10 +113,10 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: ItemSize
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: RatioPartPercent
       Entry: 3
-      Data: 40
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -147,17 +131,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 8|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Mutations.LimitedItemsPlacesMutationData,
-        Assembly-CSharp
-    - Name: DisabledPlacesCount
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 9|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.TimeLimitDataModule,
+      Data: 7|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.TimeLimitDataModule,
         Assembly-CSharp
     - Name: SecondsTimeLimit
       Entry: 3
@@ -173,11 +147,11 @@ MonoBehaviour:
       Data: 
     - Name: CurrencyPerMerge
       Entry: 7
-      Data: 10|UnityEngine.Rendering.SerializedDictionary`2[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
+      Data: 8|UnityEngine.Rendering.SerializedDictionary`2[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
         Assembly-CSharp],[System.Int32, mscorlib]], Unity.RenderPipelines.Core.Runtime
     - Name: comparer
       Entry: 7
-      Data: 11|System.Collections.Generic.EnumEqualityComparer`1[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
+      Data: 9|System.Collections.Generic.EnumEqualityComparer`1[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -214,114 +188,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 12|MergeClaw3D.Scripts.Configs.Stages.Data.ItemsStageData, Assembly-CSharp
+      Data: 10|MergeClaw3D.Scripts.Configs.Stages.Data.ShopStageData, Assembly-CSharp
     - Name: Id
       Entry: 3
       Data: 1
-    - Name: Modules
-      Entry: 7
-      Data: 13|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Interfaces.IStageDataModule,
-        Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 14|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule,
-        Assembly-CSharp
-    - Name: ItemsDataSets
-      Entry: 7
-      Data: 15|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
-        Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 16|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
-        Assembly-CSharp
-    - Name: IsRandomVariants
-      Entry: 5
-      Data: true
-    - Name: VariantIndex
-      Entry: 3
-      Data: 0
-    - Name: GroupsCount
-      Entry: 3
-      Data: 15
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: ItemSizeRatios
-      Entry: 7
-      Data: 17|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemSizeRatio,
-        Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 3
-    - Name: 
-      Entry: 7
-      Data: MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemSizeRatio,
-        Assembly-CSharp
-    - Name: ItemSize
-      Entry: 3
-      Data: 0
-    - Name: RatioPartPercent
-      Entry: 3
-      Data: 20
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemSizeRatio,
-        Assembly-CSharp
-    - Name: ItemSize
-      Entry: 3
-      Data: 1
-    - Name: RatioPartPercent
-      Entry: 3
-      Data: 40
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemSizeRatio,
-        Assembly-CSharp
-    - Name: ItemSize
-      Entry: 3
-      Data: 1
-    - Name: RatioPartPercent
-      Entry: 3
-      Data: 40
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: CurrencyPerMerge
-      Entry: 6
-      Data: 
     - Name: 
       Entry: 8
       Data: 
