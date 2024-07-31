@@ -8,9 +8,9 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace MergeClaw3D.Scripts.Currency
+namespace MergeClaw3D.Scripts.Currency.StageHandlers
 {
-    public class CurrencyHandler : MonoBehaviour
+    public class ItemsStageCurrencyHandler : MonoBehaviour
     {
         private CurrencyService _currencyService;
         private Dictionary<CurrencyType, int> _currenciesPerMerge;
