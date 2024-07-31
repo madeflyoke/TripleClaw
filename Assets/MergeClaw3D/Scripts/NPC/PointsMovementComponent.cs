@@ -5,6 +5,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
 
 namespace MergeClaw3D.Scripts.NPC
@@ -75,5 +76,23 @@ namespace MergeClaw3D.Scripts.NPC
             _tween?.Kill();
             _cts?.Cancel();
         }
+        
+        #if UNITY_EDITOR
+
+        private void OnDrawGizmos()
+        {
+            if (_originalPoint==null|| _destinationPoints.Any(x=>x==null))
+            {
+                return;
+            }
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(_originalPoint.position, _destinationPoints[0].position);
+            for (var i = 0; i < _destinationPoints.Count-1; i++)
+            {
+                Gizmos.DrawLine( _destinationPoints[i].position, _destinationPoints[i+1].position);
+            }
+        }
+
+#endif
     }
 }

@@ -36,7 +36,7 @@ namespace MergeClaw3D.Scripts.NPC.MainCharacter
         
         private void OnStageCompleted()
         {
-            _movementComponent.TryToMoveToNextAvailablePoint(()=>
+            _movementComponent.MoveSequenceToLeftPoints(()=>
             {
                 _signalBus.Fire<NextStageCallSignal>();
             }, true);
