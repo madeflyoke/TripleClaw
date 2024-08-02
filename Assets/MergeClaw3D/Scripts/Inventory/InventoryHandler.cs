@@ -1,3 +1,4 @@
+using MergeClaw3D.Scripts.Configs.Artifacts;
 using MergeClaw3D.Scripts.Configs.Stages.Mutations;
 using MergeClaw3D.Scripts.Inventory.Enum;
 using MergeClaw3D.Scripts.Services;
@@ -25,7 +26,7 @@ namespace MergeClaw3D.Scripts.Inventory
             var items = _inventoryService.GetExistsArtifacts();
             foreach (var item in items)
             {
-                Instantiate(_config.GetArtifactPrefab(item));
+                Instantiate(_config.GetMutationArtifactData(item).ArtifactPrefab);
             }
         }
 

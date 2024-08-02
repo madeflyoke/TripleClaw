@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: InventoryArtifactsConfig
   m_EditorClassIdentifier: 
   _artifactsPrefabsMap:
-    m_Keys: 0100000002000000
+    m_Keys: 01000000
     m_Values:
-    - {fileID: 1782178193943389327, guid: 32cc34f6c4844ab438f5f51798dde614, type: 3}
-    - {fileID: 1782178193943389327, guid: 49bb9cf45263d6844b0a4828e8049315, type: 3}
+    - {fileID: 2681504607719845489, guid: c7b2f9f038132054b978a2db7250436e, type: 3}
