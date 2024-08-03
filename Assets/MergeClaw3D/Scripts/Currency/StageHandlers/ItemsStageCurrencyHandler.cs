@@ -13,7 +13,7 @@ namespace MergeClaw3D.Scripts.Currency.StageHandlers
     public class ItemsStageCurrencyHandler : MonoBehaviour
     {
         private CurrencyService _currencyService;
-        private Dictionary<CurrencyType, int> _currenciesPerMerge;
+        private Dictionary<CurrencyType, long> _currenciesPerMerge;
 
         public void Initialize(ItemsStageData stageData)
         {
@@ -30,10 +30,7 @@ namespace MergeClaw3D.Scripts.Currency.StageHandlers
 
         private void OnItemsMerged()
         {
-            foreach (var kvp in _currenciesPerMerge)
-            {
-                _currencyService.AddCurrency(kvp.Key, kvp.Value, true);
-            }
+            _currencyService.AddCurrencies(_currenciesPerMerge, true);
         }
     }
 }

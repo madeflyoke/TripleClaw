@@ -23,11 +23,7 @@ namespace MergeClaw3D.Scripts.Inventory
         [Button]
         public void Spawn()
         {
-            var items = _inventoryService.GetExistsArtifacts();
-            foreach (var item in items)
-            {
-                Instantiate(_config.GetMutationArtifactData(item).ArtifactPrefab);
-            }
+            
         }
 
         [Button]

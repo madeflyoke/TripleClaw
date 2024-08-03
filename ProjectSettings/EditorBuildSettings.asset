@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/MergeClaw3D/Scenes/BootstrapperScene.unity
+    guid: e44a80d770188c64c94dd752c6eaf3b0
+  - enabled: 1
+    path: Assets/MergeClaw3D/Scenes/Stages/ShopStage.unity
+    guid: 055061306ebceef4189d45a3e18f1921
   m_configObjects: {}

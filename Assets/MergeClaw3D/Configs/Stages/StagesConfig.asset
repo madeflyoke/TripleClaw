@@ -30,31 +30,40 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 7
-      Data: 1|MergeClaw3D.Scripts.Configs.Stages.Data.ItemsStageData, Assembly-CSharp
+      Data: 1|MergeClaw3D.Scripts.Configs.Stages.Data.ShopStageData, Assembly-CSharp
     - Name: Id
       Entry: 3
       Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|MergeClaw3D.Scripts.Configs.Stages.Data.ItemsStageData, Assembly-CSharp
+    - Name: Id
+      Entry: 3
+      Data: 1
     - Name: Modules
       Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Interfaces.IStageDataModule,
+      Data: 3|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.Interfaces.IStageDataModule,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: 3|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule,
+      Data: 4|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule,
         Assembly-CSharp
     - Name: ItemsDataSets
       Entry: 7
-      Data: 4|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
+      Data: 5|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 5|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
+      Data: 6|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemDataSet,
         Assembly-CSharp
     - Name: IsRandomVariants
       Entry: 5
@@ -76,7 +85,7 @@ MonoBehaviour:
       Data: 
     - Name: ItemSizeRatios
       Entry: 7
-      Data: 6|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemSizeRatio,
+      Data: 7|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Stages.Data.Modules.ItemsDataProviderModule+ItemSizeRatio,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -131,7 +140,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 7|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.TimeLimitDataModule,
+      Data: 8|MergeClaw3D.Scripts.Configs.Stages.Data.Modules.TimeLimitDataModule,
         Assembly-CSharp
     - Name: SecondsTimeLimit
       Entry: 3
@@ -147,11 +156,11 @@ MonoBehaviour:
       Data: 
     - Name: CurrencyPerMerge
       Entry: 7
-      Data: 8|UnityEngine.Rendering.SerializedDictionary`2[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
+      Data: 9|UnityEngine.Rendering.SerializedDictionary`2[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
         Assembly-CSharp],[System.Int32, mscorlib]], Unity.RenderPipelines.Core.Runtime
     - Name: comparer
       Entry: 7
-      Data: 9|System.Collections.Generic.EnumEqualityComparer`1[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
+      Data: 10|System.Collections.Generic.EnumEqualityComparer`1[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -183,15 +192,6 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 10|MergeClaw3D.Scripts.Configs.Stages.Data.ShopStageData, Assembly-CSharp
-    - Name: Id
-      Entry: 3
-      Data: 1
     - Name: 
       Entry: 8
       Data: 

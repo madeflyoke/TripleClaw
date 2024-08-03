@@ -4,6 +4,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using MergeClaw3D.Scripts.Inventory.Enum;
 using MergeClaw3D.Scripts.Services.Interfaces;
+using UnityEngine;
 
 namespace MergeClaw3D.Scripts.Services.Progress.Inventory
 {
@@ -40,6 +41,10 @@ namespace MergeClaw3D.Scripts.Services.Progress.Inventory
             _items.Add(artifact);
             _inventoryProgressHandler.SaveArtifactState(artifact,true);
             ArtifactAdded?.Invoke(artifact);
+            
+#if UNITY_EDITOR
+            Debug.LogWarning("Artifact added: "+artifact);
+#endif
         }
 
         public void RemoveArtifact(ArtifactType artifact)
@@ -49,6 +54,10 @@ namespace MergeClaw3D.Scripts.Services.Progress.Inventory
                 _items.Remove(artifact);
                 _inventoryProgressHandler.SaveArtifactState(artifact,false);
                 ArtifactRemoved?.Invoke(artifact);
+                
+#if UNITY_EDITOR
+                Debug.LogWarning("Artifact removed: "+artifact);
+#endif
             }
         }
 

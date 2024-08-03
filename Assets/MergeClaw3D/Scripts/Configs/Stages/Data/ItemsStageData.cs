@@ -16,7 +16,7 @@ namespace MergeClaw3D.Scripts.Configs.Stages.Data
         public override string SceneName => "ItemsStage";
         
         [OdinSerialize] public List<IStageDataModule> Modules;
-        [SerializeField] public SerializedDictionary<CurrencyType, int> CurrencyPerMerge;
+        [SerializeField] public SerializedDictionary<CurrencyType, long> CurrencyPerMerge;
 
         public override T GetModule<T>()
         {

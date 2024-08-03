@@ -4,7 +4,6 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using MergeClaw3D.Scripts.Currency.Enums;
 using MergeClaw3D.Scripts.Services.Interfaces;
-using Sirenix.OdinInspector;
 
 namespace MergeClaw3D.Scripts.Services.Progress.Currency
 {
@@ -38,10 +37,6 @@ namespace MergeClaw3D.Scripts.Services.Progress.Currency
             }  
         }
         
-        /// <summary>
-        /// Negative value including
-        /// </summary>
-        [Button]
         public void AddCurrency(CurrencyType type, long value, bool withSave)
         {
             var currentValue = _currencyValueMap[type];
@@ -55,6 +50,27 @@ namespace MergeClaw3D.Scripts.Services.Progress.Currency
             }
             
             CurrencyChanged?.Invoke(type, finalValue);
+        }
+
+        public void RemoveCurrency(CurrencyType type, long value, bool withSave)
+        {
+            AddCurrency(type, -value, withSave);
+        }
+        
+        public void AddCurrencies(Dictionary<CurrencyType, long> value, bool withSave)
+        {
+            foreach (var kvp in value)
+            {
+                AddCurrency(kvp.Key, kvp.Value, withSave);
+            }
+        }
+
+        public void RemoveCurrencies(Dictionary<CurrencyType, long> value, bool withSave)
+        {
+            foreach (var kvp in value)
+            {
+                RemoveCurrency(kvp.Key, kvp.Value, withSave);
+            }
         }
 
         public long GetCurrency(CurrencyType type)

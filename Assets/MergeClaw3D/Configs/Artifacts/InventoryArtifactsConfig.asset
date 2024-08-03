@@ -12,7 +12,236 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1f0869b4cc4c149ae14bce9e55f756, type: 3}
   m_Name: InventoryArtifactsConfig
   m_EditorClassIdentifier: 
-  _artifactsPrefabsMap:
-    m_Keys: 01000000
-    m_Values:
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
     - {fileID: 2681504607719845489, guid: c7b2f9f038132054b978a2db7250436e, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _mutationsArtifactsData
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[MergeClaw3D.Scripts.Configs.Artifacts.ArtifactData,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 7
+      Data: 1|MergeClaw3D.Scripts.Configs.Artifacts.ArtifactData, Assembly-CSharp
+    - Name: Type
+      Entry: 3
+      Data: 1
+    - Name: ArtifactPrefab
+      Entry: 10
+      Data: 0
+    - Name: BasePricesMap
+      Entry: 7
+      Data: 2|UnityEngine.Rendering.SerializedDictionary`2[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
+        Assembly-CSharp],[System.Int64, mscorlib]], Unity.RenderPipelines.Core.Runtime
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.EnumEqualityComparer`1[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 224
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|MergeClaw3D.Scripts.Configs.Artifacts.ArtifactData, Assembly-CSharp
+    - Name: Type
+      Entry: 3
+      Data: 1
+    - Name: ArtifactPrefab
+      Entry: 10
+      Data: 0
+    - Name: BasePricesMap
+      Entry: 7
+      Data: 5|UnityEngine.Rendering.SerializedDictionary`2[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
+        Assembly-CSharp],[System.Int64, mscorlib]], Unity.RenderPipelines.Core.Runtime
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|MergeClaw3D.Scripts.Configs.Artifacts.ArtifactData, Assembly-CSharp
+    - Name: Type
+      Entry: 3
+      Data: 1
+    - Name: ArtifactPrefab
+      Entry: 10
+      Data: 0
+    - Name: BasePricesMap
+      Entry: 7
+      Data: 7|UnityEngine.Rendering.SerializedDictionary`2[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
+        Assembly-CSharp],[System.Int64, mscorlib]], Unity.RenderPipelines.Core.Runtime
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|MergeClaw3D.Scripts.Configs.Artifacts.ArtifactData, Assembly-CSharp
+    - Name: Type
+      Entry: 3
+      Data: 1
+    - Name: ArtifactPrefab
+      Entry: 10
+      Data: 0
+    - Name: BasePricesMap
+      Entry: 7
+      Data: 9|UnityEngine.Rendering.SerializedDictionary`2[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
+        Assembly-CSharp],[System.Int64, mscorlib]], Unity.RenderPipelines.Core.Runtime
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 9999
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 10|MergeClaw3D.Scripts.Configs.Artifacts.ArtifactData, Assembly-CSharp
+    - Name: Type
+      Entry: 3
+      Data: 1
+    - Name: ArtifactPrefab
+      Entry: 10
+      Data: 0
+    - Name: BasePricesMap
+      Entry: 7
+      Data: 11|UnityEngine.Rendering.SerializedDictionary`2[[MergeClaw3D.Scripts.Currency.Enums.CurrencyType,
+        Assembly-CSharp],[System.Int64, mscorlib]], Unity.RenderPipelines.Core.Runtime
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 99
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
