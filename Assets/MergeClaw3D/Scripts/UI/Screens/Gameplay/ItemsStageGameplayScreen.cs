@@ -3,8 +3,10 @@ using MergeClaw3D.Scripts.Configs.Stages.Data;
 using MergeClaw3D.Scripts.Configs.Stages.Data.Modules;
 using MergeClaw3D.Scripts.Events.Models;
 using MergeClaw3D.Scripts.Signals;
+using MergeClaw3D.Scripts.Stages;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace MergeClaw3D.Scripts.UI.Screens.Gameplay
 {
@@ -13,19 +15,21 @@ namespace MergeClaw3D.Scripts.UI.Screens.Gameplay
      //   [SerializeField] private LevelCompletePopup _levelCompletePopup;
         [SerializeField] private Timer _timer;
         private TimeLimitDataModule _timeLimitDataModule;
-        
-        protected override void Initialize()
-        {
-            base.Initialize();
-            SignalBus.Subscribe<StageCompletedSignal>(OnStageCompleted);
-            MessageBroker.Default.Receive<ItemsEventsModels.ItemsSpawned>()
-                .Subscribe(_=>OnItemsSpawned()).AddTo(this);
-            //       _levelCompletePopup.Hide();
-        }
 
+        public override void Construct(SignalBus signalBus)
+        {
+            base.Construct(signalBus);
+            SignalBus.Subscribe<StageCompletedSignal>(OnStageCompleted);
+        }
+        
         protected override void OnStageStarted(StageStartedSignal signal)
         {
             base.OnStageStarted(signal);
+            
+            MessageBroker.Default.Receive<ItemsEventsModels.ItemsSpawned>()
+                .Subscribe(_=>OnItemsSpawned()).AddTo(this);
+            //       _levelCompletePopup.Hide();
+
             _timeLimitDataModule = signal.StageData.GetModule<TimeLimitDataModule>();
             _timer.Initialize(TimeSpan.FromSeconds(_timeLimitDataModule.SecondsTimeLimit));
         }

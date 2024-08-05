@@ -17,7 +17,8 @@ namespace MergeClaw3D.Scripts.Shop
     public class ArtifactShopSpotUi : MonoBehaviour
     {
         public event Action ArtifactBought;
-        
+
+        [SerializeField] private Canvas _canvas;
         [SerializeField] private CurrencyConfig _currencyConfig;
         [SerializeField] private Button _buyButton;
         [SerializeField] private List<ArtifactShopUiPrice> _prices;
@@ -32,6 +33,7 @@ namespace MergeClaw3D.Scripts.Shop
         
         public void Initialize(ArtifactData artifactData)
         {
+            _canvas.worldCamera = Camera.main;
             _buyButton.onClick.AddListener(OnBuyClick);
 
             _prices.ForEach(x=>x.Disable());

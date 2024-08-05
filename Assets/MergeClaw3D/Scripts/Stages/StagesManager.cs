@@ -10,6 +10,8 @@ namespace MergeClaw3D.Scripts.Stages
 {
     public class StagesManager : MonoBehaviour
     {
+        public int CurrentStageGlobalIndex { get; private set; } = -1;
+        
         private IStage _currentStage;
         
         private SignalBus _signalBus;
@@ -31,6 +33,7 @@ namespace MergeClaw3D.Scripts.Stages
         private async void SetNextStage()
         {
             var stageData = _stagesConfig.GetStageData(_currentStage==null?0:_currentStage.StageData.Id+1); //TODO maybe save? like last unfinished level restart
+            CurrentStageGlobalIndex++;
             _currentStage = null;
             await SceneManager.LoadSceneAsync(stageData.SceneName).ToUniTask();
             _currentStage = GameObject.FindGameObjectWithTag("Stage").GetComponent<IStage>();

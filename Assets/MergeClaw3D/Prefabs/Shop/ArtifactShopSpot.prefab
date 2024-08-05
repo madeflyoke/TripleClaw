@@ -419,6 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fccc8a44e8779c418ac9c2db8dd68f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 182523719429780277}
   _currencyConfig: {fileID: 11400000, guid: 1c0fe9d230fa39c42a1ed5be8a1ff7f4, type: 2}
   _buyButton: {fileID: 4445684884632289138}
   _prices:

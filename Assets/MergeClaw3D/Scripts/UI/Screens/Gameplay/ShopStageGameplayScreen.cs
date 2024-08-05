@@ -6,13 +6,14 @@ namespace MergeClaw3D.Scripts.UI.Screens.Gameplay
     {
         //   [SerializeField] private LevelCompletePopup _levelCompletePopup;
         
-        protected override void Initialize()
+
+        protected override void OnStageStarted(StageStartedSignal signal)
         {
-            base.Initialize();
-            SignalBus.Subscribe<StageCompletedSignal>(OnStageCompleted);
+            base.OnStageStarted(signal);
             //       _levelCompletePopup.Hide();
+            SignalBus.Subscribe<StageCompletedSignal>(OnStageCompleted);
         }
-        
+
         private void OnStageCompleted(StageCompletedSignal signal)
         {
             ShowLevelCompletePopup(signal);

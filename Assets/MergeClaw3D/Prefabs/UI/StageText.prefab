@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1039338349336194425}
   - component: {fileID: 1142629987445926572}
   - component: {fileID: 6238197832012599608}
+  - component: {fileID: 581216477471974361}
   m_Layer: 5
-  m_Name: LevelText
+  m_Name: StageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,3 +135,16 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &581216477471974361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4852686408997744778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5ccfb154155f14699aa59f4b11f4dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stageText: {fileID: 6238197832012599608}

@@ -210,4 +210,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pauseButton: {fileID: 6709592084290438239}
+  _stageText: {fileID: 8901163704276557264}
   _timer: {fileID: 6681897591210911549}
+--- !u!114 &8901163704276557264 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3837425962144072097, guid: 0251c9ce1fd9f9c45bc251b5cdfa47fc, type: 3}
+  m_PrefabInstance: {fileID: 5676241621225872497}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

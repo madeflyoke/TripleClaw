@@ -2,6 +2,7 @@ using MergeClaw3D.Scripts.Configs.Stages.Data;
 using MergeClaw3D.Scripts.Currency;
 using MergeClaw3D.Scripts.Currency.StageHandlers;
 using MergeClaw3D.Scripts.Events.Models;
+using MergeClaw3D.Scripts.Shop;
 using MergeClaw3D.Scripts.Signals;
 using UniRx;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace MergeClaw3D.Scripts.Stages.Variants
     {
         public StageData StageData { get; private set; }
         
-        [SerializeField] private ShopStageCurrencyHandler _currencyHandler;
+        [SerializeField] private ArtifactsShopController _shopController; 
         
         private SignalBus _signalBus;
 
@@ -27,7 +28,7 @@ namespace MergeClaw3D.Scripts.Stages.Variants
         {
             StageData = stageData;
             var shopStageData = stageData as ShopStageData;
-            _currencyHandler.Initialize(shopStageData);
+            _shopController.Initialize();
             
             InitCallbacks();
         }

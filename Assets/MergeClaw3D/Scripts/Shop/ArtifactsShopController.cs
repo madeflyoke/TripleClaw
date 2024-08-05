@@ -11,9 +11,7 @@ namespace MergeClaw3D.Scripts.Shop
         [SerializeField] private List<ArtifactShopSpot> _artifactsSpots;
         [SerializeField] private InventoryArtifactsConfig _artifactsConfig;
         private List<ArtifactShopSpot> _currentSpots;
-    
         
-        [Button]
         public void Initialize()
         {
             var allArtifacts = _artifactsConfig.GetAllMutationsArtifactsData().Shuffle();

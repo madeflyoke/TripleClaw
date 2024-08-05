@@ -410,6 +410,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5484237121450103597, guid: 7af19602068613546b40c1592a353c3f, type: 3}
+      propertyPath: m_Name
+      value: StageText
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767933430456768752, guid: 7af19602068613546b40c1592a353c3f, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1990095838244473076}
+    - target: {fileID: 7612397464535430292, guid: 7af19602068613546b40c1592a353c3f, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1990095838244473075}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -661,7 +673,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopStageController
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2295396535571818871, guid: 843dea97a74741a4f8cd9737575d7ba6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -738,6 +751,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19a986c0cec55804dbf87951fcee78fa, type: 3}
+--- !u!20 &1990095838244473075 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8328689042023841229, guid: 19a986c0cec55804dbf87951fcee78fa, type: 3}
+  m_PrefabInstance: {fileID: 1990095838244473074}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1990095838244473076 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6994296995323291823, guid: 19a986c0cec55804dbf87951fcee78fa, type: 3}
+  m_PrefabInstance: {fileID: 1990095838244473074}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2066481971299418705 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7972422628361451237, guid: 5893bbe077a6984469f32c2290c9a4f7, type: 3}
