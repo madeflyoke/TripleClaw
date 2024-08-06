@@ -4,6 +4,5 @@ namespace MergeClaw3D.Scripts.Inventory.Enum
     {
         NONE = 0,
         ITEM_PLACE_CRYSTAL = 1,
-        BUCKET = 2,
     }
 }

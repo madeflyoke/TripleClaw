@@ -48,7 +48,7 @@ namespace MergeClaw3D.Scripts.Shop
         private void SpawnArtifact(ArtifactData artifactData)
         {
             _relatedArtifactData = artifactData;
-            Instantiate(artifactData.ArtifactPrefab as MonoBehaviour, _artifactParent);
+            Instantiate(artifactData.ArtifactOriginal as MonoBehaviour, _artifactParent);
         }
         
         private void OnArtifactBought()

@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05865dd8fc7001418c8517cc9f4c010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ResolveArtifactType>k__BackingField: 1

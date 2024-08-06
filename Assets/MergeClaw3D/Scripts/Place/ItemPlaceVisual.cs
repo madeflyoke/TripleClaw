@@ -13,9 +13,9 @@ namespace MergeClaw3D.Scripts.Place
         [SerializeField] private ParticleSystem _mergedVfx;
 
         [Title("StateVisual")] 
+        [SerializeField] private ParticleSystem _onEnabledVfx;
         [SerializeField] private Color _disabledMainVfxColor;
         [SerializeField, ReadOnly] private Color _enabledMainVfxColor;
-        [SerializeField, ReadOnly] private float _defaultMainVfxSpeed;
 
 
         public void PlayMatchedVfx()
@@ -26,6 +26,11 @@ namespace MergeClaw3D.Scripts.Place
         public void PlayMergedVfx()
         {
             _mergedVfx.Play();
+        }
+
+        public void PlayOnEnableVfx()
+        {
+            _onEnabledVfx.Play();
         }
         
         public void SetVisualState(bool isEnabled)
@@ -58,7 +63,6 @@ namespace MergeClaw3D.Scripts.Place
             if (_mainVfx!=null)
             {
                 _enabledMainVfxColor = _mainVfx.main.startColor.color;
-                _defaultMainVfxSpeed = _mainVfx.main.simulationSpeed;
             }
         }
 

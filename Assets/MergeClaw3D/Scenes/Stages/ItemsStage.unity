@@ -174,16 +174,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemsStageUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5472645393322449883, guid: 88acf79e6e80bbc4da18bb9b8f3bac71, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1990095838244473075}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88acf79e6e80bbc4da18bb9b8f3bac71, type: 3}
---- !u!4 &301731728 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8216586408828179280, guid: b87f9e8bff1e67349b714b5c40d12d16, type: 3}
-  m_PrefabInstance: {fileID: 4066040193747321006}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &451391270
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +215,6 @@ Transform:
   - {fileID: 1034416310}
   - {fileID: 1128880353328516731}
   - {fileID: 1999059658}
-  - {fileID: 301731728}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &572798035
@@ -608,6 +606,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19a986c0cec55804dbf87951fcee78fa, type: 3}
+--- !u!20 &1990095838244473075 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8328689042023841229, guid: 19a986c0cec55804dbf87951fcee78fa, type: 3}
+  m_PrefabInstance: {fileID: 1990095838244473074}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2575677779313128554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -665,63 +668,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f5cb0cde44bac94b83a81c6df895059, type: 3}
---- !u!1001 &4066040193747321006
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 451391271}
-    m_Modifications:
-    - target: {fileID: 3078116094958495362, guid: b87f9e8bff1e67349b714b5c40d12d16, type: 3}
-      propertyPath: m_Name
-      value: CommonStageManagers
-      objectReference: {fileID: 0}
-    - target: {fileID: 8216586408828179280, guid: b87f9e8bff1e67349b714b5c40d12d16, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8216586408828179280, guid: b87f9e8bff1e67349b714b5c40d12d16, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8216586408828179280, guid: b87f9e8bff1e67349b714b5c40d12d16, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8216586408828179280, guid: b87f9e8bff1e67349b714b5c40d12d16, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8216586408828179280, guid: b87f9e8bff1e67349b714b5c40d12d16, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8216586408828179280, guid: b87f9e8bff1e67349b714b5c40d12d16, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8216586408828179280, guid: b87f9e8bff1e67349b714b5c40d12d16, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8216586408828179280, guid: b87f9e8bff1e67349b714b5c40d12d16, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8216586408828179280, guid: b87f9e8bff1e67349b714b5c40d12d16, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8216586408828179280, guid: b87f9e8bff1e67349b714b5c40d12d16, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b87f9e8bff1e67349b714b5c40d12d16, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

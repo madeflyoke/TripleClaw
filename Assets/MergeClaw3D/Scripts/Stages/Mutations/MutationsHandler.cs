@@ -13,12 +13,13 @@ namespace MergeClaw3D.Scripts.Stages.Mutations
         
         [SerializeField] private MutationsConfig _config;
         
-        public void Initialize(StageData stageData)
+        public async void Initialize(StageData stageData)
         {
             foreach (var mutationDataModule in stageData.GetModules<IBaseStageMutationDataModule>())
             {
                 BaseStageMutation prefab = _config.GetMutationPrefab(mutationDataModule);
-                _diContainer.InstantiatePrefabForComponent<BaseStageMutation>(prefab, transform).Initialize(mutationDataModule);
+                var mutation =_diContainer.InstantiatePrefabForComponent<BaseStageMutation>(prefab, transform);
+                mutation.Initialize(mutationDataModule);
             }
         }
     }

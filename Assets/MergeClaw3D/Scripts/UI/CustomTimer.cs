@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MergeClaw3D.Scripts.UI
 {
-    public class Timer : MonoBehaviour
+    public class CustomTimer : MonoBehaviour
     {
         [SerializeField] private TMP_Text _timerText;
         private TimeSpan _duration;

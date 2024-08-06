@@ -416,7 +416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4852686408997744778, guid: 606d5719eaeee9744aae855e0653353e, type: 3}
       propertyPath: m_Name
-      value: LevelText
+      value: StageText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

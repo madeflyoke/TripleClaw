@@ -13,7 +13,7 @@ namespace MergeClaw3D.Scripts.UI.Screens.Gameplay
     public class ItemsStageGameplayScreen : GameplayScreen
     {
      //   [SerializeField] private LevelCompletePopup _levelCompletePopup;
-        [SerializeField] private Timer _timer;
+        [SerializeField] private CustomTimer _customTimer;
         private TimeLimitDataModule _timeLimitDataModule;
 
         public override void Construct(SignalBus signalBus)
@@ -31,17 +31,17 @@ namespace MergeClaw3D.Scripts.UI.Screens.Gameplay
             //       _levelCompletePopup.Hide();
 
             _timeLimitDataModule = signal.StageData.GetModule<TimeLimitDataModule>();
-            _timer.Initialize(TimeSpan.FromSeconds(_timeLimitDataModule.SecondsTimeLimit));
+            _customTimer.Initialize(TimeSpan.FromSeconds(_timeLimitDataModule.SecondsTimeLimit));
         }
 
         private void OnItemsSpawned()
         {
-            _timer.StartTimer();
+            _customTimer.StartTimer();
         }
 
         private void OnStageCompleted(StageCompletedSignal signal)
         {
-            _timer.StopTimer();
+            _customTimer.StopTimer();
             ShowLevelCompletePopup(signal);
         }
         

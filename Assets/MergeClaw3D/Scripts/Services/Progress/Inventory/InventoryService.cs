@@ -13,7 +13,7 @@ namespace MergeClaw3D.Scripts.Services.Progress.Inventory
         public event Action<ArtifactType> ArtifactAdded;
         public event Action<ArtifactType> ArtifactRemoved;
         
-        private HashSet<ArtifactType> _items;
+        private HashSet<ArtifactType> _artifacts;
         private InventoryProgressHandler _inventoryProgressHandler;
         
         public UniTask Initialize(CancellationTokenSource cts)
@@ -25,20 +25,20 @@ namespace MergeClaw3D.Scripts.Services.Progress.Inventory
 
         private void InitializeInventory()
         {
-            _items = new HashSet<ArtifactType>();
+            _artifacts = new HashSet<ArtifactType>();
             
             foreach (ArtifactType item in Enum.GetValues(typeof(ArtifactType)))
             {
                 if (_inventoryProgressHandler.IsArtifactExist(item))
                 {
-                    _items.Add(item);
+                    _artifacts.Add(item);
                 }
             }  
         }
         
         public void AddArtifact(ArtifactType artifact)
         {
-            _items.Add(artifact);
+            _artifacts.Add(artifact);
             _inventoryProgressHandler.SaveArtifactState(artifact,true);
             ArtifactAdded?.Invoke(artifact);
             
@@ -49,9 +49,9 @@ namespace MergeClaw3D.Scripts.Services.Progress.Inventory
 
         public void RemoveArtifact(ArtifactType artifact)
         {
-            if (_items.Contains(artifact))
+            if (_artifacts.Contains(artifact))
             {
-                _items.Remove(artifact);
+                _artifacts.Remove(artifact);
                 _inventoryProgressHandler.SaveArtifactState(artifact,false);
                 ArtifactRemoved?.Invoke(artifact);
                 
@@ -63,17 +63,17 @@ namespace MergeClaw3D.Scripts.Services.Progress.Inventory
 
         public bool ContainsArtifact(ArtifactType artifact)
         {
-            return _items.Contains(artifact);
+            return _artifacts.Contains(artifact);
         }
 
         public HashSet<ArtifactType> GetExistsArtifacts()
         {
-            return _items;
+            return _artifacts;
         }
         
         public void Dispose()
         {
-            _inventoryProgressHandler?.SaveArtifacts(_items);
+            _inventoryProgressHandler?.SaveArtifacts(_artifacts);
         }
     }
 }

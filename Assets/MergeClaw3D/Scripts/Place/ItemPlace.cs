@@ -31,9 +31,13 @@ namespace MergeClaw3D.Scripts.Place
             return item;
         }
 
-        [Button]
         public void SetState(bool isEnabled)
         {
+            if (isEnabled && IsEnabled ==false)
+            {
+                _itemPlaceVisual.PlayOnEnableVfx();
+            }
+            
             IsEnabled = isEnabled;
             _itemPlaceVisual.SetVisualState(isEnabled);
         }
